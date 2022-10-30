@@ -1,5 +1,4 @@
 import { NavLink } from "react-router-dom";
-
 import classes from "./MainNavigation.module.css";
 
 function MainNavigation() {
@@ -42,13 +41,24 @@ function MainNavigation() {
           </li>
           <li>
             <NavLink
-              to="/Sign-in"
+              to="/Sign-Up"
               className={({ isActive }) =>
                 isActive ? classes.active : undefined
               }
               end
             >
-              Sign-in
+              Sign-Up
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/Manager-Access"
+              className={({ isActive }) =>
+                isActive ? classes.active : undefined
+              }
+              end
+            >
+              Manager Access
             </NavLink>
           </li>
         </ul>
