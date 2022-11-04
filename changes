@@ -1,0 +1,3 @@
+add backend ( all about backend in folder (server) )
+
+change in a client side on Products commponent: add a fetch/axios to take products from api server side
