@@ -6,3 +6,5 @@ in backend:
 
 1. Products api ( getAllProducts, create product )
 2. Users and authentication api ( signup, login )
+
+documentation of api : url is: (https://documenter.getpostman.com/view/24260020/2s8YYENjjL)
