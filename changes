@@ -1,3 +1,8 @@
 add backend ( all about backend in folder (server) )
 
 change in a client side on Products commponent: The add is a fetch to take products from api server side
+
+in backend:
+
+1. Products api ( getAllProducts, create product )
+2. Users and authentication api ( signup, login )
