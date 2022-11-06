@@ -1,29 +1,50 @@
+/* #171717 */
+/* #090909 */
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+.logo {
+  height: 130px;
+  width: 130px;
+}
+
+.navBar {
+  display: flex;
+  gap: 32px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navEnd {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+
 .header {
-  padding: 2rem;
-  background-color: #383535;
+  padding: 10px 30px;
+  background-color: #090909;
+  border-radius: 10px;
 }
 
 .header ul {
   display: flex;
-  gap: 2rem;
-  justify-content: center;
+  gap: 50px;
   list-style-type: none;
 }
 
 .header a {
   color: #e5e5e5;
-  font-size: 1.15rem;
+  font-size: 18.4px;
   text-decoration: none;
 }
 
 .header a:hover,
 .header a:active,
 .header a.active {
-  color: #fcb66b;
+  color: #339af0;
 }

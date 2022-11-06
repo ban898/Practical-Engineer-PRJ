@@ -1,10 +1,13 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
+import logo from "../img/logo.png";
 import classes from "./MainNavigation.module.css";
+import BlueButton from "./BlueButton";
 
 function MainNavigation() {
   return (
     <header className={classes.header}>
-      <nav>
+      <nav className={classes.navBar}>
+        <img className={classes.logo} src={logo} alt="logo"></img>
         <ul>
           <li>
             <NavLink
@@ -25,7 +28,7 @@ function MainNavigation() {
               }
               end
             >
-              Products
+              About
             </NavLink>
           </li>
           <li>
@@ -36,7 +39,7 @@ function MainNavigation() {
               }
               end
             >
-              About Us
+              Pages
             </NavLink>
           </li>
           <li>
@@ -47,21 +50,16 @@ function MainNavigation() {
               }
               end
             >
-              Sign-Up
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/Manager-Access"
-              className={({ isActive }) =>
-                isActive ? classes.active : undefined
-              }
-              end
-            >
-              Manager Access
+              Cart
             </NavLink>
           </li>
         </ul>
+        <div className={classes.navEnd}>
+          <Link to="/" className={classes.login}>
+            Login
+          </Link>
+          <BlueButton />
+        </div>
       </nav>
     </header>
   );

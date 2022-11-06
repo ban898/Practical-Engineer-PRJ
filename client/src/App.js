@@ -10,7 +10,6 @@ import WelcomePage from "./pages/WelcomePage";
 import RootLayout from "./pages/RootLayout";
 import Products from "./pages/Products";
 import ErrorElement from "./pages/Error";
-// import Button from "@mui/material/Button";
 
 const myRouter = createBrowserRouter(
   createRoutesFromElements(
@@ -25,7 +24,11 @@ const myRouter = createBrowserRouter(
   )
 );
 function App() {
-  return <RouterProvider router={myRouter} />;
+  return (
+    <div>
+      <RouterProvider router={myRouter} />
+    </div>
+  );
 }
 
 export default App;
