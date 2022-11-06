@@ -1,5 +1,5 @@
 import { NavLink, Link } from "react-router-dom";
-import logo from "../img/logo.png";
+import logo from "../img/logo2.png";
 import classes from "./MainNavigation.module.css";
 import BlueButton from "./BlueButton";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";

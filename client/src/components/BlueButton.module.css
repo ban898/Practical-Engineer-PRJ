@@ -6,4 +6,13 @@
   background-color: #247bfe;
   padding: 18px 24px;
   border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s;
 }
+
+.button:active {
+  -webkit-box-shadow: inset 0px 0px 66px 1px #063c8d;
+  box-shadow: inset 0px 0px 66px 1px #063c8d;
+}
+
+/* 247bfe */
