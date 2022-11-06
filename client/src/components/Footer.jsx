@@ -89,11 +89,41 @@ const Footer = () => {
           Copyright &#169; CRM-X | Designed by David and Steve
         </p>
         <div className={classes.icons}>
-          <FacebookIcon />
-          <InstagramIcon />
-          <TwitterIcon />
-          <LinkedInIcon />
-          <YouTubeIcon />
+          <FacebookIcon
+            sx={{
+              paddingLeft: "10px",
+              fontSize: "35px",
+              paddingBottom: "12px",
+            }}
+          />{" "}
+          <InstagramIcon
+            sx={{
+              paddingLeft: "10px",
+              fontSize: "35px",
+              paddingBottom: "12px",
+            }}
+          />
+          <TwitterIcon
+            sx={{
+              paddingLeft: "10px",
+              fontSize: "35px",
+              paddingBottom: "12px",
+            }}
+          />{" "}
+          <LinkedInIcon
+            sx={{
+              paddingLeft: "10px",
+              fontSize: "35px",
+              paddingBottom: "12px",
+            }}
+          />{" "}
+          <YouTubeIcon
+            sx={{
+              paddingLeft: "10px",
+              fontSize: "35px",
+              paddingBottom: "12px",
+            }}
+          />
         </div>
       </div>
     </div>
