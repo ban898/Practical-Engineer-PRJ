@@ -21,7 +21,7 @@
 
 .navEnd {
   display: flex;
-  gap: 30px;
+  gap: 5px;
   align-items: center;
 }
 
@@ -47,4 +47,13 @@
 .header a:active,
 .header a.active {
   color: #339af0;
+}
+
+.pages {
+  display: flex;
+  gap: 2px;
+}
+
+.login {
+  margin-right: 20px;
 }

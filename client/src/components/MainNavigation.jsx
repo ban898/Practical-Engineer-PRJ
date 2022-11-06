@@ -2,6 +2,8 @@ import { NavLink, Link } from "react-router-dom";
 import logo from "../img/logo.png";
 import classes from "./MainNavigation.module.css";
 import BlueButton from "./BlueButton";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import LoginIcon from "@mui/icons-material/Login";
 
 function MainNavigation() {
   return (
@@ -28,19 +30,14 @@ function MainNavigation() {
               }
               end
             >
-              About
+              Products
             </NavLink>
           </li>
           <li>
-            <NavLink
-              to="/About-Us"
-              className={({ isActive }) =>
-                isActive ? classes.active : undefined
-              }
-              end
-            >
-              Pages
-            </NavLink>
+            <Link to="/Pages" className={classes.pages}>
+              <span>Pages</span>
+              <ExpandMoreIcon />
+            </Link>
           </li>
           <li>
             <NavLink
@@ -55,6 +52,9 @@ function MainNavigation() {
           </li>
         </ul>
         <div className={classes.navEnd}>
+          <span>
+            <LoginIcon sx={{ color: "#339af0", marginTop: "5px" }} />
+          </span>
           <Link to="/" className={classes.login}>
             Login
           </Link>
@@ -66,3 +66,5 @@ function MainNavigation() {
 }
 
 export default MainNavigation;
+
+//-------------------------------------------------------------------------------------
