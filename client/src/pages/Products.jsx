@@ -1,21 +1,19 @@
-import { Button, styled, Typography } from "@mui/material";
+import { Button, styled } from "@mui/material";
 import { Add, Settings } from "@mui/icons-material";
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 
 const Products = () => {
-
   // Add Temporary State
-  const [productsData, setProductsData] = useState({})
-  
-  // Add useEffect for request products
-  useEffect( () => {    
-    fetch('/api/v1/products').then( 
-      response => response.json())
-    .then( (data) => {
-      setProductsData(data)
-    })
-  }, [])
+  const [productsData, setProductsData] = useState({});
 
+  // Add useEffect for request products
+  useEffect(() => {
+    fetch("/api/v1/products")
+      .then((response) => response.json())
+      .then((data) => {
+        setProductsData(data);
+      });
+  }, []);
 
   const BlueButton = styled(Button)(({ theme }) => ({
     backgroundColor: "skyblue",
@@ -52,17 +50,23 @@ const Products = () => {
       <Button variant="outlined" disabled>
         outlined
       </Button>
-      <Typography variant="h1" component="p">
-
-      {/* receiving products from data base */}
-      { (typeof productsData.products === 'undefined')
-       ? (<div>Loading...</div>) 
-      : productsData.products.map((el, i) => {        
-        return <div key={i} >{el.name}</div>}) }
-        
-
-        It uses h1 style but its a p tag      
-      </Typography>      
+      <div>
+        {/* receiving products from data base */}
+        {typeof productsData.products === "undefined" ? (
+          <span>Loading...</span>
+        ) : (
+          productsData.products.map((el) => {
+            return (
+              <div key={el._id}>
+                <span>{el.name}</span>
+                <span>{el.description}</span>
+                <span>{el.price}</span>
+              </div>
+            );
+          })
+        )}
+        It uses h1 style but its a p tag
+      </div>
       <BlueButton>My Button</BlueButton>
       <BlueButton>Anothe Button</BlueButton>
     </div>
