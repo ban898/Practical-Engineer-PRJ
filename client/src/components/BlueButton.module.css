@@ -15,4 +15,12 @@
   box-shadow: inset 0px 0px 66px 1px #063c8d;
 }
 
+.button:hover {
+  -moz-transform: translate(0px, -3px);
+  -webkit-transform: translate(0px, -3px);
+  -o-transform: translate(0px, -3px);
+  -ms-transform: translate(0px, -3px);
+  transform: translate(0px, -3px);
+}
+
 /* 247bfe */

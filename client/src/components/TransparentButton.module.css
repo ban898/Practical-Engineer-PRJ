@@ -1,0 +1,25 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.button {
+  color: #fff;
+  background-color: transparent;
+  padding: 18px;
+  border: 1px solid #fff;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.5s;
+}
+
+.button:hover {
+  color: black;
+  background-color: #fff;
+  -moz-transform: translate(0px, -3px);
+  -webkit-transform: translate(0px, -3px);
+  -o-transform: translate(0px, -3px);
+  -ms-transform: translate(0px, -3px);
+  transform: translate(0px, -3px);
+}

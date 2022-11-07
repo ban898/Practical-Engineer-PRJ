@@ -7,6 +7,8 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import YouTubeIcon from "@mui/icons-material/YouTube";
+import MailOutlineIcon from "@mui/icons-material/MailOutline";
+import CallOutlinedIcon from "@mui/icons-material/CallOutlined";
 
 const Footer = () => {
   return (
@@ -80,8 +82,20 @@ const Footer = () => {
         </div>
         <div className={classes.footerMenuWrapper}>
           <div className={classes.footerTitle}>Contact us</div>
-          <div className={classes.footerEmail}>Email</div>
-          <div className={classes.footerPhone}>Phone</div>
+          <div className={classes.footerEmail}>
+            <MailOutlineIcon />
+            <div>
+              Email
+              <div className={classes.emailText}>Davidface2@gmail.com</div>
+            </div>
+          </div>
+          <div className={classes.footerPhone}>
+            <CallOutlinedIcon />
+            <div>
+              Phone
+              <div className={classes.phoneText}>(+972)54-7657085</div>
+            </div>
+          </div>
         </div>
       </div>
       <div className={classes.footerBot}>
@@ -94,6 +108,7 @@ const Footer = () => {
               paddingLeft: "10px",
               fontSize: "35px",
               paddingBottom: "12px",
+              cursor: "pointer",
             }}
           />{" "}
           <InstagramIcon
@@ -101,6 +116,7 @@ const Footer = () => {
               paddingLeft: "10px",
               fontSize: "35px",
               paddingBottom: "12px",
+              cursor: "pointer",
             }}
           />
           <TwitterIcon
@@ -108,6 +124,8 @@ const Footer = () => {
               paddingLeft: "10px",
               fontSize: "35px",
               paddingBottom: "12px",
+
+              cursor: "pointer",
             }}
           />{" "}
           <LinkedInIcon
@@ -115,6 +133,7 @@ const Footer = () => {
               paddingLeft: "10px",
               fontSize: "35px",
               paddingBottom: "12px",
+              cursor: "pointer",
             }}
           />{" "}
           <YouTubeIcon
@@ -122,6 +141,7 @@ const Footer = () => {
               paddingLeft: "10px",
               fontSize: "35px",
               paddingBottom: "12px",
+              cursor: "pointer",
             }}
           />
         </div>

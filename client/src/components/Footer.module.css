@@ -58,9 +58,10 @@ label {
 /* MAIN */
 .footerMain {
   display: flex;
-  margin: 71px 10px;
+  margin: 30px 10px;
   justify-content: space-evenly;
   border-bottom: 1px solid #656769;
+  padding-bottom: 50px;
 }
 
 .footerMenuWrapper {
@@ -75,15 +76,29 @@ label {
 }
 
 .footerContent ul {
-  color: #656769;
+  color: #919497;
   list-style-type: none;
   line-height: 30px;
+}
+
+ul li {
+  transition: all 0.3s;
+}
+
+ul li:hover {
+  color: #247bfe;
+  cursor: pointer;
+  -moz-transform: translate(5px, 0px);
+  -webkit-transform: translate(5px, 0px);
+  -o-transform: translate(5px, 0px);
+  -ms-transform: translate(5px, 0px);
+  transform: translate(5px, 0px);
 }
 
 /* BOT */
 
 .footerBot {
-  color: #656769;
+  color: #919497;
   padding-left: 150px;
   display: flex;
   justify-content: space-between;
@@ -91,4 +106,30 @@ label {
 
 .icons {
   margin-right: 190px;
+}
+
+.footerEmail {
+  border-bottom: 1px solid #656769;
+  padding-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+.emailText {
+  color: #919497;
+}
+
+.footerPhone {
+  padding-top: 15px;
+  padding-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+.phoneText {
+  color: #919497;
 }
