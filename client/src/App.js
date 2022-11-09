@@ -10,11 +10,13 @@ import WelcomePage from "./pages/WelcomePage";
 import RootLayout from "./pages/RootLayout";
 import Products from "./pages/Products";
 import ErrorElement from "./pages/Error";
+import Login from "./pages/Login";
 
 const myRouter = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<RootLayout />} errorElement={<ErrorElement />}>
       <Route index element={<WelcomePage />} />
+      <Route path="login" element={<Login />} errorElement={<ErrorElement />} />
       <Route
         path="products"
         element={<Products />}

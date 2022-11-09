@@ -55,7 +55,7 @@ function MainNavigation() {
           <span>
             <LoginIcon sx={{ color: "#339af0", marginTop: "5px" }} />
           </span>
-          <Link to="/" className={classes.login}>
+          <Link to="/login" className={classes.login}>
             Login
           </Link>
           <BlueButton />
