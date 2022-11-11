@@ -1,9 +1,47 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import classes from "./Login.module.css";
-// import bg from "../img/loginbg2.jpg";
-// import KeyIcon from "@mui/icons-material/Key";
 
 const Login = () => {
+  const emailInputRef = useRef();
+  const passwordInputRef = useRef();
+
+  const [emailIsValid, setEmailIsValid] = useState(true);
+  const [passwordIsValid, setPasswordIsValid] = useState(true);
+  const [isChecked, setIsChecked] = useState(false);
+
+  const checkHandler = () => {
+    setIsChecked(!isChecked);
+  };
+
+  const loginHandler = (event) => {
+    event.preventDefault();
+
+    const email = emailInputRef.current.value;
+    const password = passwordInputRef.current.value;
+
+    if (email.trim() === "") {
+      setEmailIsValid(false);
+      return;
+    }
+
+    if (password === "") {
+      passwordIsValid(false);
+      return;
+    }
+
+    setPasswordIsValid(true);
+    setEmailIsValid(true);
+
+    const user = {
+      id: email,
+      password: password,
+    };
+
+    // Here need to POST to MongoDB the user OBJECT
+
+    console.log(user);
+  };
+
   return (
     <div className={classes.boxForm}>
       <div className={classes.left}>
@@ -16,11 +54,10 @@ const Login = () => {
           <span>
             <p>login with social media</p>
             <a href="google.com">
-              <i class="fa fa-facebook" aria-hidden="true"></i>
+              <i aria-hidden="true"></i>
             </a>
             <a href="google.com">
-              <i class="fa fa-twitter" aria-hidden="true"></i> Login with
-              Twitter
+              <i aria-hidden="true"></i> Login with Twitter
             </a>
           </span>
         </div>
@@ -35,21 +72,36 @@ const Login = () => {
         </div>
         <div className={classes.fathers}>
           <div className={classes.inputs}>
-            <input type="text" placeholder="user name"></input>
+            <input
+              type="email"
+              placeholder="E-Mail"
+              ref={emailInputRef}
+            ></input>
+            {!emailIsValid && <p>Incorrect Email</p>}
             <br />
-            <input type="password" placeholder="password"></input>
+            <input
+              type="password"
+              placeholder="password"
+              ref={passwordInputRef}
+            ></input>
           </div>
           <br />
           <br />
           <div className={classes.rememberMeForgetPassword}>
             <label>
-              <input type="checkbox" name="item" checked></input>
+              <input
+                type="checkbox"
+                name="item"
+                checked={isChecked}
+                onChange={checkHandler}
+              ></input>
+              <p>The checkbox is {isChecked ? "checked" : "unchecked"}</p>
               <span className={classes.textCheckbox}>Remember me</span>
             </label>
             <p>forgot password?</p>
           </div>
           <br />
-          <button>Login</button>
+          <button onClick={loginHandler}>Login</button>
         </div>
       </div>
     </div>
