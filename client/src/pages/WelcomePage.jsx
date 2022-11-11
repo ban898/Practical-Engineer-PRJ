@@ -34,42 +34,42 @@ const WelcomePage = () => {
             <AppleIcon
               color="disabled"
               sx={{
-                fontSize: "80px",
+                fontSize: "100px",
                 marginLeft: "125px",
               }}
             />
             <FacebookIcon
               color="disabled"
               sx={{
-                fontSize: "80px",
+                fontSize: "100px",
                 marginLeft: "125px",
               }}
             />
             <GoogleIcon
               color="disabled"
               sx={{
-                fontSize: "80px",
+                fontSize: "100px",
                 marginLeft: "125px",
               }}
             />
             <InstagramIcon
               color="disabled"
               sx={{
-                fontSize: "80px",
+                fontSize: "100px",
                 marginLeft: "125px",
               }}
             />
             <AndroidIcon
               color="disabled"
               sx={{
-                fontSize: "80px",
+                fontSize: "100px",
                 marginLeft: "125px",
               }}
             />
             <PinterestIcon
               color="disabled"
               sx={{
-                fontSize: "80px",
+                fontSize: "100px",
                 marginLeft: "125px",
               }}
             />
