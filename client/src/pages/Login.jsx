@@ -20,12 +20,16 @@ const Login = () => {
     const email = emailInputRef.current.value;
     const password = passwordInputRef.current.value;
 
-    if (email.trim() === "") {
+    //if email match the email from mongoDB
+    //instead of the if below
+    if (email.trim() === "" || email.includes("@") === false) {
       setEmailIsValid(false);
       return;
     }
 
-    if (password === "") {
+    //if password match the password from mongoDB
+    //instead of the if below
+    if (password.trim() === "" || password.length < 6) {
       passwordIsValid(false);
       return;
     }
@@ -49,13 +53,13 @@ const Login = () => {
         <div className={classes.overlay}>
           <h1>CRM-X</h1>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
-            et est sed felis aliquet sollicitudin
+            Login to get the latest news and enjoy the updated dashboard bla bla
+            bla bla bla bla bla
           </p>
           <span>
             <p>login with social media</p>
             <a href="google.com">
-              <i aria-hidden="true"></i>
+              <i aria-hidden="true"></i>Login with Facebook
             </a>
             <a href="google.com">
               <i aria-hidden="true"></i> Login with Twitter
@@ -82,27 +86,18 @@ const Login = () => {
             <br />
             <input
               type="password"
-              placeholder="password"
+              placeholder="Password"
               ref={passwordInputRef}
             ></input>
+            {!emailIsValid && <p>Incorrect password</p>}
           </div>
           <br />
           <br />
           <div className={classes.rememberMeForgetPassword}>
-            <label>
-              <input
-                type="checkbox"
-                name="item"
-                checked={isChecked}
-                onChange={checkHandler}
-              ></input>
-              <p>The checkbox is {isChecked ? "checked" : "unchecked"}</p>
-              <span className={classes.textCheckbox}>Remember me</span>
-            </label>
-            <p>forgot password?</p>
+            <button onClick={loginHandler}>Login</button>
+            <p>Forgot password ?</p>
           </div>
           <br />
-          <button onClick={loginHandler}>Login</button>
         </div>
       </div>
     </div>
@@ -112,6 +107,3 @@ const Login = () => {
 export default Login;
 
 //-------------------------------------------------------------------------------------
-// https://i.pinimg.com/736x/5d/73/ea/5d73eaabb25e3805de1f8cdea7df4a42--tumblr-backgrounds-iphone-phone-wallpapers-iphone-wallaper-tumblr.jpg
-
-// #090b6f85

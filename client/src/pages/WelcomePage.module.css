@@ -45,11 +45,51 @@ section {
 .aboutSection {
   background-color: #fff;
   border-radius: 10px;
-  padding: 83px 0;
+  padding: 30px 30px;
   border-bottom: 1px solid #656769;
+
+  display: flex;
+  justify-content: space-between;
 }
 
-.aboutContentSection {
-  background-color: #fff;
-  border-style: none;
+.aboutLeftSide {
+  width: 40%;
+}
+
+.aboutLeftSide img {
+  width: 100%;
+  border-radius: 20%;
+}
+
+.aboutRightSide {
+  width: 40%;
+}
+
+.aboutRightTextWrapper {
+  margin-top: 40px;
+}
+
+.aboutRightHeader {
+  color: #247bfe;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.aboutRightSlogan {
+  margin-top: 22px;
+  font-size: 40px;
+  font-weight: 800;
+  line-height: 50px;
+}
+
+.aboutRightRow {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 35px;
+}
+
+.aboutRightText p {
+  margin-top: 10px;
+  color: #656769;
+  line-height: 26px;
 }

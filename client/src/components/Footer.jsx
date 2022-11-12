@@ -18,7 +18,9 @@ const Footer = () => {
           <img className={classes.logo} src={logo} alt="logo" />
         </div>
         <div className={classes.footerTopRight}>
-          <label htmlFor="email">Subscribe to get latest news</label>
+          <label id="sub" htmlFor="email">
+            Subscribe to get latest news
+          </label>
           <div className={classes.emailSubmit}>
             <input
               className={classes.emailInput}
@@ -27,7 +29,7 @@ const Footer = () => {
               placeholder="enter your email"
             ></input>
             <div className={classes.btn}>
-              <BlueButton />
+              <BlueButton buttonText={"Send Email"} />
             </div>
           </div>
         </div>
