@@ -1,5 +1,7 @@
 import React, { useRef, useState } from "react";
 import classes from "./Login.module.css";
+import FacebookIcon from "@mui/icons-material/Facebook";
+import TwitterIcon from "@mui/icons-material/Twitter";
 
 const Login = () => {
   const emailInputRef = useRef();
@@ -7,12 +9,6 @@ const Login = () => {
 
   const [emailIsValid, setEmailIsValid] = useState(true);
   const [passwordIsValid, setPasswordIsValid] = useState(true);
-
-  const [isChecked, setIsChecked] = useState(false);
-
-  const checkHandler = () => {
-    setIsChecked(!isChecked);
-  };
 
   const loginHandler = (event) => {
     event.preventDefault();
@@ -56,15 +52,16 @@ const Login = () => {
             Login to get the latest news and enjoy the updated dashboard bla bla
             bla bla bla bla bla
           </p>
-          <span>
-            <p>login with social media</p>
-            <a href="google.com">
-              <i aria-hidden="true"></i>Login with Facebook
-            </a>
-            <a href="google.com">
-              <i aria-hidden="true"></i> Login with Twitter
-            </a>
-          </span>
+          <div className={classes.iconContainer}>
+            <div className={classes.iconConnection}>
+              <FacebookIcon />
+              <p> Login with Facebook</p>
+            </div>
+            <div className={classes.iconConnection}>
+              <TwitterIcon />
+              <p> Login with Twitter</p>
+            </div>
+          </div>
         </div>
       </div>
       <div className={classes.right}>
