@@ -168,7 +168,7 @@ label input[type="checkbox"] {
   display: none;
 }
 
-.father {
+.rightText {
   display: flex;
   flex-direction: column;
   gap: 10vh;

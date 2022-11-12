@@ -7,6 +7,7 @@ const Login = () => {
 
   const [emailIsValid, setEmailIsValid] = useState(true);
   const [passwordIsValid, setPasswordIsValid] = useState(true);
+
   const [isChecked, setIsChecked] = useState(false);
 
   const checkHandler = () => {
@@ -63,7 +64,7 @@ const Login = () => {
         </div>
       </div>
       <div className={classes.right}>
-        <div className={classes.father}>
+        <div className={classes.rightText}>
           <h5>Login</h5>
           <p>
             Don't have an account? <a href="google.com">Creat Your Account</a>{" "}
