@@ -6,6 +6,7 @@ import RootLayout from "./pages/RootLayout";
 import Products from "./pages/Products";
 import ErrorElement from "./pages/Error";
 import Login from "./pages/Login";
+import Signup from "./pages/Signup";
 
 function App() {
   return (
@@ -19,6 +20,11 @@ function App() {
         />
       </Route>
       <Route path="login" element={<Login />} errorElement={<ErrorElement />} />
+      <Route
+        path="Signup"
+        element={<Signup />}
+        errorElement={<ErrorElement />}
+      />
     </Routes>
   );
 }

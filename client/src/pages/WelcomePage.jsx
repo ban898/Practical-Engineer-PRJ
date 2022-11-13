@@ -19,7 +19,7 @@ const WelcomePage = () => {
         </div>
         <div className={classes.buttonContainer}>
           <BlueButton buttonText={"Get Started"} />
-          <TransparentButton />
+          <TransparentButton buttonText={"Browse Pages"} />
         </div>
       </section>
       <section className={classes.imageSection}>

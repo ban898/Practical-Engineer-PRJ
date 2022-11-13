@@ -1,4 +1,5 @@
 import React, { useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import classes from "./Login.module.css";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import TwitterIcon from "@mui/icons-material/Twitter";
@@ -68,8 +69,9 @@ const Login = () => {
         <div className={classes.rightText}>
           <h5>Login</h5>
           <p>
-            Don't have an account? <a href="google.com">Creat Your Account</a>{" "}
-            it takes less than a minute
+            Don't have an account?{" "}
+            <Link to="/Singup">Create your account Here</Link> it takes less
+            than a minute
           </p>
         </div>
         <div className={classes.fathers}>
