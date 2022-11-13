@@ -11,8 +11,8 @@ const WelcomePage = () => {
     <main>
       <section>
         <div className={classes.headerMain}>
-          <h1>CRM-X Platform</h1>
-          <h1>Dashboard with E-Commerce</h1>
+          <div className={classes.mainHeader}>CRM-X Platform</div>
+          <div className={classes.mainHeader}>Dashboard with E-Commerce</div>
         </div>
         <div className={classes.headerSlogan}>
           Presenting CRM-X, the ultimate Technology Startup

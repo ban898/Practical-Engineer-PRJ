@@ -6,7 +6,7 @@
 
 /* Header Section */
 
-h1 {
+.mainHeader {
   font-size: 72px;
   line-height: 80px;
   color: #fff;
