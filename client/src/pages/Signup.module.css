@@ -1,0 +1,16 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.signUpPadding {
+  padding: 50px 0;
+}
+
+.container {
+  width: 900px;
+  max-width: 100%;
+  margin: 0 auto;
+  background-color: red;
+}

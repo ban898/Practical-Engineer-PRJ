@@ -45,58 +45,60 @@ const Login = () => {
   };
 
   return (
-    <div className={classes.boxForm}>
-      <div className={classes.left}>
-        <div className={classes.overlay}>
-          <h1>CRM-X</h1>
-          <p>
-            Login to get the latest news and enjoy the updated dashboard bla bla
-            bla bla bla bla bla
-          </p>
-          <div className={classes.iconContainer}>
-            <div className={classes.iconConnection}>
-              <FacebookIcon />
-              <p> Login with Facebook</p>
-            </div>
-            <div className={classes.iconConnection}>
-              <TwitterIcon />
-              <p> Login with Twitter</p>
+    <div className={classes.loginBackground}>
+      <div className={classes.boxForm}>
+        <div className={classes.left}>
+          <div className={classes.overlay}>
+            <h1>CRM-X</h1>
+            <p>
+              Login to get the latest news and enjoy the updated dashboard bla
+              bla bla bla bla bla bla
+            </p>
+            <div className={classes.iconContainer}>
+              <div className={classes.iconConnection}>
+                <FacebookIcon />
+                <p> Login with Facebook</p>
+              </div>
+              <div className={classes.iconConnection}>
+                <TwitterIcon />
+                <p> Login with Twitter</p>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div className={classes.right}>
-        <div className={classes.rightText}>
-          <h5>Login</h5>
-          <p>
-            Don't have an account?{" "}
-            <Link to="/Singup">Create your account Here</Link> it takes less
-            than a minute
-          </p>
-        </div>
-        <div className={classes.fathers}>
-          <div className={classes.inputs}>
-            <input
-              type="email"
-              placeholder="E-Mail"
-              ref={emailInputRef}
-            ></input>
-            {!emailIsValid && <p>Incorrect Email</p>}
+        <div className={classes.right}>
+          <div className={classes.rightText}>
+            <h5>Login</h5>
+            <p>
+              Don't have an account?{" "}
+              <Link to="/Signup">Create your account Here</Link> it takes less
+              than a minute
+            </p>
+          </div>
+          <div className={classes.fathers}>
+            <div className={classes.inputs}>
+              <input
+                type="email"
+                placeholder="E-Mail"
+                ref={emailInputRef}
+              ></input>
+              {!emailIsValid && <p>Incorrect Email</p>}
+              <br />
+              <input
+                type="password"
+                placeholder="Password"
+                ref={passwordInputRef}
+              ></input>
+              {!emailIsValid && <p>Incorrect password</p>}
+            </div>
             <br />
-            <input
-              type="password"
-              placeholder="Password"
-              ref={passwordInputRef}
-            ></input>
-            {!emailIsValid && <p>Incorrect password</p>}
+            <br />
+            <div className={classes.rememberMeForgetPassword}>
+              <button onClick={loginHandler}>Login</button>
+              <p>Forgot password ?</p>
+            </div>
+            <br />
           </div>
-          <br />
-          <br />
-          <div className={classes.rememberMeForgetPassword}>
-            <button onClick={loginHandler}>Login</button>
-            <p>Forgot password ?</p>
-          </div>
-          <br />
         </div>
       </div>
     </div>
