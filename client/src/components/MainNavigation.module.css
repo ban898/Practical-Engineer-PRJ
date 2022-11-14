@@ -13,10 +13,30 @@
 }
 
 .navBar {
+  /* For Sticky Navbar */
+  position: fixed;
+  top: 0;
+  width: 80%;
+  /*  */
   display: flex;
   gap: 32px;
   justify-content: space-between;
   align-items: center;
+}
+
+.fixedNav {
+  /* For Sticky Navbar */
+  position: fixed;
+  top: 0;
+  width: 80%;
+  /*  */
+  display: flex;
+  gap: 32px;
+  justify-content: space-between;
+  align-items: center;
+  /* When Navbar Hits a cetain px change color and Border */
+  background-color: rgba(12, 13, 14, 0.917);
+  border-radius: 20px;
 }
 
 .navEnd {

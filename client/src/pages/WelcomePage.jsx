@@ -9,7 +9,7 @@ import MonitorIcon from "@mui/icons-material/Monitor";
 const WelcomePage = () => {
   return (
     <main>
-      <section>
+      <section id="Home">
         <div className={classes.headerMain}>
           <div className={classes.mainHeader}>CRM-X Platform</div>
           <div className={classes.mainHeader}>Dashboard with E-Commerce</div>
@@ -35,7 +35,9 @@ const WelcomePage = () => {
             <img src={SecondImage} alt="Secondary" />
           </div>
           <div className={classes.aboutRightSide}>
-            <div className={classes.aboutRightHeader}>Why CRM-X ?</div>
+            <div className={classes.aboutRightHeader} id="Features">
+              Why CRM-X ?
+            </div>
             <div className={classes.aboutRightSlogan}>
               We make it easy
               <br /> to track all users analytics

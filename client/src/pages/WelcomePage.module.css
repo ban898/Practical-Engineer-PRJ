@@ -6,6 +6,10 @@
 
 /* Header Section */
 
+.headerMain {
+  margin-top: 150px;
+}
+
 .mainHeader {
   font-size: 72px;
   line-height: 80px;
