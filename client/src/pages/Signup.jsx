@@ -13,7 +13,6 @@ const Signup = () => {
 
   const routeChange = () => {
     let path = "/login";
-    console.log(path);
     navigate(path);
   };
 

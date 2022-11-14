@@ -6,9 +6,11 @@ const TransparentButton = ({
   backgroundColor,
   fontSize,
   fontWeight,
+  onClick,
 }) => {
   return (
     <button
+      onClick={onClick}
       className={classes.button}
       style={{
         backgroundColor: `${backgroundColor}`,
