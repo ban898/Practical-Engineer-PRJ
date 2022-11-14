@@ -6,14 +6,14 @@ const BlueButton = (props) => {
   const bgColor = props.backgroundColor;
 
   return (
-    <div
+    <button
       className={classes.button}
       style={{
         backgroundColor: `${bgColor}`,
       }}
     >
       {text}
-    </div>
+    </button>
   );
 };
 

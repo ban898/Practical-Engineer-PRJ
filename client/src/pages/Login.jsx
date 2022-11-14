@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import classes from "./Login.module.css";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import TwitterIcon from "@mui/icons-material/Twitter";
+import axios from "axios";
 
 const Login = () => {
   const emailInputRef = useRef();
@@ -10,8 +11,10 @@ const Login = () => {
 
   const [emailIsValid, setEmailIsValid] = useState(true);
   const [passwordIsValid, setPasswordIsValid] = useState(true);
+  const [isLogin, setIsLogin] = useState(undefined);
+  const [userName, setUserName] = useState("");
 
-  const loginHandler = (event) => {
+  const loginHandler = async (event) => {
     event.preventDefault();
 
     const email = emailInputRef.current.value;
@@ -35,13 +38,18 @@ const Login = () => {
     setEmailIsValid(true);
 
     const user = {
-      id: email,
+      email: email,
       password: password,
     };
 
     // Here need to POST to MongoDB the user OBJECT
-
-    console.log(user);
+    try {
+      const res = await axios.post("/api/v1/users/login", { user });
+      setIsLogin(true);
+      setUserName(res.data.user.name);
+    } catch (error) {
+      setIsLogin(false);
+    }
   };
 
   return (
@@ -67,6 +75,9 @@ const Login = () => {
           </div>
         </div>
         <div className={classes.right}>
+          <div style={{ textAlign: "right" }}>
+            {isLogin && <span>Welcome: {userName}</span>}
+          </div>
           <div className={classes.rightText}>
             <h5>Login</h5>
             <p>
@@ -78,6 +89,7 @@ const Login = () => {
           <div className={classes.fathers}>
             <div className={classes.inputs}>
               <input
+                onChange={() => setIsLogin(undefined)}
                 type="email"
                 placeholder="E-Mail"
                 ref={emailInputRef}
@@ -85,6 +97,7 @@ const Login = () => {
               {!emailIsValid && <p>Incorrect Email</p>}
               <br />
               <input
+                onChange={() => setIsLogin(undefined)}
                 type="password"
                 placeholder="Password"
                 ref={passwordInputRef}
@@ -93,6 +106,7 @@ const Login = () => {
             </div>
             <br />
             <br />
+            {isLogin === false ? <span>incorrect!</span> : undefined}
             <div className={classes.rememberMeForgetPassword}>
               <button onClick={loginHandler}>Login</button>
               <p>Forgot password ?</p>
