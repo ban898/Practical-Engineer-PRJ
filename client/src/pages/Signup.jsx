@@ -6,8 +6,17 @@ import SignupImg from "../img/sign.jpg";
 import TextField from "@mui/material/TextField";
 import BlueButton from "../components/BlueButton";
 import TransparentButton from "../components/TransparentButton";
+import { useNavigate } from "react-router";
 
 const Signup = () => {
+  let navigate = useNavigate();
+
+  const routeChange = () => {
+    let path = "/login";
+    console.log(path);
+    navigate(path);
+  };
+
   return (
     <div className={classes.signUpPadding}>
       <div className={classes.container}>
@@ -37,10 +46,11 @@ const Signup = () => {
                   <div className={classes.signUpButtons}>
                     <BlueButton buttonText={"Create Account"} />
                     <TransparentButton
-                      buttonText={"Have an account ?"}
+                      buttonText="Have an account ?"
                       backgroundColor="gray"
-                      fontSize="18.4"
+                      fontSize="18.4px"
                       fontWeight="500"
+                      onClick={routeChange}
                     />
                   </div>
                 </form>

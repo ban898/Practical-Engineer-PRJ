@@ -1,23 +1,23 @@
 import React from "react";
 import classes from "./TransparentButton.module.css";
 
-const TransparentButton = (props) => {
-  const text = props.buttonText;
-  const bgColor = props.backgroundColor;
-  const size = props.fontSize;
-  const weight = props.fontWeight;
-
+const TransparentButton = ({
+  buttonText,
+  backgroundColor,
+  fontSize,
+  fontWeight,
+}) => {
   return (
-    <div
+    <button
       className={classes.button}
       style={{
-        backgroundColor: `${bgColor}`,
-        fontSize: `${size}`,
-        fontWeight: `${weight}`,
+        backgroundColor: `${backgroundColor}`,
+        fontSize: `${fontSize}`,
+        fontWeight: `${fontWeight}`,
       }}
     >
-      {text}
-    </div>
+      {buttonText}
+    </button>
   );
 };
 
