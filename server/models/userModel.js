@@ -3,15 +3,20 @@ const validator = require("validator");
 const bcrypt = require("bcrypt");
 
 const userSchema = new mongoose.Schema({
-  name: {
+  firstName: {
     type: String,
     trim: true,
-    required: [true, "A user must have a name"],
+    required: [true, "A user must have a first name"],
+  },
+  lastName: {
+    type: String,
+    trim: true,
+    required: [true, "A user must have a last name"],
   },
   email: {
     type: String,
     trim: true,
-    unique: true,
+    unique: [true, "This email not valid"],
     required: [true, "A user must have a email"],
     lowercase: true,
     validate: [validator.isEmail, "Please provide a valid email"],
@@ -39,6 +44,11 @@ const userSchema = new mongoose.Schema({
       },
       message: "Password are not the same!",
     },
+  },
+  address: {
+    type: String,
+    trim: true,
+    required: [true, "A user must have address"],
   },
   active: {
     type: Boolean,

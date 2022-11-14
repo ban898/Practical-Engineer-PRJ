@@ -8,8 +8,17 @@ import Products from "./pages/Products";
 import ErrorElement from "./pages/Error";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+//import axios from "axios";
 
 function App() {
+  // const getUser = async () => {
+  //   await axios.get("/me").then((res) => {
+  //     console.log(res.data);
+  //   });
+  // };
+
+  // getUser();
+
   return (
     <Routes>
       <Route path="/" element={<RootLayout />} errorElement={<ErrorElement />}>
