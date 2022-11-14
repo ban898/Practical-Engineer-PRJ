@@ -51,13 +51,13 @@ const Signup = () => {
             </div>
           </div>
         </div>
-      </div>
-      <div className={classes.signFooter}>
-        <div className={classes.signFooterLeft}>
-          <img src={TransLogo} alt="Logo" />
-        </div>
-        <div className={classes.signFooterRight}>
-          Copyright © CRM-X | Designed by David and Steve
+        <div className={classes.signFooter}>
+          <div className={classes.signFooterLeft}>
+            <img src={TransLogo} alt="Logo" />
+          </div>
+          <div className={classes.signFooterRight}>
+            Copyright © CRM-X | Designed by David and Steve
+          </div>
         </div>
       </div>
     </div>
