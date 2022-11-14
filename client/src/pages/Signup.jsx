@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import classes from "./Signup.module.css";
 import logo from "../img/crmBlackWhite.png";
 import TransLogo from "../img/Trans2Logo.png";
@@ -58,6 +60,12 @@ const Signup = () => {
     }
   };
 
+  let navigate = useNavigate();
+
+  const AccountExists = () => {
+    navigate("/login");
+  };
+
   return (
     <div className={classes.signUpPadding}>
       <div className={classes.container}>
@@ -104,6 +112,7 @@ const Signup = () => {
                   />
                   <TextField
                     label="Password"
+                    type={password}
                     fullWidth
                     margin="normal"
                     value={password}
@@ -111,6 +120,7 @@ const Signup = () => {
                   />
                   <TextField
                     label="Confirm Password"
+                    type={password}
                     fullWidth
                     margin="normal"
                     value={passwordConfirm}
@@ -121,8 +131,9 @@ const Signup = () => {
                     <TransparentButton
                       buttonText={"Have an account ?"}
                       backgroundColor="gray"
-                      fontSize="18.4"
+                      fontSize="18.4px"
                       fontWeight="500"
+                      onClick={AccountExists}
                     />
                   </div>
                 </form>
