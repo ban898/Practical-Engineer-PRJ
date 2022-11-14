@@ -3,14 +3,14 @@ import classes from "./BlueButton.module.css";
 
 const BlueButton = ({ buttonText, backgroundColor }) => {
   return (
-    <div
+    <button
       className={classes.button}
       style={{
         backgroundColor: `${backgroundColor}`,
       }}
     >
-      {text}
-    </div>
+      {buttonText}
+    </button>
   );
 };
 
