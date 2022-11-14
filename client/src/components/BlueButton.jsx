@@ -1,19 +1,16 @@
 import React from "react";
 import classes from "./BlueButton.module.css";
 
-const BlueButton = (props) => {
-  const text = props.buttonText;
-  const bgColor = props.backgroundColor;
-
+const BlueButton = ({ buttonText, backgroundColor }) => {
   return (
-    <button
+    <div
       className={classes.button}
       style={{
-        backgroundColor: `${bgColor}`,
+        backgroundColor: `${backgroundColor}`,
       }}
     >
       {text}
-    </button>
+    </div>
   );
 };
 

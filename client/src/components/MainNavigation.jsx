@@ -58,7 +58,7 @@ function MainNavigation() {
           <Link to="/login" className={classes.login}>
             Login
           </Link>
-          <BlueButton buttonText={"Go to Site"} />
+          <BlueButton buttonText={"Go to Store"} />
         </div>
       </nav>
     </header>
