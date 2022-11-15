@@ -11,7 +11,7 @@ function RootLayout() {
         style={{
           width: "1600px",
           maxWidth: "100%",
-          margin: "0 auto",
+          margin: "auto auto",
         }}
       >
         <MainNavigation />

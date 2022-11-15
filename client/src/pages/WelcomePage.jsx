@@ -5,8 +5,25 @@ import MainImage from "../img/dashboard.png";
 import SecondImage from "../img/analyticsImg.jpg";
 import StackedLineChartIcon from "@mui/icons-material/StackedLineChart";
 import MonitorIcon from "@mui/icons-material/Monitor";
+import VerifiedIcon from "@mui/icons-material/Verified";
+import PriceCardButton from "../components/PriceCardButton";
+import { useState } from "react";
 
 const WelcomePage = () => {
+  const [FySn, setFySn] = useState(true);
+
+  const btn1Handler = () => {
+    console.log(FySn);
+    setFySn(true);
+  };
+
+  const btn2Handler = () => {
+    console.log(FySn);
+    setFySn(false);
+  };
+
+  // Animation Should be clicked on PriceCardButton and anImate priceCard
+
   return (
     <main>
       <section id="Home">
@@ -20,7 +37,7 @@ const WelcomePage = () => {
         <div className={classes.buttonContainer}>
           <BlueButton buttonText={"Get Started"} />
           <TransparentButton
-            buttonText={"Browse Pages"}
+            buttonText="Browse Pages"
             fontSize="18.4px"
             fontWeight="500"
           />
@@ -81,10 +98,150 @@ const WelcomePage = () => {
           </div>
           <div className={classes.priceSuggest}>
             <div className={classes.priceTab}>
-              <button>Pay Monthly</button>
+              <PriceCardButton
+                onClick={btn1Handler}
+                buttonText="Pay Monthly"
+                show={FySn}
+              />
             </div>
             <div className={classes.priceTab}>
-              <button>Pay Annual</button>
+              <PriceCardButton
+                onClick={btn2Handler}
+                buttonText="Pay Anunally"
+                show={FySn}
+              />
+            </div>
+          </div>
+        </div>
+        <div className={classes.priceCard}>
+          <div className={classes.priceTabs}>
+            <div className={classes.priceBig}>
+              <div className={classes.priceBigHeader}>Pro</div>
+              <div className={classes.priceBigMain}>
+                <div className={classes.priceCenterText}>
+                  <div className={classes.pricePlusNumber}>
+                    <h1>$</h1>
+                    <div className={classes.numberContainer}>
+                      <div className={classes.onlyNumber}>12</div>
+                      <h1 style={{ fontSize: "40px" }}>/mo</h1>
+                    </div>
+                  </div>
+                  <p>$144 per Person billed Yearly</p>
+                </div>
+              </div>
+              <div className={classes.priceBigButtons}>
+                <a href="/" className={classes.btn1}>
+                  Start free Trail
+                </a>
+                <a href="/" className={classes.btn2}>
+                  Sign in & manage your account
+                </a>
+              </div>
+            </div>
+            <div className={classes.priceContent}>
+              <div className={classes.priceContentHeader}>
+                Try Our product for free for one month
+              </div>
+              <div className={classes.priceContentP}>
+                No credit card is required, start for free, and pick a plan
+                later. You can cancel anytime.
+              </div>
+              <div className={classes.featGrid}>
+                <div className={classes.featFlexItem}>
+                  <VerifiedIcon color="primary" />
+                  Cloud Storage
+                </div>
+                <div className={classes.featFlexItem}>
+                  <VerifiedIcon color="primary" />
+                  Private Access
+                </div>
+                <div className={classes.featFlexItem}>
+                  <VerifiedIcon color="primary" />
+                  Comments
+                </div>
+                <div className={classes.featFlexItem}>
+                  <VerifiedIcon color="primary" />
+                  Export to PNG
+                </div>
+                <div className={classes.featFlexItem}>
+                  <VerifiedIcon color="primary" />
+                  Unlimited Shares
+                </div>
+                <div className={classes.featFlexItem}>
+                  <VerifiedIcon color="primary" />
+                  Embed Links
+                </div>
+                <div className={classes.featFlexItem}>
+                  <VerifiedIcon color="primary" />
+                  Print PDF Ready
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className={classes.priceCard}>
+          <div className={classes.priceTabs}>
+            <div className={classes.priceBig}>
+              <div className={classes.priceBigHeader}>Pro</div>
+              <div className={classes.priceBigMain}>
+                <div className={classes.priceCenterText}>
+                  <div className={classes.pricePlusNumber}>
+                    <h1>$</h1>
+                    <div className={classes.numberContainer}>
+                      <div className={classes.onlyNumber}>12</div>
+                      <h1 style={{ fontSize: "40px" }}>/mo</h1>
+                    </div>
+                  </div>
+                  <p>$144 per Person billed Yearly</p>
+                </div>
+              </div>
+              <div className={classes.priceBigButtons}>
+                <a href="/" className={classes.btn1}>
+                  Start free Trail
+                </a>
+                <a href="/" className={classes.btn2}>
+                  Sign in & manage your account
+                </a>
+              </div>
+            </div>
+            <div className={classes.priceContent}>
+              <div className={classes.priceContentHeader}>
+                Try Our product for free for one month
+              </div>
+              <div className={classes.priceContentP}>
+                No credit card is required, start for free, and pick a plan
+                later. You can cancel anytime.
+              </div>
+              <div className={classes.featGrid}>
+                <div className={classes.featFlexItem}>
+                  <VerifiedIcon color="primary" />
+                  Cloud Storage
+                </div>
+                <div className={classes.featFlexItem}>
+                  <VerifiedIcon color="primary" />
+                  Private Access
+                </div>
+                <div className={classes.featFlexItem}>
+                  <VerifiedIcon color="primary" />
+                  Comments
+                </div>
+                <div className={classes.featFlexItem}>
+                  <VerifiedIcon color="primary" />
+                  Export to PNG
+                </div>
+                <div className={classes.featFlexItem}>
+                  <VerifiedIcon color="primary" />
+                  Unlimited Shares
+                </div>
+                <div className={classes.featFlexItem}>
+                  <VerifiedIcon color="primary" />
+                  Embed Links
+                </div>
+                <div className={classes.featFlexItem}>
+                  <VerifiedIcon color="primary" />
+                  Print PDF Ready
+                </div>
+              </div>
             </div>
           </div>
         </div>

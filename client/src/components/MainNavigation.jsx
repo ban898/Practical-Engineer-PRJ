@@ -44,12 +44,7 @@ function MainNavigation() {
             </ScrollLink>
           </li>
           <li>
-            <ScrollLink
-              to="Pricing"
-              smooth={true}
-              offset={-165}
-              duration={1000}
-            >
+            <ScrollLink to="Pricing" smooth={true} offset={-65} duration={1000}>
               Pricing
             </ScrollLink>
           </li>
