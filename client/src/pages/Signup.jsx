@@ -84,6 +84,7 @@ const Signup = () => {
                 <form onSubmit={createUserHandler}>
                   <TextField
                     label="Email"
+                    required={true}
                     fullWidth
                     margin="normal"
                     value={email}
@@ -112,7 +113,8 @@ const Signup = () => {
                   />
                   <TextField
                     label="Password"
-                    type={password}
+                    type="password"
+                    required={true}
                     fullWidth
                     margin="normal"
                     value={password}
@@ -120,7 +122,8 @@ const Signup = () => {
                   />
                   <TextField
                     label="Confirm Password"
-                    type={password}
+                    type="password"
+                    required={true}
                     fullWidth
                     margin="normal"
                     value={passwordConfirm}

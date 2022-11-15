@@ -29,15 +29,13 @@ const WelcomePage = () => {
       <section className={classes.imageSection}>
         <img className={classes.mainImg} src={MainImage} alt="Dashboard" />
       </section>
-      <section>
+      <section id="Features">
         <div className={classes.aboutSection}>
           <div className={classes.aboutLeftSide}>
             <img src={SecondImage} alt="Secondary" />
           </div>
           <div className={classes.aboutRightSide}>
-            <div className={classes.aboutRightHeader} id="Features">
-              Why CRM-X ?
-            </div>
+            <div className={classes.aboutRightHeader}>Why CRM-X ?</div>
             <div className={classes.aboutRightSlogan}>
               We make it easy
               <br /> to track all users analytics
@@ -76,6 +74,22 @@ const WelcomePage = () => {
           </div>
         </div>
       </section>
+      <section id="Pricing">
+        <div className={classes.priceContainer}>
+          <div className={classes.priceHeader}>
+            Our payment plan is easy to understand
+          </div>
+          <div className={classes.priceSuggest}>
+            <div className={classes.priceTab}>
+              <button>Pay Monthly</button>
+            </div>
+            <div className={classes.priceTab}>
+              <button>Pay Annual</button>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="About-Us"></section>
       <p>1</p>
       <p>1</p>
       <p>1</p>

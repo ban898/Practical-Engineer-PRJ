@@ -4,7 +4,7 @@
   box-sizing: border-box;
 }
 
-/* Header Section */
+/* Home Section */
 
 .headerMain {
   margin-top: 150px;
@@ -44,7 +44,7 @@ section {
   width: 70%;
 }
 
-/* About Section */
+/* Features Section */
 
 .aboutSection {
   background-color: #fff;
@@ -96,4 +96,52 @@ section {
   margin-top: 10px;
   color: #656769;
   line-height: 26px;
+}
+
+/* Pricing Section */
+
+.priceContainer {
+  max-width: 100%;
+}
+
+.priceHeader {
+  text-align: center;
+  color: #fff;
+  font-size: 52px;
+  font-weight: 500;
+}
+
+.priceSuggest {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+}
+
+.priceTab {
+  margin-top: 20px;
+}
+
+.priceTab button {
+  padding: 12px 40px;
+  color: #fff;
+  background-color: #000;
+  cursor: pointer;
+  /* border */
+  background: linear-gradient(
+        rgba(0, 0, 0, 1) 25%,
+        rgba(0, 0, 0, 1) 65%,
+        rgba(0, 0, 0, 1) 100%
+      )
+      padding-box,
+    linear-gradient(
+        90deg,
+        rgba(19, 162, 218, 1) 2%,
+        rgba(0, 127, 254, 1) 50%,
+        rgba(0, 112, 255, 1) 100%
+      )
+      border-box;
+  border-width: 3px;
+  border-style: solid;
+  border-color: transparent;
+  border-radius: 10px;
 }

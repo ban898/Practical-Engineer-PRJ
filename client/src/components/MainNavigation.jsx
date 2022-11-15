@@ -1,4 +1,4 @@
-import { NavLink, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Link as ScrollLink } from "react-scroll";
 import logo from "../img/logo2.png";
 import classes from "./MainNavigation.module.css";
@@ -44,20 +44,24 @@ function MainNavigation() {
             </ScrollLink>
           </li>
           <li>
-            <Link to="/Pages" className={classes.pages}>
+            <ScrollLink
+              to="Pricing"
+              smooth={true}
+              offset={-165}
+              duration={1000}
+            >
               Pricing
-            </Link>
+            </ScrollLink>
           </li>
           <li>
-            <NavLink
-              to="/Sign-Up"
-              className={({ isActive }) =>
-                isActive ? classes.active : undefined
-              }
-              end
+            <ScrollLink
+              to="About-Us"
+              smooth={true}
+              offset={-165}
+              duration={1000}
             >
-              About us
-            </NavLink>
+              About Us
+            </ScrollLink>
           </li>
         </ul>
         <div className={classes.navEnd}>
