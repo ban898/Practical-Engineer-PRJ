@@ -8,16 +8,20 @@ import Products from "./pages/Products";
 import ErrorElement from "./pages/Error";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
-//import axios from "axios";
+import axios from "axios";
 
 function App() {
-  // const getUser = async () => {
-  //   await axios.get("/me").then((res) => {
-  //     console.log(res.data);
-  //   });
-  // };
+  const getUser = async () => {
+    try {
+      await axios
+        .get("/api/v1/users/me", { withCredentials: true, auth: true })
+        .then((res) => {
+          console.log(res);
+        });
+    } catch (err) {}
+  };
 
-  // getUser();
+  getUser();
 
   return (
     <Routes>

@@ -3,6 +3,7 @@ require("dotenv").config();
 const jwt = require("jsonwebtoken");
 const AppError = require("./../utils/appError");
 const catchAsync = require("../utils/catchAsync");
+const { promisify } = require("util");
 
 const signToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
@@ -15,7 +16,7 @@ const createSendToken = (user, statusCode, res) => {
 
   res.cookie("jwt", token, {
     expires: new Date(
-      Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 3 * 60 * 60 * 1000
+      Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 0.05 * 60 * 60 * 1000
     ),
     httpOnly: true,
   });
@@ -33,15 +34,10 @@ exports.signup = async (req, res, next) => {
     let newUser = {};
 
     if (req.body.data) {
-      newuser = await User.create({
-        firstName: req.body.data.firstName,
-        lastName: req.body.data.lastName,
-        address: req.body.data.address,
-        email: req.body.data.email,
-        password: req.body.data.password,
-        passwordConfirm: req.body.data.passwordConfirm,
-      });
+      req.body.data.photo = req.file.filename;
+      newuser = await User.create(req.body.data);
     } else {
+      req.body.photo = req.file.filename;
       newUser = await User.create(req.body);
     }
     createSendToken(newUser, 201, res);
@@ -74,3 +70,40 @@ exports.login = catchAsync(async (req, res, next) => {
 
   createSendToken(user, 200, res);
 });
+
+exports.protect = async (req, res, next) => {
+  let token;
+
+  if (
+    req.headers.authorization &&
+    req.headers.authorization.startsWith("Brarer")
+  ) {
+    token = req.headers.authorization.split(" ")[1];
+  } else if (req.cookies.jwt) {
+    token = req.cookies.jwt;
+  }
+
+  if (!token) {
+    return next(
+      new AppError("You are not logged in! Please log in to get access.", 401)
+    );
+  }
+
+  const decode = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
+
+  const currentUser = await User.findById(decode.id);
+
+  if (!currentUser) {
+    return next(
+      new AppError(
+        "The user belonging to this token does no longer exist.",
+        401
+      )
+    );
+  }
+
+  // Need to complete (check if user changed password after the token was issued)
+
+  req.user = currentUser;
+  next();
+};

@@ -17,6 +17,7 @@ const Signup = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [address, setAddress] = useState("");
+  //const [photo, setPhoto] = useState(null);
 
   const emailChangeHandler = (el) => {
     setEmail(el.target.value);
@@ -41,6 +42,11 @@ const Signup = () => {
   const addressChangeHandler = (el) => {
     setAddress(el.target.value);
   };
+
+  // const addPhotoHandler = (el) => {
+  //   console.log(el.target);
+  //   setPhoto("");
+  // };
 
   const createUserHandler = async (event) => {
     event.preventDefault();
@@ -129,6 +135,13 @@ const Signup = () => {
                     value={passwordConfirm}
                     onChange={passwordConfirmChangeHandler}
                   />
+                  {/* <TextField
+                    type="file"
+                    fullWidth
+                    margin="normal"
+                    value={photo}
+                    onChange={addPhotoHandler}
+                  /> */}
                   <div className={classes.signUpButtons}>
                     <BlueButton buttonText={"Create Account"} />
                     <TransparentButton
