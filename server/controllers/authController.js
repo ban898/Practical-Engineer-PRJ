@@ -34,7 +34,9 @@ exports.signup = async (req, res, next) => {
     let newUser = {};
 
     if (req.body.data) {
-      req.body.data.photo = req.file.filename;
+      if (req.file) {
+        req.body.data.photo = req.file.filename;
+      }
       newuser = await User.create(req.body.data);
     } else {
       req.body.photo = req.file.filename;

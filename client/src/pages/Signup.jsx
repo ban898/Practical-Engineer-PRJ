@@ -61,6 +61,7 @@ const Signup = () => {
     };
     try {
       await axios.post("/api/v1/users/signup", { data });
+      alert("Created successfuly!");
     } catch (err) {
       alert(err.response.data.message);
     }

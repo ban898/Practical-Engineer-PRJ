@@ -4,6 +4,7 @@ import classes from "./Login.module.css";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import axios from "axios";
+import { ContentCutOutlined } from "@mui/icons-material";
 
 const Login = () => {
   const emailInputRef = useRef();
@@ -46,7 +47,8 @@ const Login = () => {
     try {
       const res = await axios.post("/api/v1/users/login", { user });
       setIsLogin(true);
-      setUserName(res.data.user.name);
+      setUserName(res.data.user.firstName);
+      console.log(res.data.user.firstName);
     } catch (error) {
       setIsLogin(false);
     }
