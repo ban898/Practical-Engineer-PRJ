@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 
 import WelcomePage from "./pages/WelcomePage";
 import RootLayout from "./pages/RootLayout";
+import Shop from "./pages/Shop";
 
 import Products from "./pages/Products";
 import ErrorElement from "./pages/Error";
@@ -33,6 +34,7 @@ function App() {
           errorElement={<ErrorElement />}
         />
       </Route>
+      <Route path="shop" element={<Shop />} errorElement={<ErrorElement />} />
       <Route path="login" element={<Login />} errorElement={<ErrorElement />} />
       <Route
         path="Signup"
