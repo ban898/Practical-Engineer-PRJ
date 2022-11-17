@@ -1,4 +1,5 @@
 import React, { useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import classes from "./Login.module.css";
 import FacebookIcon from "@mui/icons-material/Facebook";
@@ -13,6 +14,12 @@ const Login = () => {
   const [passwordIsValid, setPasswordIsValid] = useState(true);
   const [isLogin, setIsLogin] = useState(undefined);
   const [userName, setUserName] = useState("");
+
+  const navigate = useNavigate();
+
+  const moveToHomePage = () => {
+    navigate("/");
+  };
 
   const loginHandler = async (event) => {
     event.preventDefault();
@@ -47,6 +54,7 @@ const Login = () => {
       const res = await axios.post("/api/v1/users/login", { user });
       setIsLogin(true);
       setUserName(res.data.user.name);
+      moveToHomePage();
     } catch (error) {
       setIsLogin(false);
     }

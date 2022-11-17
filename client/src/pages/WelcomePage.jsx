@@ -10,19 +10,27 @@ import PriceCardButton from "../components/PriceCardButton";
 import { useState } from "react";
 
 const WelcomePage = () => {
-  const [FySn, setFySn] = useState(true);
+  const [firstShowHideSecond, setfirstShowHideSecond] = useState(true);
 
   const btn1Handler = () => {
-    console.log(FySn);
-    setFySn(true);
+    console.log(firstShowHideSecond);
+    setfirstShowHideSecond(true);
   };
 
   const btn2Handler = () => {
-    console.log(FySn);
-    setFySn(false);
+    console.log(firstShowHideSecond);
+    setfirstShowHideSecond(false);
   };
 
   // Animation Should be clicked on PriceCardButton and anImate priceCard
+
+  const firstPriceTabClasses = firstShowHideSecond
+    ? classes.CardShow
+    : classes.CardHide;
+
+  const secondPriceTabClasses = firstShowHideSecond
+    ? classes.CardHide
+    : classes.CardShow;
 
   return (
     <main>
@@ -35,7 +43,7 @@ const WelcomePage = () => {
           Presenting CRM-X, the ultimate Technology Startup
         </div>
         <div className={classes.buttonContainer}>
-          <BlueButton buttonText={"Get Started"} />
+          <BlueButton buttonText="Get Started" />
           <TransparentButton
             buttonText="Browse Pages"
             fontSize="18.4px"
@@ -101,19 +109,20 @@ const WelcomePage = () => {
               <PriceCardButton
                 onClick={btn1Handler}
                 buttonText="Pay Monthly"
-                show={FySn}
+                show={firstShowHideSecond}
               />
             </div>
             <div className={classes.priceTab}>
               <PriceCardButton
                 onClick={btn2Handler}
                 buttonText="Pay Anunally"
-                show={FySn}
+                show={firstShowHideSecond}
               />
             </div>
           </div>
         </div>
-        <div className={classes.priceCard}>
+
+        <div className={firstPriceTabClasses} id="monthly">
           <div className={classes.priceTabs}>
             <div className={classes.priceBig}>
               <div className={classes.priceBigHeader}>Pro</div>
@@ -130,10 +139,10 @@ const WelcomePage = () => {
                 </div>
               </div>
               <div className={classes.priceBigButtons}>
-                <a href="/" className={classes.btn1}>
+                <a href="/login" className={classes.btn1}>
                   Start free Trail
                 </a>
-                <a href="/" className={classes.btn2}>
+                <a href="/login" className={classes.btn2}>
                   Sign in & manage your account
                 </a>
               </div>
@@ -179,7 +188,8 @@ const WelcomePage = () => {
             </div>
           </div>
         </div>
-        <div className={classes.priceCard}>
+
+        <div className={secondPriceTabClasses} id="annually">
           <div className={classes.priceTabs}>
             <div className={classes.priceBig}>
               <div className={classes.priceBigHeader}>Pro</div>
@@ -188,7 +198,7 @@ const WelcomePage = () => {
                   <div className={classes.pricePlusNumber}>
                     <h1>$</h1>
                     <div className={classes.numberContainer}>
-                      <div className={classes.onlyNumber}>12</div>
+                      <div className={classes.onlyNumber}>16</div>
                       <h1 style={{ fontSize: "40px" }}>/mo</h1>
                     </div>
                   </div>
@@ -196,10 +206,10 @@ const WelcomePage = () => {
                 </div>
               </div>
               <div className={classes.priceBigButtons}>
-                <a href="/" className={classes.btn1}>
+                <a href="/login" className={classes.btn1}>
                   Start free Trail
                 </a>
-                <a href="/" className={classes.btn2}>
+                <a href="/login" className={classes.btn2}>
                   Sign in & manage your account
                 </a>
               </div>
@@ -312,3 +322,5 @@ export default WelcomePage;
 // import InstagramIcon from "@mui/icons-material/Instagram";
 // import AndroidIcon from "@mui/icons-material/Android";
 // import PinterestIcon from "@mui/icons-material/Pinterest";
+
+//----------------------------------------------------

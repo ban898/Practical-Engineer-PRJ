@@ -1,11 +1,13 @@
 import { Link } from "react-router-dom";
 import { Link as ScrollLink } from "react-scroll";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useEffect } from "react";
+
 import logo from "../img/logo2.png";
 import classes from "./MainNavigation.module.css";
 import BlueButton from "./BlueButton";
 import LoginIcon from "@mui/icons-material/Login";
-import { useState } from "react";
-import { useEffect } from "react";
 
 function MainNavigation() {
   const [fix, setFix] = useState(false);
@@ -22,6 +24,12 @@ function MainNavigation() {
 
     window.addEventListener("scroll", setFixed);
   }, [fix]);
+
+  const navigate = useNavigate();
+
+  const moveToDemoSite = () => {
+    navigate("/shop");
+  };
 
   return (
     <header className={classes.header}>
@@ -66,7 +74,7 @@ function MainNavigation() {
           <Link to="/login" className={classes.login}>
             Login
           </Link>
-          <BlueButton buttonText={"Go to Store"} />
+          <BlueButton buttonText="Go to Store" onClick={moveToDemoSite} />
         </div>
       </nav>
     </header>
