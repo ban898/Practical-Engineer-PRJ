@@ -54,7 +54,8 @@ const Login = () => {
     try {
       const res = await axios.post("/api/v1/users/login", { user });
       setIsLogin(true);
-      setUserName(res.data.user.name);
+      setUserName(res.data.user.firstName);
+      debugger;
     } catch (error) {
       setIsLogin(false);
     }

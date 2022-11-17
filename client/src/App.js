@@ -19,7 +19,9 @@ function App() {
         .then((res) => {
           console.log(res);
         });
-    } catch (err) {}
+    } catch (err) {
+      //console.error(err);
+    }
   };
 
   getUser();
