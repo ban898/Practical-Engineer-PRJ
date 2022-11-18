@@ -5,7 +5,6 @@ import classes from "./Login.module.css";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import axios from "axios";
-import { ContentCutOutlined } from "@mui/icons-material";
 
 const Login = () => {
   const emailInputRef = useRef();
@@ -55,6 +54,7 @@ const Login = () => {
       const res = await axios.post("/api/v1/users/login", { user });
       setIsLogin(true);
       setUserName(res.data.user.firstName);
+      moveToHomePage();
       debugger;
     } catch (error) {
       setIsLogin(false);
@@ -115,7 +115,9 @@ const Login = () => {
             </div>
             <br />
             <br />
-            {isLogin === false ? <span>incorrect!</span> : undefined}
+            {isLogin === false ? (
+              <span style={{ color: "red" }}>incorrect Email or Password!</span>
+            ) : undefined}
             <div className={classes.rememberMeForgetPassword}>
               <button onClick={loginHandler}>Login</button>
               <p>Forgot password ?</p>

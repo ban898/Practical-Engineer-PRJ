@@ -17,6 +17,9 @@
   position: fixed;
   top: 0;
   width: 80%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, 0);
   /*  */
   display: flex;
   gap: 32px;
@@ -28,6 +31,9 @@
   /* For Sticky Navbar */
   position: fixed;
   top: 0;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, 0);
   width: 80%;
   /*  */
   display: flex;
@@ -39,16 +45,38 @@
   border-radius: 20px;
 }
 
+.profileContainer {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
 .navEnd {
   display: flex;
-  gap: 5px;
+  gap: 15px;
   align-items: center;
 }
 
+.dropDown {
+  overflow: hidden;
+}
+
+.dropDownContent {
+  display: none;
+  position: absolute;
+  z-index: 1000;
+}
+
+.dropDownContent a {
+  display: block;
+}
+
 .header {
+  position: relative;
   padding: 10px 30px;
   background-color: transparent;
   border-radius: 10px;
+  z-index: 100;
 }
 
 .header ul {

@@ -1,36 +1,38 @@
+import { useState } from "react";
+
 import classes from "./WelcomePage.module.css";
+
 import BlueButton from "../components/BlueButton";
 import TransparentButton from "../components/TransparentButton";
-import MainImage from "../img/dashboard.png";
-import SecondImage from "../img/analyticsImg.jpg";
+import PriceCardButton from "../components/PriceCardButton";
+import Comment from "../components/Comment";
+
 import StackedLineChartIcon from "@mui/icons-material/StackedLineChart";
 import MonitorIcon from "@mui/icons-material/Monitor";
 import VerifiedIcon from "@mui/icons-material/Verified";
-import PriceCardButton from "../components/PriceCardButton";
-import { useState } from "react";
+
+import CommentAvatar1 from "../img/comment1.jpg";
+import CommentAvatar2 from "../img/comment2.jpg";
+import CommentAvatar3 from "../img/comment3.jpg";
+import MainImage from "../img/dashboard.png";
+import SecondImage from "../img/analyticsImg.jpg";
 
 const WelcomePage = () => {
   const [firstShowHideSecond, setfirstShowHideSecond] = useState(true);
 
   const btn1Handler = () => {
-    console.log(firstShowHideSecond);
     setfirstShowHideSecond(true);
   };
 
   const btn2Handler = () => {
-    console.log(firstShowHideSecond);
     setfirstShowHideSecond(false);
   };
 
   // Animation Should be clicked on PriceCardButton and anImate priceCard
 
   const firstPriceTabClasses = firstShowHideSecond
-    ? classes.CardShow
-    : classes.CardHide;
-
-  const secondPriceTabClasses = firstShowHideSecond
-    ? classes.CardHide
-    : classes.CardShow;
+    ? ` ${classes.priceFather}  ${classes.CardHide}`
+    : ` ${classes.priceFather}  ${classes.CardShow}`;
 
   return (
     <main>
@@ -99,7 +101,7 @@ const WelcomePage = () => {
           </div>
         </div>
       </section>
-      <section id="Pricing">
+      <section className={classes.pricingSelector} id="Pricing">
         <div className={classes.priceContainer}>
           <div className={classes.priceHeader}>
             Our payment plan is easy to understand
@@ -122,154 +124,178 @@ const WelcomePage = () => {
           </div>
         </div>
 
-        <div className={firstPriceTabClasses} id="monthly">
-          <div className={classes.priceTabs}>
-            <div className={classes.priceBig}>
-              <div className={classes.priceBigHeader}>Pro</div>
-              <div className={classes.priceBigMain}>
-                <div className={classes.priceCenterText}>
-                  <div className={classes.pricePlusNumber}>
-                    <h1>$</h1>
-                    <div className={classes.numberContainer}>
-                      <div className={classes.onlyNumber}>12</div>
-                      <h1 style={{ fontSize: "40px" }}>/mo</h1>
+        <div className={firstPriceTabClasses}>
+          <div id="monthly">
+            <div className={classes.priceTabs}>
+              <div className={classes.priceBig}>
+                <div className={classes.priceBigHeader}>Pro</div>
+                <div className={classes.priceBigMain}>
+                  <div className={classes.priceCenterText}>
+                    <div className={classes.pricePlusNumber}>
+                      <h1>$</h1>
+                      <div className={classes.numberContainer}>
+                        <div className={classes.onlyNumber}>12</div>
+                        <h1 style={{ fontSize: "40px" }}>/mo</h1>
+                      </div>
                     </div>
+                    <p>$144 per Person billed Yearly</p>
                   </div>
-                  <p>$144 per Person billed Yearly</p>
+                </div>
+                <div className={classes.priceBigButtons}>
+                  <a href="/login" className={classes.btn1}>
+                    Start free Trail
+                  </a>
+                  <a href="/login" className={classes.btn2}>
+                    Sign in & manage your account
+                  </a>
                 </div>
               </div>
-              <div className={classes.priceBigButtons}>
-                <a href="/login" className={classes.btn1}>
-                  Start free Trail
-                </a>
-                <a href="/login" className={classes.btn2}>
-                  Sign in & manage your account
-                </a>
-              </div>
-            </div>
-            <div className={classes.priceContent}>
-              <div className={classes.priceContentHeader}>
-                Try Our product for free for one month
-              </div>
-              <div className={classes.priceContentP}>
-                No credit card is required, start for free, and pick a plan
-                later. You can cancel anytime.
-              </div>
-              <div className={classes.featGrid}>
-                <div className={classes.featFlexItem}>
-                  <VerifiedIcon color="primary" />
-                  Cloud Storage
+              <div className={classes.priceContent}>
+                <div className={classes.priceContentHeader}>
+                  Try Our product for free for one month
                 </div>
-                <div className={classes.featFlexItem}>
-                  <VerifiedIcon color="primary" />
-                  Private Access
+                <div className={classes.priceContentP}>
+                  No credit card is required, start for free, and pick a plan
+                  later. You can cancel anytime.
                 </div>
-                <div className={classes.featFlexItem}>
-                  <VerifiedIcon color="primary" />
-                  Comments
-                </div>
-                <div className={classes.featFlexItem}>
-                  <VerifiedIcon color="primary" />
-                  Export to PNG
-                </div>
-                <div className={classes.featFlexItem}>
-                  <VerifiedIcon color="primary" />
-                  Unlimited Shares
-                </div>
-                <div className={classes.featFlexItem}>
-                  <VerifiedIcon color="primary" />
-                  Embed Links
-                </div>
-                <div className={classes.featFlexItem}>
-                  <VerifiedIcon color="primary" />
-                  Print PDF Ready
+                <div className={classes.featGrid}>
+                  <div className={classes.featFlexItem}>
+                    <VerifiedIcon color="primary" />
+                    Cloud Storage
+                  </div>
+                  <div className={classes.featFlexItem}>
+                    <VerifiedIcon color="primary" />
+                    Private Access
+                  </div>
+                  <div className={classes.featFlexItem}>
+                    <VerifiedIcon color="primary" />
+                    Comments
+                  </div>
+                  <div className={classes.featFlexItem}>
+                    <VerifiedIcon color="primary" />
+                    Export to PNG
+                  </div>
+                  <div className={classes.featFlexItem}>
+                    <VerifiedIcon color="primary" />
+                    Unlimited Shares
+                  </div>
+                  <div className={classes.featFlexItem}>
+                    <VerifiedIcon color="primary" />
+                    Embed Links
+                  </div>
+                  <div className={classes.featFlexItem}>
+                    <VerifiedIcon color="primary" />
+                    Print PDF Ready
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <div className={secondPriceTabClasses} id="annually">
-          <div className={classes.priceTabs}>
-            <div className={classes.priceBig}>
-              <div className={classes.priceBigHeader}>Pro</div>
-              <div className={classes.priceBigMain}>
-                <div className={classes.priceCenterText}>
-                  <div className={classes.pricePlusNumber}>
-                    <h1>$</h1>
-                    <div className={classes.numberContainer}>
-                      <div className={classes.onlyNumber}>16</div>
-                      <h1 style={{ fontSize: "40px" }}>/mo</h1>
+          <div id="annually">
+            <div className={classes.priceTabs}>
+              <div className={classes.priceBig}>
+                <div className={classes.priceBigHeader}>Pro</div>
+                <div className={classes.priceBigMain}>
+                  <div className={classes.priceCenterText}>
+                    <div className={classes.pricePlusNumber}>
+                      <h1>$</h1>
+                      <div className={classes.numberContainer}>
+                        <div className={classes.onlyNumber}>16</div>
+                        <h1 style={{ fontSize: "40px" }}>/mo</h1>
+                      </div>
                     </div>
+                    <p>$192 per Person billed Yearly</p>
                   </div>
-                  <p>$144 per Person billed Yearly</p>
+                </div>
+                <div className={classes.priceBigButtons}>
+                  <a href="/login" className={classes.btn1}>
+                    Start free Trail
+                  </a>
+                  <a href="/login" className={classes.btn2}>
+                    Sign in & manage your account
+                  </a>
                 </div>
               </div>
-              <div className={classes.priceBigButtons}>
-                <a href="/login" className={classes.btn1}>
-                  Start free Trail
-                </a>
-                <a href="/login" className={classes.btn2}>
-                  Sign in & manage your account
-                </a>
-              </div>
-            </div>
-            <div className={classes.priceContent}>
-              <div className={classes.priceContentHeader}>
-                Try Our product for free for one month
-              </div>
-              <div className={classes.priceContentP}>
-                No credit card is required, start for free, and pick a plan
-                later. You can cancel anytime.
-              </div>
-              <div className={classes.featGrid}>
-                <div className={classes.featFlexItem}>
-                  <VerifiedIcon color="primary" />
-                  Cloud Storage
+              <div className={classes.priceContent}>
+                <div className={classes.priceContentHeader}>
+                  Try Our product for free for one month
                 </div>
-                <div className={classes.featFlexItem}>
-                  <VerifiedIcon color="primary" />
-                  Private Access
+                <div className={classes.priceContentP}>
+                  No credit card is required, start for free, and pick a plan
+                  later. You can cancel anytime.
                 </div>
-                <div className={classes.featFlexItem}>
-                  <VerifiedIcon color="primary" />
-                  Comments
-                </div>
-                <div className={classes.featFlexItem}>
-                  <VerifiedIcon color="primary" />
-                  Export to PNG
-                </div>
-                <div className={classes.featFlexItem}>
-                  <VerifiedIcon color="primary" />
-                  Unlimited Shares
-                </div>
-                <div className={classes.featFlexItem}>
-                  <VerifiedIcon color="primary" />
-                  Embed Links
-                </div>
-                <div className={classes.featFlexItem}>
-                  <VerifiedIcon color="primary" />
-                  Print PDF Ready
+                <div className={classes.featGrid}>
+                  <div className={classes.featFlexItem}>
+                    <VerifiedIcon color="primary" />
+                    Cloud Storage
+                  </div>
+                  <div className={classes.featFlexItem}>
+                    <VerifiedIcon color="primary" />
+                    Private Access
+                  </div>
+                  <div className={classes.featFlexItem}>
+                    <VerifiedIcon color="primary" />
+                    Comments
+                  </div>
+                  <div className={classes.featFlexItem}>
+                    <VerifiedIcon color="primary" />
+                    Export to PNG
+                  </div>
+                  <div className={classes.featFlexItem}>
+                    <VerifiedIcon color="primary" />
+                    Unlimited Shares
+                  </div>
+                  <div className={classes.featFlexItem}>
+                    <VerifiedIcon color="primary" />
+                    Embed Links
+                  </div>
+                  <div className={classes.featFlexItem}>
+                    <VerifiedIcon color="primary" />
+                    Print PDF Ready
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </section>
-      <section id="About-Us"></section>
-      <p>1</p>
-      <p>1</p>
-      <p>1</p>
-      <p>1</p>
-      <p>1</p>
-      <p>1</p>
-      <p>1</p>
-      <p>1</p>
-      <p>1</p>
-      <p>1</p>
-      <p>1</p>
-      <p>1</p>
-      <p>1</p>
+      <section id="About-Us">
+        <div className={classes.aboutUsSection}>
+          <div className={classes.aboutUsHeaderWrapper}>
+            <div className={classes.aboutUsHeader}>
+              You're in a good company
+            </div>
+            <div className={classes.aboutUsMiniHeader}>
+              It's still early days, but here's some words of Customers so you
+              know you're in the right place
+            </div>
+          </div>
+          <div className={classes.aboutUsBlock}>
+            <Comment
+              img={CommentAvatar2}
+              alt="Sunny bolt"
+              value={4.5}
+              text="As someone with a medium level knowledge of CRMs, I had my reservations about CRM-X when I first heard about it. But the moment that Monika Stat pointed me to the forums for help & updates, I immediately ceased those feelings."
+              date="Jan 2,  2022"
+            />
+            <Comment
+              img={CommentAvatar1}
+              alt="Alexey Davidov"
+              value={5}
+              text="I've been looking for a CRM tool that fits my needs for months now...then I found this very helpful Kickstarter campaign. CRM-X is a powerful CRM tool designed with the user in mind and has the ability to grow with me as my company expands."
+              date="May 15, 2022"
+            />
+            <Comment
+              img={CommentAvatar3}
+              alt="Monika Stat"
+              value={4.5}
+              text="CRM-X is the platform you need to grow your business. The service is absolutely priced as per value and it is incredibly valuable for any type of small businesses. It helped us out during a difficult time with our customers-service."
+              date="Sep 14, 2022"
+            />
+          </div>
+        </div>
+      </section>
     </main>
   );
 };
