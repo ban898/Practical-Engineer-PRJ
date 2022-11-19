@@ -30,6 +30,7 @@ const productSchema = new mongoose.Schema({
       message: "Length is either: s, m, l, xl, xxl",
     },
   },
+  images: [String],
 });
 
 const Product = mongoose.model("Product", productSchema);
