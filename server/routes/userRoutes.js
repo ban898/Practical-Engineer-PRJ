@@ -6,8 +6,13 @@ const router = express.Router();
 
 router
   .route("/signup")
-  .post(userController.uploadUserPhoto, authController.signup);
+  .post(
+    userController.uploadUserPhoto,
+    userController.resizeUserPhoto,
+    authController.signup
+  );
 router.route("/login").post(authController.login);
+router.get("/logout", authController.logout);
 
 router.use(authController.protect);
 

@@ -55,7 +55,6 @@ const Login = () => {
       setIsLogin(true);
       setUserName(res.data.user.firstName);
       moveToHomePage();
-      debugger;
     } catch (error) {
       setIsLogin(false);
     }

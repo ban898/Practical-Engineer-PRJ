@@ -42,15 +42,13 @@ function MainNavigation() {
 
   const getUser = async () => {
     try {
-      await axios
-        .get("/api/v1/users/me", { withCredentials: true, auth: true })
-        .then((res) => {
-          console.log(res);
-          if (res.data.status === "success") setIsLogin(true);
-        });
-    } catch (err) {
-      console.error(err);
-    }
+      const res = await axios.get("/api/v1/users/me", {
+        withCredentials: true,
+        auth: true,
+      });
+
+      if (res.data.status === "success") setIsLogin(true);
+    } catch (err) {}
   };
 
   getUser();
@@ -63,8 +61,14 @@ function MainNavigation() {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleClose = () => {
-    setAnchorEl(null);
+  const handleClose = async () => {
+    try {
+      setAnchorEl(null);
+
+      const res = await axios.get("/api/v1/users/logout");
+      console.log(res.data.status);
+      if (res.data.status === "success") window.location.reload(true);
+    } catch (err) {}
   };
 
   let profileBox = isLogin ? (
