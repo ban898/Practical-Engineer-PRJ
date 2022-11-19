@@ -18,9 +18,9 @@ const Footer = () => {
           <img className={classes.logo} src={logo} alt="logo" />
         </div>
         <div className={classes.footerTopRight}>
-          <label id="sub" htmlFor="email">
+          <div className={classes.topRightEmail}>
             Subscribe to get latest news
-          </label>
+          </div>
           <div className={classes.emailSubmit}>
             <input
               className={classes.emailInput}

@@ -1,7 +1,3 @@
-* {
-  box-sizing: border-box;
-}
-
 .footerWrapper {
   color: #fff;
 }
@@ -38,7 +34,7 @@
   height: 70px;
 }
 
-label {
+.topRightEmail {
   display: inline-block;
   font-size: 18px;
   font-weight: 600;
@@ -76,17 +72,17 @@ label {
   margin-bottom: 15px;
 }
 
-.footerContent ul {
+.footerContent > ul {
   color: #919497;
   list-style-type: none;
   line-height: 30px;
 }
 
-ul li {
+.footerContent > ul li {
   transition: all 0.3s;
 }
 
-ul li:hover {
+.footerContent > ul li:hover {
   color: #247bfe;
   cursor: pointer;
   -moz-transform: translate(5px, 0px);

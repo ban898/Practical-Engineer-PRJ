@@ -1,0 +1,27 @@
+.navbar {
+  display: flex;
+  width: 100%;
+  max-width: 100%;
+  justify-content: space-between;
+  background-color: transparent;
+}
+
+.navbarLeft {
+  display: flex;
+  max-width: 100%;
+  align-items: center;
+  gap: 10%;
+}
+
+.navbarRight {
+  display: flex;
+  max-width: 100%;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10%;
+}
+
+.logo {
+  width: 5vw;
+  height: 15vh;
+}

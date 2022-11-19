@@ -1,12 +1,6 @@
 /* #171717 */
 /* #090909 */
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 .logo {
   height: 130px;
   width: 130px;
@@ -47,28 +41,16 @@
 
 .profileContainer {
   display: flex;
+  gap: 5px;
   align-items: center;
-  gap: 15px;
+  transition: all 0.3s;
 }
 
 .navEnd {
   display: flex;
-  gap: 15px;
+  gap: 30px;
   align-items: center;
-}
-
-.dropDown {
-  overflow: hidden;
-}
-
-.dropDownContent {
-  display: none;
-  position: absolute;
-  z-index: 1000;
-}
-
-.dropDownContent a {
-  display: block;
+  padding-right: 10px;
 }
 
 .header {
@@ -79,22 +61,30 @@
   z-index: 100;
 }
 
-.header ul {
+.mainNavUl {
   display: flex;
   gap: 50px;
   list-style-type: none;
+  transition: all 0.3s;
 }
 
-.header a {
+.mainNavLi {
   color: #e5e5e5;
   font-size: 18.4px;
   text-decoration: none;
+  transition: all 0.3s;
 }
 
-.header a:hover,
-.header a:active,
-.header a.active {
-  color: #339af0;
+.mainNavLi:hover,
+.mainNavLi:active,
+.mainNavLi.active {
+  color: #247bfe;
+  cursor: pointer;
+  -moz-transform: translate(5px, 0px);
+  -webkit-transform: translate(5px, 0px);
+  -o-transform: translate(5px, 0px);
+  -ms-transform: translate(5px, 0px);
+  transform: translate(5px, 0px);
 }
 
 .pages {
@@ -103,5 +93,16 @@
 }
 
 .login {
-  margin-right: 20px;
+  color: #fff;
+  text-decoration: none;
+}
+
+.profileContainer:hover,
+.profileContainer:active,
+.profileContainer:active {
+  -moz-transform: translate(5px, 0px);
+  -webkit-transform: translate(5px, 0px);
+  -o-transform: translate(5px, 0px);
+  -ms-transform: translate(5px, 0px);
+  transform: translate(5px, 0px);
 }

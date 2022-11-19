@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router";
 
 import classes from "./WelcomePage.module.css";
 
@@ -20,12 +21,18 @@ import SecondImage from "../img/analyticsImg.jpg";
 const WelcomePage = () => {
   const [firstShowHideSecond, setfirstShowHideSecond] = useState(true);
 
-  const btn1Handler = () => {
+  const monthlyPayHandler = () => {
     setfirstShowHideSecond(true);
   };
 
-  const btn2Handler = () => {
+  const annuallPayHandler = () => {
     setfirstShowHideSecond(false);
+  };
+
+  const navigate = useNavigate();
+
+  const navigateToSignUp = () => {
+    navigate("/signup");
   };
 
   // Animation Should be clicked on PriceCardButton and anImate priceCard
@@ -45,9 +52,13 @@ const WelcomePage = () => {
           Presenting CRM-X, the ultimate Technology Startup
         </div>
         <div className={classes.buttonContainer}>
-          <BlueButton buttonText="Get Started" />
+          <BlueButton
+            buttonText="Sign Up"
+            padding={"20px 40px"}
+            onClick={navigateToSignUp}
+          />
           <TransparentButton
-            buttonText="Browse Pages"
+            buttonText="Demo Dashboard"
             fontSize="18.4px"
             fontWeight="500"
           />
@@ -109,14 +120,14 @@ const WelcomePage = () => {
           <div className={classes.priceSuggest}>
             <div className={classes.priceTab}>
               <PriceCardButton
-                onClick={btn1Handler}
+                onClick={monthlyPayHandler}
                 buttonText="Pay Monthly"
                 show={firstShowHideSecond}
               />
             </div>
             <div className={classes.priceTab}>
               <PriceCardButton
-                onClick={btn2Handler}
+                onClick={annuallPayHandler}
                 buttonText="Pay Anunally"
                 show={firstShowHideSecond}
               />
