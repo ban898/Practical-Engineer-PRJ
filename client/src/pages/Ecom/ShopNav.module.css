@@ -1,0 +1,79 @@
+/* #F9D142 */
+/* #292826 */
+
+.navbar {
+  color: #292826;
+  width: 100%;
+  max-width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100px;
+  background: transparent;
+  border-bottom: 1px solid #292826;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 15px;
+}
+
+.navbarLeft {
+  display: flex;
+  max-width: 100%;
+  min-width: 40%;
+  align-items: center;
+  gap: 5%;
+}
+
+.navbarLeft a {
+  position: relative;
+  transition-duration: 0.5s;
+}
+
+.navbarLeft a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 100%;
+  width: 0;
+  height: 2px;
+  background-color: black;
+  transition: width 0.3s ease-in-out;
+}
+
+.navbarLeft a:hover {
+  cursor: pointer;
+  transform: translateY(-2px);
+}
+
+.navbarLeft a:hover::after {
+  width: 100%;
+}
+
+.logo {
+  font-weight: 600;
+  font-size: 35px;
+}
+
+.navbarRight {
+  display: flex;
+  max-width: 100%;
+  min-width: 40%;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 2%;
+}
+
+.navbarRight path {
+  cursor: pointer;
+}
+
+.loginBox {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.loginText {
+  cursor: pointer;
+}

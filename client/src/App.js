@@ -1,6 +1,9 @@
 import * as React from "react";
 import { Route, Routes } from "react-router-dom";
 
+import { ThemeProvider } from "@mui/material/styles";
+import { theme } from "./theme";
+
 import WelcomePage from "./pages/WelcomePage";
 import RootLayout from "./pages/RootLayout";
 import LandingPage from "./pages/Ecom/LandingPage";
@@ -27,27 +30,37 @@ function App() {
   getUser();
 
   return (
-    <Routes>
-      <Route path="/" element={<RootLayout />} errorElement={<ErrorElement />}>
-        <Route index element={<WelcomePage />} />
+    <ThemeProvider theme={theme}>
+      <Routes>
         <Route
-          path="products"
-          element={<Products />}
+          path="/"
+          element={<RootLayout />}
+          errorElement={<ErrorElement />}
+        >
+          <Route index element={<WelcomePage />} />
+          <Route
+            path="products"
+            element={<Products />}
+            errorElement={<ErrorElement />}
+          />
+        </Route>
+        <Route
+          path="shop"
+          element={<LandingPage />}
           errorElement={<ErrorElement />}
         />
-      </Route>
-      <Route
-        path="shop"
-        element={<LandingPage />}
-        errorElement={<ErrorElement />}
-      />
-      <Route path="login" element={<Login />} errorElement={<ErrorElement />} />
-      <Route
-        path="Signup"
-        element={<Signup />}
-        errorElement={<ErrorElement />}
-      />
-    </Routes>
+        <Route
+          path="login"
+          element={<Login />}
+          errorElement={<ErrorElement />}
+        />
+        <Route
+          path="Signup"
+          element={<Signup />}
+          errorElement={<ErrorElement />}
+        />
+      </Routes>
+    </ThemeProvider>
   );
 }
 

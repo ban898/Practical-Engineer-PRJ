@@ -1,27 +1,11 @@
-.navbar {
-  display: flex;
+.landingImage {
+  background: url("../../img/ShopImg/slider3.jpg");
+  background-size: cover;
+  background-position: center;
   width: 100%;
-  max-width: 100%;
-  justify-content: space-between;
-  background-color: transparent;
+  height: 100vh;
 }
 
-.navbarLeft {
-  display: flex;
-  max-width: 100%;
-  align-items: center;
-  gap: 10%;
-}
-
-.navbarRight {
-  display: flex;
-  max-width: 100%;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 10%;
-}
-
-.logo {
-  width: 5vw;
-  height: 15vh;
+.heroHeader {
+  margin-bottom: 40px;
 }

@@ -1,28 +1,83 @@
 import React from "react";
-import { Link as ScrollLink } from "react-scroll";
 
 import classes from "./LandingPage.module.css";
+import ShopNav from "./ShopNav";
 
-import logo from "../../img/ShopImg/logo2.jpg";
 import ImageSlider from "./ImageSlider";
 
 const LandingPage = () => {
   return (
     <div>
-      <div className={classes.navbar}>
-        <div className={classes.navbarLeft}>
-          <img className={classes.logo} src={logo} alt="icon" />
-          <ScrollLink>Home</ScrollLink>
-          <ScrollLink>Products</ScrollLink>
-          <ScrollLink>About Us</ScrollLink>
-        </div>
-        <div className={classes.navbarRight}>
-          <p>Login</p>
-          <p>Icon</p>
-          <p>Icon</p>
-        </div>
+      <div className={classes.heroHeader}>
+        <ShopNav />
+        <div className={classes.landingImage}></div>
       </div>
-      <ImageSlider />
+      <div className={classes.slider}>
+        <ImageSlider />
+      </div>
+      <p>1</p>
+      <p>2</p>
+      <p>3</p>
+      <p>4</p>
+      <p>5</p>
+      <p>6</p>
+      <p>7</p>
+      <p>8</p>
+      <p>9</p>
+      <p>1</p>
+      <p>2</p>
+      <p>3</p>
+      <p>4</p>
+      <p>5</p>
+      <p>6</p>
+      <p>7</p>
+      <p>8</p>
+      <p>9</p>
+      <section>
+        {" "}
+        <p>2</p>
+        <p>3</p>
+        <p>4</p>
+        <p>5</p>
+        <p>6</p>
+        <p>7</p>
+        <p>8</p>
+        <p>2</p>
+        <p>3</p>
+        <p>4</p>
+        <p>5</p>
+        <p>6</p>
+        <p>7</p>
+        <p>8</p>
+        <p>2</p>
+        <p>3</p>
+        <p>4</p>
+        <p>5</p>
+        <p>6</p>
+        <p>7</p>
+        <p>8</p>
+        <p>2</p>
+        <p>3</p>
+        <p>4</p>
+        <p>5</p>
+        <p>6</p>
+        <p>7</p>
+        <p>8</p>
+        <p>2</p>
+        <p>3</p>
+        <p>4</p>
+        <p>5</p>
+        <p>6</p>
+        <p>7</p>
+        <p>8</p>
+        <p>2</p>
+        <p>3</p>
+        <p>4</p>
+        <p>5</p>
+        <p>6</p>
+        <p>7</p>
+        <p>8</p>
+      </section>
     </div>
   );
 };

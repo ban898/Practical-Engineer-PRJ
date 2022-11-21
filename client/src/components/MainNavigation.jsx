@@ -54,7 +54,9 @@ function MainNavigation() {
     }
   };
 
-  getUser();
+  useEffect(() => {
+    getUser();
+  }, []);
 
   //LogOut Handler
   const logOutHandler = () => {
