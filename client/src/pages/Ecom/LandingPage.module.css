@@ -1,11 +1,90 @@
-.landingImage {
-  background: url("../../img/ShopImg/slider3.jpg");
-  background-size: cover;
-  background-position: center;
-  width: 100%;
-  height: 100vh;
-}
+@import url("https://fonts.googleapis.com/css2?family=Anton&display=swap");
 
 .heroHeader {
   margin-bottom: 40px;
+}
+
+.mainCont {
+  position: relative;
+}
+
+.mainText {
+  position: absolute;
+  top: 29%;
+  left: 5%;
+  /* transform: translate(-50%, -50%); */
+  text-transform: uppercase;
+  font-size: 52px;
+  font-weight: 500;
+}
+
+.secText {
+  color: #e03131;
+  position: absolute;
+  top: 35%;
+  left: 5%;
+  text-transform: uppercase;
+  font-size: 72px;
+  font-weight: 800;
+}
+
+.sectionWrapper {
+  position: relative;
+}
+
+.gift {
+  position: absolute;
+  color: #ffe8cc;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 40px;
+  background-color: #000;
+  border: 2px solid #fff;
+  border-radius: 100%;
+  padding: 20px;
+  left: 1100px;
+  top: -70px;
+}
+
+.gift::after {
+  content: "\a gift";
+  white-space: pre;
+}
+
+.landingImage {
+  background: url("../../img/ShopImg/freehat.jpg");
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  height: 60vh;
+  border-radius: 60px;
+  border: solid 2px #000;
+}
+
+.landingText {
+  font-weight: 800;
+  position: absolute;
+  text-transform: uppercase;
+  font-size: 52px;
+  color: #ffe8cc;
+  top: 140px;
+  left: 110px;
+}
+
+.landingSecText {
+  font-weight: 800;
+  position: absolute;
+  text-transform: uppercase;
+  font-size: 32px;
+  color: #000;
+  top: 200px;
+  left: 100px;
+}
+
+.gridWrapper {
+  display: grid;
+  width: 100%;
+  max-width: 100%;
+  gap: 10px;
+  grid-template-columns: repeat(3, 1fr);
 }

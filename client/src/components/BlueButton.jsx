@@ -1,7 +1,13 @@
 import React from "react";
 import classes from "./BlueButton.module.css";
 
-const BlueButton = ({ buttonText, backgroundColor, onClick, padding }) => {
+const BlueButton = ({
+  buttonText,
+  backgroundColor,
+  onClick,
+  padding,
+  fontSize,
+}) => {
   return (
     <button
       className={classes.button}
@@ -9,6 +15,7 @@ const BlueButton = ({ buttonText, backgroundColor, onClick, padding }) => {
       style={{
         backgroundColor: `${backgroundColor}`,
         padding: `${padding}`,
+        fontSize: `${fontSize}`,
       }}
     >
       {buttonText}

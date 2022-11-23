@@ -1,4 +1,4 @@
-import { React, useRef, useState } from "react";
+import { React, useState } from "react";
 import { Link as ScrollLink } from "react-scroll";
 
 import classes from "./ShopNav.module.css";
@@ -14,24 +14,23 @@ import Modal from "./Modal";
 const ShopNav = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  let loginRef = useRef();
+  //Handling Navbar Color change when scrolling
+  const [colorChange, setColorChnage] = useState(false);
 
-  // useEffect(() => {
-  //   let handler = (event) => {
-  //     if (!loginRef.current.contains(event.target)) {
-  //       setIsOpen(false);
-  //     }
-  //   };
+  const changeNavColor = () => {
+    if (window.scrollY >= 800) {
+      setColorChnage(true);
+    } else {
+      setColorChnage(false);
+    }
+  };
 
-  //   document.addEventListener("mousedown", handler);
+  window.addEventListener("scroll", changeNavColor);
 
-  //   return () => {
-  //     document.removeEventListener("mousedown", handler);
-  //   };
-  // });
+  const navbarClasses = colorChange ? classes.colorNav : classes.navbar;
 
   return (
-    <div className={classes.navbar}>
+    <div className={navbarClasses}>
       <div className={classes.navbarLeft}>
         <ScrollLink className={classes.logo}>Design-X</ScrollLink>
         <ScrollLink>Home</ScrollLink>
@@ -39,7 +38,7 @@ const ShopNav = () => {
         <ScrollLink>About Us</ScrollLink>
       </div>
       <div className={classes.navbarRight}>
-        <div ref={loginRef} className={classes.loginBox}>
+        <div className={classes.loginBox}>
           <AccountCircleIcon fontSize="large" onClick={() => setIsOpen(true)} />
           <div className={classes.loginText} onClick={() => setIsOpen(true)}>
             Log in

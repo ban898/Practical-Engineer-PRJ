@@ -1,4 +1,4 @@
-/* #F9D142 */
+/* #e03131 */
 /* #292826 */
 
 .navbar {
@@ -9,11 +9,30 @@
   top: 0;
   left: 0;
   height: 100px;
-  background: transparent;
+  background: rgba(0, 0, 0, 0.1);
   border-bottom: 1px solid #292826;
   display: flex;
   justify-content: space-between;
   padding: 0 15px;
+  z-index: 10;
+}
+
+/* Navbar On Scroll */
+.colorNav {
+  width: 100%;
+  max-width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100px;
+  background: #fff;
+  border-bottom: 1px solid #292826;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 15px;
+  z-index: 10;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 
 .navbarLeft {
@@ -27,6 +46,7 @@
 .navbarLeft a {
   position: relative;
   transition-duration: 0.5s;
+  font-weight: 700;
 }
 
 .navbarLeft a::after {
@@ -36,7 +56,7 @@
   top: 100%;
   width: 0;
   height: 2px;
-  background-color: black;
+  background-color: #e03131;
   transition: width 0.3s ease-in-out;
 }
 
@@ -76,4 +96,6 @@
 
 .loginText {
   cursor: pointer;
+  font-weight: 500;
+  color: #e03131;
 }
