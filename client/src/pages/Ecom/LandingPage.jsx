@@ -3,8 +3,20 @@ import React from "react";
 import classes from "./LandingPage.module.css";
 import ShopNav from "./ShopNav";
 import TransparentButton from "../../components/TransparentButton";
-import ImageSlider from "./ImageSlider";
 import mainImg from "../../img/ShopImg/main.jpg";
+import Coat from "../../img/ShopImg/coatMain.jpg";
+import Shoes from "../../img/ShopImg/shoeV.jpg";
+import Jeans from "../../img/ShopImg/denims.jpg";
+import Shirt from "../../img/ShopImg/shirts.jpg";
+import Hoodie from "../../img/ShopImg/hoodieV.jpg";
+import Amber from "../../img/ShopImg/d1.jpg";
+
+import YouTubeIcon from "@mui/icons-material/YouTube";
+import TwitterIcon from "@mui/icons-material/Twitter";
+import FacebookIcon from "@mui/icons-material/Facebook";
+import InstagramIcon from "@mui/icons-material/Instagram";
+import { FaTiktok } from "react-icons/fa";
+import { AiOutlineGoogle } from "react-icons/ai";
 
 const LandingPage = () => {
   return (
@@ -46,82 +58,102 @@ const LandingPage = () => {
       </section>
       <section>
         <div className={classes.gridWrapper}>
-          <div className={classes.gridItem1}>A</div>
-          <div className={classes.gridItem}>B</div>
-          <div className={classes.gridItem}>C</div>
-          <div className={classes.gridItem}>D</div>
-          <div className={classes.gridItem}>E</div>
-          <div className={classes.gridItem}>F</div>
+          <div className={classes.gridItemMain}>
+            <div className={classes.browse}>browse our collections</div>
+            <div className={classes.gridHeader}>
+              <TransparentButton
+                buttonText="Coats"
+                fontSize="18px"
+                fontWeight="400"
+                padding="7px"
+              />
+            </div>
+            <img src={Coat} alt="test" />
+          </div>
+          <div className={classes.gridItemSec}>
+            <div className={classes.gridHeaderSec}>
+              <TransparentButton
+                buttonText="Shoes"
+                fontSize="18px"
+                fontWeight="400"
+                padding="7px"
+              />
+            </div>
+            <img src={Shoes} alt="test2" />
+          </div>
+          <div className={classes.gridItemThird}>
+            <div className={classes.gridHeaderThird}>
+              <TransparentButton
+                buttonText="Jeans"
+                fontSize="18px"
+                fontWeight="400"
+                padding="7px"
+              />
+            </div>
+            <img src={Jeans} alt="test" />
+          </div>
+          <div className={classes.gridItemFourth}>
+            <div className={classes.gridHeaderFourth}>
+              <TransparentButton
+                buttonText="Shop Now"
+                fontSize="18px"
+                fontWeight="600"
+                padding="20px"
+                backgroundColor="#ae3ec9"
+              />
+            </div>
+            <div className={classes.discount}></div>
+            <img src={Amber} alt="test" />
+          </div>
+          <div className={classes.gridItemFifth}>
+            <div className={classes.gridHeaderFifth}>
+              <TransparentButton
+                buttonText="T-shirts"
+                fontSize="18px"
+                fontWeight="500"
+                padding="17px"
+                backgroundColor="#ffe066"
+              />
+            </div>
+            <img src={Shirt} alt="test" />
+          </div>
+          <div className={classes.gridItemSix}>
+            <div className={classes.gridHeaderSix}>
+              <TransparentButton
+                buttonText="Hoodies"
+                fontSize="16px"
+                fontWeight="400"
+                padding="7px"
+              />
+            </div>
+            <img src={Hoodie} alt="test" />
+          </div>
         </div>
       </section>
-      <div className={classes.slider}>
-        <ImageSlider />
-      </div>
-      <p>1</p>
-      <p>2</p>
-      <p>3</p>
-      <p>4</p>
-      <p>5</p>
-      <p>6</p>
-      <p>7</p>
-      <p>8</p>
-      <p>9</p>
-      <p>1</p>
-      <p>2</p>
-      <p>3</p>
-      <p>4</p>
-      <p>5</p>
-      <p>6</p>
-      <p>7</p>
-      <p>8</p>
-      <p>9</p>
-      <section>
-        {" "}
-        <p>2</p>
-        <p>3</p>
-        <p>4</p>
-        <p>5</p>
-        <p>6</p>
-        <p>7</p>
-        <p>8</p>
-        <p>2</p>
-        <p>3</p>
-        <p>4</p>
-        <p>5</p>
-        <p>6</p>
-        <p>7</p>
-        <p>8</p>
-        <p>2</p>
-        <p>3</p>
-        <p>4</p>
-        <p>5</p>
-        <p>6</p>
-        <p>7</p>
-        <p>8</p>
-        <p>2</p>
-        <p>3</p>
-        <p>4</p>
-        <p>5</p>
-        <p>6</p>
-        <p>7</p>
-        <p>8</p>
-        <p>2</p>
-        <p>3</p>
-        <p>4</p>
-        <p>5</p>
-        <p>6</p>
-        <p>7</p>
-        <p>8</p>
-        <p>2</p>
-        <p>3</p>
-        <p>4</p>
-        <p>5</p>
-        <p>6</p>
-        <p>7</p>
-        <p>8</p>
-      </section>
+      <footer>
+        <div className={classes.upperFooter}>
+          <YouTubeIcon />
+          <TwitterIcon />
+          <FacebookIcon />
+          <InstagramIcon />
+          <div className={classes.tiktok}>
+            <FaTiktok size="2x" />
+          </div>
+          <div className={classes.google}>
+            <AiOutlineGoogle size="2x" />
+          </div>
+        </div>
+      </footer>
     </div>
   );
 };
 
 export default LandingPage;
+
+//-------------------------------------------------------------------------------------
+//import ImageSlider from "./ImageSlider";
+// <section>
+// <div className={classes.slider}>
+//   <ImageSlider />
+// </div>
+// </section>
