@@ -1,8 +1,11 @@
 import React from "react";
 
 import classes from "./LandingPage.module.css";
-import ShopNav from "./ShopNav";
+
 import TransparentButton from "../../components/TransparentButton";
+import ShopNav from "./ShopNav";
+import Footer from "./Footer";
+
 import mainImg from "../../img/ShopImg/main.jpg";
 import Coat from "../../img/ShopImg/coatMain.jpg";
 import Shoes from "../../img/ShopImg/shoeV.jpg";
@@ -11,16 +14,9 @@ import Shirt from "../../img/ShopImg/shirts.jpg";
 import Hoodie from "../../img/ShopImg/hoodieV.jpg";
 import Amber from "../../img/ShopImg/d1.jpg";
 
-import YouTubeIcon from "@mui/icons-material/YouTube";
-import TwitterIcon from "@mui/icons-material/Twitter";
-import FacebookIcon from "@mui/icons-material/Facebook";
-import InstagramIcon from "@mui/icons-material/Instagram";
-import { FaTiktok } from "react-icons/fa";
-import { AiOutlineGoogle } from "react-icons/ai";
-
 const LandingPage = () => {
   return (
-    <div>
+    <div id="Home">
       <div className={classes.heroHeader}>
         <ShopNav />
         <div className={classes.mainCont}>
@@ -48,7 +44,7 @@ const LandingPage = () => {
           />
         </div>
       </div>
-      <section>
+      <section id="Discounts">
         <div className={classes.sectionWrapper}>
           <div className={classes.landingImage}></div>
           <div className={classes.gift}>free</div>
@@ -56,7 +52,7 @@ const LandingPage = () => {
           <div className={classes.landingSecText}>with purchase over 100$</div>
         </div>
       </section>
-      <section>
+      <section id="Categories">
         <div className={classes.gridWrapper}>
           <div className={classes.gridItemMain}>
             <div className={classes.browse}>browse our collections</div>
@@ -130,20 +126,8 @@ const LandingPage = () => {
           </div>
         </div>
       </section>
-      <footer>
-        <div className={classes.upperFooter}>
-          <YouTubeIcon />
-          <TwitterIcon />
-          <FacebookIcon />
-          <InstagramIcon />
-          <div className={classes.tiktok}>
-            <FaTiktok size="2x" />
-          </div>
-          <div className={classes.google}>
-            <AiOutlineGoogle size="2x" />
-          </div>
-        </div>
-      </footer>
+      <section id="About Us"></section>
+      <Footer />
     </div>
   );
 };

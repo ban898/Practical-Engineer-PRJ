@@ -7,11 +7,13 @@ import { theme } from "./theme";
 import WelcomePage from "./pages/WelcomePage";
 import RootLayout from "./pages/RootLayout";
 import LandingPage from "./pages/Ecom/LandingPage";
+import ShopSignUp from "./pages/Ecom/ShopSignUp";
 
 import Products from "./pages/Products";
 import ErrorElement from "./pages/Error";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+
 import axios from "axios";
 
 function App() {
@@ -48,7 +50,9 @@ function App() {
           path="shop"
           element={<LandingPage />}
           errorElement={<ErrorElement />}
-        />
+        >
+          <Route path="signup" element={<ShopSignUp />} />
+        </Route>
         <Route
           path="login"
           element={<Login />}

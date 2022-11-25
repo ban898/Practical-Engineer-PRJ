@@ -1,0 +1,88 @@
+.upperFooter {
+  display: flex;
+  width: 100%;
+  max-width: 100%;
+  justify-content: center;
+  align-items: center;
+  gap: 3%;
+}
+
+.tiktok > svg {
+  width: 20px;
+  height: auto;
+}
+
+.google > svg {
+  width: 22px;
+  height: auto;
+}
+
+.footerContainer {
+  background-color: #f1f3f5;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.midFooter {
+  margin: 20px 40px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.midFooterLogo {
+  font-size: 30px;
+  margin-top: 40px;
+  font-weight: 600;
+}
+
+.midContent {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.midHeader {
+  color: #8d8d8d;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.midPages {
+  color: #8d8d8d;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.singlePage {
+  position: relative;
+  transition-duration: 0.5s;
+}
+
+.singlePage::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 100%;
+  width: 0;
+  height: 2px;
+  background-color: #e03131;
+  transition: width 0.5s ease-in-out;
+}
+
+.singlePage:hover {
+  color: #212529;
+  cursor: pointer;
+  transform: translateX(3px);
+}
+
+.singlePage:hover::after {
+  width: 40%;
+}
+
+.lowerFooter {
+  color: #8d8d8d;
+  text-align: center;
+}

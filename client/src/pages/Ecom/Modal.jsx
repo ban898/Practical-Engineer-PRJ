@@ -6,8 +6,16 @@ import TextField from "@mui/material/TextField";
 import KeyIcon from "@mui/icons-material/Key";
 import BlueButton from "../../components/BlueButton";
 import TransparentButton from "../../components/TransparentButton";
+import { useNavigate } from "react-router";
 
 const Modal = ({ open, onClose }) => {
+  const navigate = useNavigate();
+
+  const moveToSignUp = () => {
+    navigate("/shop/signup");
+  };
+
+  //Stop Propagation
   const stopPro = (e) => {
     e.stopPropagation();
   };
@@ -68,9 +76,10 @@ const Modal = ({ open, onClose }) => {
           backgroundColor="black"
         />
         <TransparentButton
-          buttonText="Existing Account"
+          buttonText="Create an Account"
           padding="7px"
           backgroundColor="#e03131"
+          onClick={moveToSignUp}
         />
       </div>
     </div>
@@ -78,18 +87,3 @@ const Modal = ({ open, onClose }) => {
 };
 
 export default Modal;
-
-//-------------------------------------------------------------------------------------
-// <div>
-// <div className={classes.connectBtns}>
-//   <button className={classes.loginBtn} onClick={onClose}>
-//     Login
-//   </button>
-//   <button className={classes.accBtn} onClick={onClose}>
-//     Already have an account ?
-//   </button>
-// </div>
-// <button className={classes.closeBtn} onClick={onClose}>
-//   Close
-// </button>
-// </div>

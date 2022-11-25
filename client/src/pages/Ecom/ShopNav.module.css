@@ -87,6 +87,11 @@
   cursor: pointer;
 }
 
+.tiktok > svg {
+  width: 20px;
+  height: auto;
+}
+
 .loginBox {
   position: relative;
   display: flex;
@@ -98,4 +103,9 @@
   cursor: pointer;
   font-weight: 500;
   color: #e03131;
+}
+
+.cartContainer {
+  position: relative;
+  cursor: pointer;
 }
