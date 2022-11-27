@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import classes from "./CartModal.module.css";
+import axios from "axios";
 
 import Avatar from "@mui/material/Avatar";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
@@ -9,12 +10,43 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import { green, red } from "@mui/material/colors";
 
 import dimg from "../../img/ShopImg/denims.jpg";
+import { width } from "@mui/system";
+import { FaCommentsDollar } from "react-icons/fa";
 
 const CartModal = ({ open, onClose }) => {
+  const [carts, setCarts] = useState({});
+  const [cart, setCart] = useState({});
+  // get cart of user
+  useEffect(() => {
+    const getCart = async () => {
+      try {
+        const res = await axios.get("/api/v1/carts");
+
+        setCarts(res.data.carts);
+        setCart(res.data.carts[0]);
+      } catch (err) {
+        console.log(err.message);
+      }
+    };
+
+    getCart();
+  }, []);
+
   if (!open) return null;
 
   const stopPro = (e) => {
     e.stopPropagation();
+  };
+
+  const checkoutHandler = async () => {
+    try {
+      const res = await axios.post("/api/v1/stripe/checkout-session", {
+        carts,
+      });
+      if (res.data.session.url) window.location.href = res.data.session.url;
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -39,19 +71,24 @@ const CartModal = ({ open, onClose }) => {
                 <RemoveCircleOutlineIcon sx={{ color: red[500] }} />
               </div>
               <div className={classes.img}>
-                <Avatar src={dimg} sx={{ width: 48, height: 48 }} />
+                <img
+                  src={`/img/products/${cart.photo}`}
+                  alt=""
+                  style={{ width: "48px", height: "48px" }}
+                  // sx={{ width: 48, height: 48 }}
+                />
               </div>
-              <div className={classes.desc}>
-                Shorts with hands bla bla bla bla bla
-              </div>
+              <div className={classes.desc}>{cart.description}</div>
             </div>
-            <div className={classes.price}>14.00 $</div>
+            <div className={classes.price}>{cart.price} $</div>
             <div className={classes.quantity}>
               <AddIcon sx={{ color: green[700] }} />
-              <div>3</div>
+              <div>{cart.quantity}</div>
               <RemoveIcon sx={{ color: red[800] }} />
             </div>
-            <div className={classes.subtotal}>96.99 $</div>
+            <div className={classes.subtotal}>
+              {cart.price * cart.quantity} $
+            </div>
           </div>
           <div className={classes.itemWrapper}>
             <div className={classes.three}>
@@ -141,7 +178,9 @@ const CartModal = ({ open, onClose }) => {
             <div className={classes.continue} onClick={onClose}>
               Continue Shopping
             </div>
-            <div className={classes.checkout}>Checkout</div>
+            <button onClick={checkoutHandler} className={classes.checkout}>
+              Checkout
+            </button>
           </div>
         </div>
       </div>
