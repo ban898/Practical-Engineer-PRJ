@@ -50,24 +50,18 @@ const Modal = ({ open, onClose }) => {
       <div className={classes.modalWrapper} onClick={stopPro}>
         <Box sx={{ display: "flex", alignItems: "flex-end" }}>
           <AccountCircle sx={{ color: "action.active", mr: 1, my: 0.5 }} />
-          <TextField id="input-with-sx" label="Email" variant="standard" />
+          <TextField
+            color={"otherColor"}
+            id="input-with-sx"
+            label="Email"
+            variant="standard"
+          />
         </Box>
         <Box
           sx={{ display: "flex", alignItems: "flex-end", marginBottom: "5px" }}
         >
           <KeyIcon sx={{ mr: 1, my: 0.5 }} />
-          <TextField
-            label="Password"
-            variant="standard"
-            sx={{
-              "&MuiFormLabel-root": {
-                color: "Eshop",
-              },
-              "&MuiInput-root": {
-                color: "Eshop",
-              },
-            }}
-          />
+          <TextField label="Password" variant="standard" color="otherColor" />
         </Box>
         <BlueButton
           buttonText="Login"
