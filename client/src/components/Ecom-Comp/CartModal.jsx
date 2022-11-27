@@ -8,7 +8,7 @@ import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import { green, red } from "@mui/material/colors";
 
-import dimg from "../img/ShopImg/denims.jpg";
+import dimg from "../../img/ShopImg/denims.jpg";
 
 const CartModal = ({ open, onClose }) => {
   if (!open) return null;

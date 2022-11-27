@@ -4,9 +4,9 @@ import { Link as ScrollLink } from "react-scroll";
 import classes from "./ShopNav.module.css";
 
 import Modal from "./Modal";
-import CartIcon from "../../components/CartIcon";
-import CartCount from "../../components/CartCount";
-import CartModal from "../../components/CartModal";
+import CartIcon from "./CartIcon";
+import CartCount from "./CartCount";
+import CartModal from "./CartModal";
 
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import InstagramIcon from "@mui/icons-material/Instagram";

@@ -13,6 +13,7 @@ import Products from "./pages/Products";
 import ErrorElement from "./pages/Error";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import Category from "./pages/Ecom/Category";
 
 import axios from "axios";
 
@@ -47,13 +48,6 @@ function App() {
           />
         </Route>
         <Route
-          path="shop"
-          element={<LandingPage />}
-          errorElement={<ErrorElement />}
-        >
-          <Route path="signup" element={<ShopSignUp />} />
-        </Route>
-        <Route
           path="login"
           element={<Login />}
           errorElement={<ErrorElement />}
@@ -63,6 +57,13 @@ function App() {
           element={<Signup />}
           errorElement={<ErrorElement />}
         />
+        <Route
+          path="shop"
+          element={<LandingPage />}
+          errorElement={<ErrorElement />}
+        ></Route>
+        <Route path="shop/signup" element={<ShopSignUp />} />
+        <Route path="shop/:catId" element={<Category />} />
       </Routes>
     </ThemeProvider>
   );

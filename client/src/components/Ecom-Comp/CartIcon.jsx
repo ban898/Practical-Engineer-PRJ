@@ -1,5 +1,5 @@
 import React from "react";
-import classes from "../components/CartIcon.module.css";
+import classes from "./CartIcon.module.css";
 
 const CartIcon = ({ children }) => {
   return (
