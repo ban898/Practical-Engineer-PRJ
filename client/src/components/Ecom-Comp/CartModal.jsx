@@ -10,8 +10,6 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import { green, red } from "@mui/material/colors";
 
 import dimg from "../../img/ShopImg/denims.jpg";
-import { width } from "@mui/system";
-import { FaCommentsDollar } from "react-icons/fa";
 
 const CartModal = ({ open, onClose }) => {
   const [carts, setCarts] = useState({});

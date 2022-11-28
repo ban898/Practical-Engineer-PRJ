@@ -18,6 +18,10 @@ import Amber from "../../img/ShopImg/d1.jpg";
 const LandingPage = () => {
   const navigate = useNavigate();
 
+  const moveToSignUp = () => {
+    navigate("/shop/signup");
+  };
+
   const navCoats = () => {
     navigate("/shop/Coats");
   };
@@ -53,6 +57,7 @@ const LandingPage = () => {
             backgroundColor="#e03131"
             fontSize="25px"
             fontWeight="600"
+            onClick={moveToSignUp}
           />
           <TransparentButton
             buttonText="Shop Now"
