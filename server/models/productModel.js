@@ -9,7 +9,7 @@ const productSchema = new mongoose.Schema({
       40,
       "A product name must have less or equal then 40 characters",
     ],
-    minLength: [5, "A product name must have more or equal then 5 characters"],
+    minLength: [4, "A product name must have more or equal then 5 characters"],
   },
   createAt: {
     type: Date,
@@ -24,13 +24,14 @@ const productSchema = new mongoose.Schema({
     required: [true, "A Product must have a price"],
   },
   lengthProduct: {
-    type: String,
-    enum: {
-      values: ["l", "xl", "xxl", "s", "m"],
-      message: "Length is either: s, m, l, xl, xxl",
-    },
+    type: Array,
+    default: ["s", "m", "l", "xl", "xxl"],
   },
   images: [String],
+  category: {
+    type: String,
+    required: true,
+  },
 });
 
 const Product = mongoose.model("Product", productSchema);

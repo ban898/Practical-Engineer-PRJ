@@ -7,7 +7,7 @@ const router = express.Router();
 
 router
   .route("/")
-  .get(productController.getAllProducts)
+  .post(productController.getAllProducts)
   .post(
     authController.protect,
     userController.getMe,
@@ -15,5 +15,7 @@ router
     productController.resizeProductImages,
     productController.createProduct
   );
+
+router.post("/getProductsByCetegory", productController.getProductsByCetegory);
 
 module.exports = router;

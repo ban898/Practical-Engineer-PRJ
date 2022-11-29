@@ -15,11 +15,12 @@ const multerFilter = (req, file, cb) => {
 
 const upload = multer({ storage: multerStorage, fileFilter: multerFilter });
 
-exports.uploadProductImages = multer().fields({ name: "images", maxCount: 6 });
+exports.uploadProductImages = upload.fields([{ name: "images", maxCount: 6 }]);
 
 exports.resizeProductImages = async (req, res, next) => {
+  console.log("test 1");
   if (!req.files.images) return next();
-
+  console.log("test 2");
   req.body.images = [];
 
   await Promise.all(
@@ -41,7 +42,8 @@ exports.resizeProductImages = async (req, res, next) => {
 
 exports.getAllProducts = async (req, res, next) => {
   try {
-    const products = await Product.find();
+    const products = await Product.find({ category: req.body.category });
+    console.log(products);
 
     res.status(200).json({
       status: "success",
@@ -68,5 +70,22 @@ exports.createProduct = async (req, res, next) => {
       status: "fail",
       err,
     });
+  }
+};
+
+exports.getProductsByCetegory = async (req, res) => {
+  console.log(req.body.categoryId);
+  try {
+    const products = await Product.aggregate([
+      {
+        $match: { category: { $eq: req.body.categoryId } },
+      },
+    ]);
+    res.status(200).json({
+      status: "success",
+      products,
+    });
+  } catch (err) {
+    res.status(400).json({ status: "fail", message: err });
   }
 };
