@@ -1,14 +1,16 @@
-import React, { useState } from "react";
+import { React, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+
+import BlueButton from "../../components/BlueButton/BlueButton";
+import TransparentButton from "../../components/TransparentButton/TransparentButton";
 
 import classes from "./Signup.module.css";
-import logo from "../img/crmBlackWhite.png";
-import TransLogo from "../img/Trans2Logo.png";
-import SignupImg from "../img/sign.jpg";
+import logo from "../../img/crmBlackWhite.png";
+import TransLogo from "../../img/Trans2Logo.png";
+import SignupImg from "../../img/sign.jpg";
+
 import TextField from "@mui/material/TextField";
-import BlueButton from "../components/BlueButton";
-import TransparentButton from "../components/TransparentButton";
-import axios from "axios";
 
 const Signup = () => {
   const [email, setEmail] = useState("");

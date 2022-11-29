@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { React, useState } from "react";
 import classes from "./TransparentButton.module.css";
 
 const TransparentButton = ({

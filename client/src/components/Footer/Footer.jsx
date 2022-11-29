@@ -1,7 +1,10 @@
 import React from "react";
+
+import BlueButton from "../BlueButton/BlueButton";
+
 import classes from "./Footer.module.css";
-import BlueButton from "./BlueButton";
-import logo from "../img/logo2.png";
+import logo from "../../img/logo2.png";
+
 import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import TwitterIcon from "@mui/icons-material/Twitter";

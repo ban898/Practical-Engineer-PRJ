@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
-import classes from "./CartModal.module.css";
+import { React, useEffect, useState } from "react";
 import axios from "axios";
+
+import classes from "./CartModal.module.css";
 
 import Avatar from "@mui/material/Avatar";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
@@ -9,7 +10,7 @@ import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import { green, red } from "@mui/material/colors";
 
-import dimg from "../../img/ShopImg/denims.jpg";
+import dimg from "../../../img/ShopImg/denims.jpg";
 
 const CartModal = ({ open, onClose }) => {
   const [carts, setCarts] = useState({});

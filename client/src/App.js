@@ -4,16 +4,16 @@ import { Route, Routes } from "react-router-dom";
 import { ThemeProvider } from "@mui/material/styles";
 import { theme } from "./theme";
 
-import WelcomePage from "./pages/WelcomePage";
-import RootLayout from "./pages/RootLayout";
-import LandingPage from "./pages/Ecom/LandingPage";
-import ShopSignUp from "./pages/Ecom/ShopSignUp";
+import WelcomePage from "./pages/LandingPage/WelcomePage";
+import RootLayout from "./components/Layout/RootLayout";
+import LandingPage from "./pages/Ecom/Landing/LandingPage";
+import ShopSignUp from "./pages/Ecom/SignUp/ShopSignUp";
 
-import Products from "./pages/Products";
-import ErrorElement from "./pages/Error";
-import Login from "./pages/Login";
-import Signup from "./pages/Signup";
-import Category from "./pages/Ecom/Category";
+import Products from "./pages/Products/Products";
+import ErrorElement from "./pages/Error/Error";
+import Login from "./pages/Login/Login";
+import Signup from "./pages/SignUp/Signup";
+import Category from "./pages/Ecom/Category/Category";
 
 import axios from "axios";
 

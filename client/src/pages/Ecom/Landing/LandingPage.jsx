@@ -3,17 +3,17 @@ import { useNavigate } from "react-router";
 
 import classes from "./LandingPage.module.css";
 
-import TransparentButton from "../../components/TransparentButton";
-import ShopNav from "../../components/Ecom-Comp/ShopNav";
-import Footer from "../../components/Ecom-Comp/Footer";
+import TransparentButton from "../../../components/TransparentButton/TransparentButton";
+import ShopNav from "../../../components/Ecom-Comp/Navbar/ShopNav";
+import Footer from "../../../components/Ecom-Comp/Footer/Footer";
 
-import mainImg from "../../img/ShopImg/main.jpg";
-import Coat from "../../img/ShopImg/coatMain.jpg";
-import Shoes from "../../img/ShopImg/shoeV.jpg";
-import Jeans from "../../img/ShopImg/denims.jpg";
-import Shirt from "../../img/ShopImg/shirts.jpg";
-import Hoodie from "../../img/ShopImg/hoodieV.jpg";
-import Amber from "../../img/ShopImg/d1.jpg";
+import mainImg from "../../../img/ShopImg/main.jpg";
+import Coat from "../../../img/ShopImg/coatMain.jpg";
+import Shoes from "../../../img/ShopImg/shoeV.jpg";
+import Jeans from "../../../img/ShopImg/denims.jpg";
+import Shirt from "../../../img/ShopImg/shirts.jpg";
+import Hoodie from "../../../img/ShopImg/hoodieV.jpg";
+import Amber from "../../../img/ShopImg/d1.jpg";
 
 const LandingPage = () => {
   const navigate = useNavigate();

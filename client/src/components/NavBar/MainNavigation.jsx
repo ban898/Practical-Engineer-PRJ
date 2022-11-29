@@ -4,12 +4,12 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 import classes from "./MainNavigation.module.css";
-import BlueButton from "./BlueButton";
+import BlueButton from "../BlueButton/BlueButton";
 
 import LoginIcon from "@mui/icons-material/Login";
 import LogoutIcon from "@mui/icons-material/Logout";
 
-import logo from "../img/logo2.png";
+import logo from "../../img/logo2.png";
 
 function MainNavigation() {
   //Navigation

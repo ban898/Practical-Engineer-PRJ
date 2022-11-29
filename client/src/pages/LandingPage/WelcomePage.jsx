@@ -3,20 +3,20 @@ import { useNavigate } from "react-router";
 
 import classes from "./WelcomePage.module.css";
 
-import BlueButton from "../components/BlueButton";
-import TransparentButton from "../components/TransparentButton";
-import PriceCardButton from "../components/PriceCardButton";
-import Comment from "../components/Comment";
+import BlueButton from "../../components/BlueButton/BlueButton";
+import TransparentButton from "../../components/TransparentButton/TransparentButton";
+import PriceCardButton from "../../components/PriceCard/PriceCardButton";
+import Comment from "../../components/Comment/Comment";
 
 import StackedLineChartIcon from "@mui/icons-material/StackedLineChart";
 import MonitorIcon from "@mui/icons-material/Monitor";
 import VerifiedIcon from "@mui/icons-material/Verified";
 
-import CommentAvatar1 from "../img/comment1.jpg";
-import CommentAvatar2 from "../img/comment2.jpg";
-import CommentAvatar3 from "../img/comment3.jpg";
-import MainImage from "../img/dashboard.png";
-import SecondImage from "../img/analyticsImg.jpg";
+import CommentAvatar1 from "../../img/comment1.jpg";
+import CommentAvatar2 from "../../img/comment2.jpg";
+import CommentAvatar3 from "../../img/comment3.jpg";
+import MainImage from "../../img/dashboard.png";
+import SecondImage from "../../img/analyticsImg.jpg";
 
 const WelcomePage = () => {
   const [firstShowHideSecond, setfirstShowHideSecond] = useState(true);

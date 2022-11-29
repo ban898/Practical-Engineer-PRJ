@@ -3,10 +3,10 @@ import { Link as ScrollLink } from "react-scroll";
 
 import classes from "./ShopNav.module.css";
 
-import Modal from "./Modal";
-import CartIcon from "./CartIcon";
-import CartCount from "./CartCount";
-import CartModal from "./CartModal";
+import Modal from "../LoginModal/Modal";
+import CartIcon from "../CartIcon/CartIcon";
+import CartCount from "../CartCount/CartCount";
+import CartModal from "../CartModal/CartModal";
 
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import InstagramIcon from "@mui/icons-material/Instagram";

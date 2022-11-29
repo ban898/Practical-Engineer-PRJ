@@ -1,12 +1,14 @@
-import React, { useEffect } from "react";
+import { React, useEffect } from "react";
+import { useNavigate } from "react-router";
+
 import classes from "./Modal.module.css";
+import BlueButton from "../../BlueButton/BlueButton";
+import TransparentButton from "../../TransparentButton/TransparentButton";
+
 import Box from "@mui/material/Box";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import TextField from "@mui/material/TextField";
 import KeyIcon from "@mui/icons-material/Key";
-import BlueButton from "../../components/BlueButton";
-import TransparentButton from "../../components/TransparentButton";
-import { useNavigate } from "react-router";
 
 const Modal = ({ open, onClose }) => {
   const navigate = useNavigate();
