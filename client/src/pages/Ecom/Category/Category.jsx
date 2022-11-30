@@ -29,7 +29,6 @@ const Category = () => {
         const res = await axios.post("/api/v1/products/getProductsByCetegory", {
           categoryId,
         });
-        console.log(res.data.products);
         setProductsData(res.data.products);
       } catch (err) {
         console.log(err);

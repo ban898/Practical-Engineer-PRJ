@@ -13,16 +13,15 @@ import { green, red } from "@mui/material/colors";
 import dimg from "../../../img/ShopImg/denims.jpg";
 
 const CartModal = ({ open, onClose }) => {
-  const [carts, setCarts] = useState({});
   const [cart, setCart] = useState({});
+
   // get cart of user
   useEffect(() => {
     const getCart = async () => {
       try {
         const res = await axios.get("/api/v1/carts");
 
-        setCarts(res.data.carts);
-        setCart(res.data.carts[0]);
+        setCart(res.data.cart);
       } catch (err) {
         console.log(err.message);
       }
@@ -40,7 +39,7 @@ const CartModal = ({ open, onClose }) => {
   const checkoutHandler = async () => {
     try {
       const res = await axios.post("/api/v1/stripe/checkout-session", {
-        carts,
+        cart,
       });
       if (res.data.session.url) window.location.href = res.data.session.url;
     } catch (err) {
@@ -64,31 +63,35 @@ const CartModal = ({ open, onClose }) => {
           </div>
           {/*Here need to map list of item */}
           {/* map(item => { itemWrapper }) */}
-          <div className={classes.itemWrapper}>
-            <div className={classes.three}>
-              <div className={classes.remove}>
-                <RemoveCircleOutlineIcon sx={{ color: red[500] }} />
+          {cart.map((item) => {
+            return (
+              <div key={item.id} className={classes.itemWrapper}>
+                <div className={classes.three}>
+                  <div className={classes.remove}>
+                    <RemoveCircleOutlineIcon sx={{ color: red[500] }} />
+                  </div>
+                  <div className={classes.img}>
+                    <img
+                      src={`/img/products/${item.photo}`}
+                      alt=""
+                      style={{ width: "48px", height: "48px" }}
+                      // sx={{ width: 48, height: 48 }}
+                    />
+                  </div>
+                  <div className={classes.desc}>{item.name}</div>
+                </div>
+                <div className={classes.price}>{item.price} $</div>
+                <div className={classes.quantity}>
+                  <AddIcon sx={{ color: green[700] }} />
+                  <div>{item.quantity}</div>
+                  <RemoveIcon sx={{ color: red[800] }} />
+                </div>
+                <div className={classes.subtotal}>
+                  {item.price * item.quantity} $
+                </div>
               </div>
-              <div className={classes.img}>
-                <img
-                  src={`/img/products/${cart.photo}`}
-                  alt=""
-                  style={{ width: "48px", height: "48px" }}
-                  // sx={{ width: 48, height: 48 }}
-                />
-              </div>
-              <div className={classes.desc}>{cart.description}</div>
-            </div>
-            <div className={classes.price}>{cart.price} $</div>
-            <div className={classes.quantity}>
-              <AddIcon sx={{ color: green[700] }} />
-              <div>{cart.quantity}</div>
-              <RemoveIcon sx={{ color: red[800] }} />
-            </div>
-            <div className={classes.subtotal}>
-              {cart.price * cart.quantity} $
-            </div>
-          </div>
+            );
+          })}
           <div className={classes.itemWrapper}>
             <div className={classes.three}>
               <div className={classes.remove}>

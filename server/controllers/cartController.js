@@ -2,11 +2,11 @@ const Cart = require("../models/cartModel");
 
 exports.getCarts = async (req, res) => {
   try {
-    const carts = await Cart.find();
+    const cart = await Cart.find();
 
     res.status(200).json({
       status: "success",
-      carts,
+      cart,
     });
   } catch (err) {
     res.status(400).json({ status: "fail" });

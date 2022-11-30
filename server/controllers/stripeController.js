@@ -6,11 +6,11 @@ exports.getCheckoutSession = catchAsync(async (req, res, next) => {
   const customer = await stripe.customers.create({
     metadata: {
       userId: "6365f5bc3be5457de62d5211",
-      cart: JSON.stringify(req.body.carts),
+      cart: JSON.stringify(req.body.cart),
     },
   });
 
-  const line_items = req.body.carts.map((item) => {
+  const line_items = req.body.cart.map((item) => {
     return {
       price_data: {
         currency: "ils",

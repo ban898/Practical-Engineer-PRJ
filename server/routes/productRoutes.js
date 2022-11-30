@@ -7,7 +7,7 @@ const router = express.Router();
 
 router
   .route("/")
-  .post(productController.getAllProducts)
+  .get(productController.getAllProducts)
   .post(
     authController.protect,
     userController.getMe,
@@ -16,6 +16,15 @@ router
     productController.createProduct
   );
 
+router.patch(
+  "/updateProduct",
+  authController.protect,
+  productController.uploadProductImages,
+  productController.resizeProductImages,
+  productController.updateProduct
+);
+
 router.post("/getProductsByCetegory", productController.getProductsByCetegory);
+router.route("/:id").delete(productController.deleteProduct);
 
 module.exports = router;

@@ -94,7 +94,6 @@ exports.protect = async (req, res, next) => {
     } else if (req.cookies.jwt) {
       token = req.cookies.jwt;
     }
-
     if (!token) {
       return next(
         new AppError("You are not logged in! Please log in to get access.", 401)
@@ -115,7 +114,6 @@ exports.protect = async (req, res, next) => {
     }
 
     // Need to complete (check if user changed password after the token was issued)
-
     req.user = currentUser;
     return next();
   } catch (err) {
