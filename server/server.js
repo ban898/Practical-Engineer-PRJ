@@ -14,6 +14,6 @@ async function main() {
   console.log("DB connection successful!");
 }
 
-app.listen(process.env.PORT, () =>
-  console.log(`App running on port ${process.env.PORT}`)
-);
+const port = process.env.PORT || 5000;
+
+app.listen(port, () => console.log(`App running on port ${process.env.PORT}`));

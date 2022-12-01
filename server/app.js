@@ -6,9 +6,16 @@ const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const cartRouter = require("./routes/cartRoutes");
 const stripeRouter = require("./routes/stripeRoutes");
+const stripeController = require("./controllers/stripeController");
 
 const app = express();
-app.use(cors());
+//app.use(cors());
+
+app.post(
+  "/webhook",
+  express.raw({ type: "application/json" }),
+  stripeController.webhook
+);
 
 app.use(express.json());
 app.use(cookieParser());

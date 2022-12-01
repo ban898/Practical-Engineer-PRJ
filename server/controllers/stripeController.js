@@ -17,7 +17,11 @@ exports.getCheckoutSession = catchAsync(async (req, res, next) => {
         unit_amount: item.price * 100,
         product_data: {
           name: item.name,
-          images: ["http://127.0.0.1:5000/img/tours/tour-2-3.jpg"],
+          images: [
+            `${req.protocol}://${req.get(
+              "host"
+            )}/img/products/product-6374f8c989012df5630c8d69-1669823372799-1.jpeg`,
+          ],
           description: item.description,
         },
       },
@@ -91,7 +95,7 @@ const createOrder = async (customer, data) => {
 };
 
 exports.webhook = (req, res) => {
-  let endpointSecret;
+  let endpointSecret = process.env.STRIPE_WEB_HOOK;
 
   const sig = req.headers["stripe-signature"];
 

@@ -9,10 +9,4 @@ router.post(
   stripeController.getCheckoutSession
 );
 
-router.post(
-  "/webhook",
-  express.json({ type: "application/json" }),
-  stripeController.webhook
-);
-
 module.exports = router;
