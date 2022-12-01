@@ -1,0 +1,26 @@
+.itemWrapper {
+  margin-top: 20px;
+  padding-bottom: 10px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #868e96;
+  align-items: center;
+}
+
+.three {
+  width: 40%;
+  display: flex;
+  gap: 10%;
+}
+
+.remove {
+  align-self: center;
+}
+
+.quantity {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10%;
+}

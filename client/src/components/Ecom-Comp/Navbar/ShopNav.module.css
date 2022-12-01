@@ -17,6 +17,11 @@
   z-index: 10;
 }
 
+.logo {
+  text-decoration: none;
+  color: #292826;
+}
+
 /* Navbar On Scroll */
 .colorNav {
   width: 100%;

@@ -1,5 +1,6 @@
 import { React, useState } from "react";
 import { Link as ScrollLink } from "react-scroll";
+import { Link } from "react-router-dom";
 
 import classes from "./ShopNav.module.css";
 
@@ -39,15 +40,9 @@ const ShopNav = () => {
   return (
     <div className={navbarClasses}>
       <div className={classes.navbarLeft}>
-        <ScrollLink
-          className={classes.logo}
-          to="Home"
-          smooth={true}
-          offset={-30}
-          duration={1000}
-        >
+        <Link className={classes.logo} to="/shop">
           Design-X
-        </ScrollLink>
+        </Link>
         <ScrollLink to="Discounts" smooth={true} offset={-60} duration={1000}>
           Discounts
         </ScrollLink>

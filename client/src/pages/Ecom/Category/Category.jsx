@@ -3,11 +3,11 @@ import { useParams } from "react-router";
 import axios from "axios";
 
 import ShopNav from "../../../components/Ecom-Comp/Navbar/ShopNav";
+import CategoryHero from "../../../components/Ecom-Comp/CategoryHero/CategoryHero";
 import Card from "../../../components/Ecom-Comp/SingleCard/SingleCard";
 import Footer from "../../../components/Ecom-Comp/Footer/Footer";
 
 import classes from "./Category.module.css";
-import CoatBg from "../../../img/ShopImg/cobg.jpg";
 
 const Category = () => {
   const [productsData, setProductsData] = useState([]);
@@ -15,13 +15,6 @@ const Category = () => {
   //Get the category ID from the URL
   const params = useParams();
   const categoryId = params.catId;
-
-  //Each Category will get Another image
-  let heroHeaderBackground;
-
-  if (categoryId === "Coats") {
-    heroHeaderBackground = CoatBg;
-  }
 
   useEffect(() => {
     const getProducts = async () => {
@@ -41,13 +34,7 @@ const Category = () => {
   return (
     <div className={classes.wrap}>
       <ShopNav />
-      <div className={classes.Hero}>
-        <img
-          className={classes.headerImg}
-          src={heroHeaderBackground}
-          alt="Hero Header"
-        />
-      </div>
+      <CategoryHero />
       <section>
         <div className={classes.flexWrapper}>
           {productsData.map((product) => {

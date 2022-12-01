@@ -1,16 +1,10 @@
 import { React, useEffect, useState } from "react";
 import axios from "axios";
 
+import CartItem from "../CartItem/CartItem";
 import classes from "./CartModal.module.css";
 
-import Avatar from "@mui/material/Avatar";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
-import AddIcon from "@mui/icons-material/Add";
-import RemoveIcon from "@mui/icons-material/Remove";
-import { green, red } from "@mui/material/colors";
-
-import dimg from "../../../img/ShopImg/denims.jpg";
 
 const CartModal = ({ open, onClose }) => {
   const [cart, setCart] = useState({});
@@ -58,120 +52,20 @@ const CartModal = ({ open, onClose }) => {
           <div className={classes.titles}>
             <div className={classes.miniHeaderOne}>Product</div>
             <div className={classes.miniHeader}>Price</div>
-            <div className={classes.miniHeader}>Quantity</div>
+            <div className={classes.miniHeaderQ}>Quantity</div>
             <div className={classes.miniHeader}>Subtotal</div>
           </div>
-          {/*Here need to map list of item */}
-          {/* map(item => { itemWrapper }) */}
           {cart.map((item) => {
             return (
-              <div key={item.id} className={classes.itemWrapper}>
-                <div className={classes.three}>
-                  <div className={classes.remove}>
-                    <RemoveCircleOutlineIcon sx={{ color: red[500] }} />
-                  </div>
-                  <div className={classes.img}>
-                    <img
-                      src={`/img/products/${item.photo}`}
-                      alt=""
-                      style={{ width: "48px", height: "48px" }}
-                      // sx={{ width: 48, height: 48 }}
-                    />
-                  </div>
-                  <div className={classes.desc}>{item.name}</div>
-                </div>
-                <div className={classes.price}>{item.price} $</div>
-                <div className={classes.quantity}>
-                  <AddIcon sx={{ color: green[700] }} />
-                  <div>{item.quantity}</div>
-                  <RemoveIcon sx={{ color: red[800] }} />
-                </div>
-                <div className={classes.subtotal}>
-                  {item.price * item.quantity} $
-                </div>
-              </div>
+              <CartItem
+                key={item._id}
+                img={item.photo}
+                name={item.name}
+                price={item.price}
+                quantity={item.quantity}
+              />
             );
           })}
-          <div className={classes.itemWrapper}>
-            <div className={classes.three}>
-              <div className={classes.remove}>
-                <RemoveCircleOutlineIcon sx={{ color: red[500] }} />
-              </div>
-              <div className={classes.img}>
-                <Avatar src={dimg} sx={{ width: 48, height: 48 }} />
-              </div>
-              <div className={classes.desc}>
-                Shorts with hands bla bla bla bla bla
-              </div>
-            </div>
-            <div className={classes.price}>14.00 $</div>
-            <div className={classes.quantity}>
-              <AddIcon sx={{ color: green[700] }} />
-              <div>3</div>
-              <RemoveIcon sx={{ color: red[800] }} />
-            </div>
-            <div className={classes.subtotal}>96.99 $</div>
-          </div>
-          <div className={classes.itemWrapper}>
-            <div className={classes.three}>
-              <div className={classes.remove}>
-                <RemoveCircleOutlineIcon sx={{ color: red[500] }} />
-              </div>
-              <div className={classes.img}>
-                <Avatar src={dimg} sx={{ width: 48, height: 48 }} />
-              </div>
-              <div className={classes.desc}>
-                Shorts with hands bla bla bla bla bla
-              </div>
-            </div>
-            <div className={classes.price}>14.00 $</div>
-            <div className={classes.quantity}>
-              <AddIcon sx={{ color: green[700] }} />
-              <div>3</div>
-              <RemoveIcon sx={{ color: red[800] }} />
-            </div>
-            <div className={classes.subtotal}>96.99 $</div>
-          </div>
-          <div className={classes.itemWrapper}>
-            <div className={classes.three}>
-              <div className={classes.remove}>
-                <RemoveCircleOutlineIcon sx={{ color: red[500] }} />
-              </div>
-              <div className={classes.img}>
-                <Avatar src={dimg} sx={{ width: 48, height: 48 }} />
-              </div>
-              <div className={classes.desc}>
-                Shorts with hands bla bla bla bla bla
-              </div>
-            </div>
-            <div className={classes.price}>14.00 $</div>
-            <div className={classes.quantity}>
-              <AddIcon sx={{ color: green[700] }} />
-              <div>3</div>
-              <RemoveIcon sx={{ color: red[800] }} />
-            </div>
-            <div className={classes.subtotal}>96.99 $</div>
-          </div>
-          <div className={classes.itemWrapper}>
-            <div className={classes.three}>
-              <div className={classes.remove}>
-                <RemoveCircleOutlineIcon sx={{ color: red[500] }} />
-              </div>
-              <div className={classes.img}>
-                <Avatar src={dimg} sx={{ width: 48, height: 48 }} />
-              </div>
-              <div className={classes.desc}>
-                Shorts with hands bla bla bla bla bla
-              </div>
-            </div>
-            <div className={classes.price}>14.00 $</div>
-            <div className={classes.quantity}>
-              <AddIcon sx={{ color: green[700] }} />
-              <div>3</div>
-              <RemoveIcon sx={{ color: red[800] }} />
-            </div>
-            <div className={classes.subtotal}>96.99 $</div>
-          </div>
           <div className={classes.totalWrapper}>
             <div className={classes.text}>15 items in cart .</div>
             <div className={classes.finalTotal}>Total : 847.92 $</div>
