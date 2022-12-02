@@ -13,7 +13,11 @@ const cartSchema = new mongoose.Schema({
   },
   image: String,
   quantity: {
+    type: Number,
+  },
+  userId: {
     type: String,
+    required: true,
   },
 });
 

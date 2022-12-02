@@ -9,7 +9,13 @@ const stripeRouter = require("./routes/stripeRoutes");
 const stripeController = require("./controllers/stripeController");
 
 const app = express();
-//app.use(cors());
+
+app.options("*", cors());
+app.use(
+  cors({
+    origin: ["http://localhost:5000", "https://checkout.stripe.com"],
+  })
+);
 
 app.post(
   "/webhook",
@@ -24,7 +30,7 @@ app.use(express.static("public"));
 
 app.use("/api/v1/products", productRouter);
 app.use("/api/v1/users", userRouter);
-app.use("/api/v1/carts", cartRouter);
+app.use("/api/v1/cart", cartRouter);
 app.use("/api/v1/stripe", stripeRouter);
 
 app.use(globalErrorHandler);

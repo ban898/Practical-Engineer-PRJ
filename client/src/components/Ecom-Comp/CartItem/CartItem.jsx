@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import classes from "./CartItem.module.css";
 
@@ -7,13 +7,55 @@ import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import { green, red } from "@mui/material/colors";
+import axios from "axios";
 
-const CartItem = ({ img, name, price, quantity }) => {
+const CartItem = ({ img, name, price, quantity, productId }) => {
+  const [quantityShow, setQuantityShow] = useState(quantity);
+
+  const addQuantityHandler = async () => {
+    try {
+      const res = await axios.patch("/api/v1/cart/addQuantity", { productId });
+
+      setQuantityShow(res.data.quantity);
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
+
+  const removeQuantityHandler = async () => {
+    try {
+      const res = await axios.patch("/api/v1/cart/removeQuantity", {
+        productId,
+      });
+
+      setQuantityShow(res.data.quantity);
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
+
+  const deleteItemHandler = async () => {
+    try {
+      await axios.delete(`/api/v1/cart/deleteItem/${productId}`);
+
+      setQuantityShow(null);
+      // img = null;
+      // name = null;
+      // price = null;
+      // quantity = null;
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
+
   return (
     <div className={classes.itemWrapper}>
       <div className={classes.three}>
         <div className={classes.remove}>
-          <RemoveCircleOutlineIcon sx={{ color: red[500] }} />
+          <RemoveCircleOutlineIcon
+            onClick={deleteItemHandler}
+            sx={{ color: red[500] }}
+          />
         </div>
         <div className={classes.img}>
           <Avatar
@@ -27,11 +69,11 @@ const CartItem = ({ img, name, price, quantity }) => {
       </div>
       <div className={classes.price}>{price} $</div>
       <div className={classes.quantity}>
-        <AddIcon sx={{ color: green[700] }} />
-        <div>{quantity}</div>
-        <RemoveIcon sx={{ color: red[800] }} />
+        <AddIcon onClick={addQuantityHandler} sx={{ color: green[700] }} />
+        <div>{quantityShow}</div>
+        <RemoveIcon onClick={removeQuantityHandler} sx={{ color: red[800] }} />
       </div>
-      <div className={classes.subtotal}>{price * quantity} $</div>
+      <div className={classes.subtotal}>{price * quantityShow} $</div>
     </div>
   );
 };

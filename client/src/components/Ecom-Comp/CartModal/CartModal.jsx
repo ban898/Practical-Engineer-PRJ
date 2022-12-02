@@ -13,7 +13,7 @@ const CartModal = ({ open, onClose }) => {
   useEffect(() => {
     const getCart = async () => {
       try {
-        const res = await axios.get("/api/v1/carts");
+        const res = await axios.get("/api/v1/cart");
 
         setCart(res.data.cart);
       } catch (err) {
@@ -59,6 +59,7 @@ const CartModal = ({ open, onClose }) => {
             return (
               <CartItem
                 key={item._id}
+                productId={item._id}
                 img={item.photo}
                 name={item.name}
                 price={item.price}
