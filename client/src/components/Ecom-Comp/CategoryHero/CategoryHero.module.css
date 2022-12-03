@@ -1,71 +1,212 @@
-/* .Hero {
-  position: relative;
-  height: 80vh;
-  width: 100vw;
-  margin-top: 100px;
-  background: rgb(170, 170, 170);
-  background: linear-gradient(
-    201deg,
-    rgba(170, 170, 170, 1) 28%,
-    rgba(8, 7, 0, 1) 100%
-  );
-}
-
-.Hero::before {
-  content: "Wear The Storm";
-  color: #fff;
-  position: absolute;
-  top: 10%;
-  left: 62%;
-  font-weight: 500;
-  line-height: 150%;
-  font-size: 82px;
-  width: 10%;
-}
-
-.headerImg {
-  position: absolute;
-  height: 100%;
-  width: 45vw;
-  max-width: 100%;
-  max-height: 100%;
-} */
-
 .hero {
-  background-image: url(../../../img/ShopImg/t4.jpg);
-  width: 100vw;
-  height: 100vh;
-  background-size: cover;
-  background-position: center;
+  width: 100%;
+  height: auto;
+}
+
+.hero > img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  /* background-size: cover;
+  background-position: center; */
   margin-top: 40px;
   position: relative;
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 25px;
 }
 
-.hero > p {
+.coatP {
   position: absolute;
-  top: 50%;
-  left: 60%;
+  top: 60%;
+  left: 5%;
+  font-weight: 500;
+  font-size: 55px;
+  color: #fff;
+}
+
+.coatLink {
+  cursor: pointer;
+  position: absolute;
+  top: 75%;
+  left: 5%;
+  font-size: 30px;
+  font-weight: 400;
+  color: #fff;
+  background-color: transparent;
+  border-radius: 10px;
+  padding: 5px 10px;
+  border: 2px solid #fab005;
+}
+
+.shoeP {
+  position: absolute;
+  top: 60%;
+  left: 5%;
   font-weight: 500;
   font-size: 55px;
   color: #000;
 }
 
-.hero > button {
+.shoeLink {
+  cursor: pointer;
   position: absolute;
-  top: 63%;
-  left: 82%;
+  top: 75%;
+  left: 5%;
   font-size: 30px;
   font-weight: 400;
   color: #000;
-  background-color: #fab005;
+  background-color: transparent;
   border-radius: 10px;
   padding: 5px 10px;
-  border: 1px solid #000;
+  border: 2px solid #ffe066;
 }
 
-/* .custom {
-  height: auto;
-  width: 100%;
-} */
+.jeansP {
+  position: absolute;
+  top: 70%;
+  left: 59%;
+  font-weight: 500;
+  font-size: 55px;
+  background: rgb(1, 62, 254);
+  background: linear-gradient(
+    201deg,
+    rgba(1, 62, 254, 1) 30%,
+    rgba(210, 238, 255, 1) 100%
+  );
+  background: rgb(1, 62, 254);
+  background: linear-gradient(
+    201deg,
+    rgba(1, 62, 254, 1) 30%,
+    rgba(210, 238, 255, 1) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.jeansP2 {
+  position: absolute;
+  top: 79%;
+  left: 70%;
+  font-weight: 500;
+  font-size: 55px;
+  background: rgb(1, 62, 254);
+  background: linear-gradient(
+    201deg,
+    rgba(1, 62, 254, 1) 30%,
+    rgba(210, 238, 255, 1) 100%
+  );
+  background: rgb(1, 62, 254);
+  background: linear-gradient(
+    201deg,
+    rgba(1, 62, 254, 1) 30%,
+    rgba(210, 238, 255, 1) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.jeansLink {
+  cursor: pointer;
+  position: absolute;
+  top: 91%;
+  left: 85%;
+  font-size: 30px;
+  font-weight: 400;
+  background: rgb(1, 62, 254);
+  background: linear-gradient(
+    201deg,
+    rgba(1, 62, 254, 1) 30%,
+    rgba(210, 238, 255, 1) 100%
+  );
+  background: rgb(1, 62, 254);
+  background: linear-gradient(
+    201deg,
+    rgba(1, 62, 254, 1) 30%,
+    rgba(210, 238, 255, 1) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  border-radius: 10px;
+  padding: 5px 10px;
+  border: 2px solid lightskyblue;
+}
+
+.jP {
+  position: absolute;
+  top: 50%;
+  left: 5%;
+  font-weight: 500;
+  font-size: 55px;
+  color: #fff;
+}
+
+.jP p {
+  color: #ffdeeb;
+  display: inline-block;
+  text-decoration: underline;
+  text-decoration-color: #ffdeeb;
+  text-underline-offset: 10px;
+}
+
+.jLink {
+  cursor: pointer;
+  position: absolute;
+  top: 70%;
+  left: 20%;
+  font-size: 30px;
+  font-weight: 500;
+  color: #ffdeeb;
+  background-color: transparent;
+  border-radius: 10px;
+  padding: 5px 10px;
+  border: 5px solid #ffdeeb;
+}
+
+.shirtP {
+  position: absolute;
+  top: 60%;
+  left: 5%;
+  font-weight: 500;
+  font-size: 55px;
+  color: #fff;
+}
+
+.shirtLink {
+  cursor: pointer;
+  position: absolute;
+  top: 75%;
+  left: 5%;
+  font-size: 30px;
+  font-weight: 400;
+  color: #fff;
+  background-color: transparent;
+  border-radius: 10px;
+  padding: 5px 10px;
+  border: 2px solid #868e96;
+}
+
+.hoodieP {
+  position: absolute;
+  top: 50%;
+  left: 20%;
+  font-weight: 500;
+  font-size: 55px;
+  color: #fff;
+}
+
+.hoodieLink {
+  cursor: pointer;
+  position: absolute;
+  top: 52%;
+  left: 55%;
+  font-size: 30px;
+  font-weight: 400;
+  color: #fff;
+  background-color: transparent;
+  border-radius: 10px;
+  padding: 5px 10px;
+  border: 2px solid #fff;
+}

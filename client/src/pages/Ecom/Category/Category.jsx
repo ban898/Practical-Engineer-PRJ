@@ -35,7 +35,7 @@ const Category = () => {
     <div className={classes.wrap}>
       <ShopNav />
       <CategoryHero />
-      <section>
+      <section id="Products">
         <div className={classes.flexWrapper}>
           {productsData.map((product) => {
             return (
