@@ -94,7 +94,7 @@ const ShopNav = () => {
   const [colorChange, setColorChnage] = useState(false);
 
   const changeNavColor = () => {
-    if (window.scrollY >= 800) {
+    if (window.scrollY >= 50) {
       setColorChnage(true);
     } else {
       setColorChnage(false);

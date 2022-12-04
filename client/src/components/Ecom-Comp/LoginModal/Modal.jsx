@@ -1,4 +1,4 @@
-import { React, useEffect, useState, useRef } from "react";
+import { React, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 
 import classes from "./Modal.module.css";
@@ -12,9 +12,11 @@ import KeyIcon from "@mui/icons-material/Key";
 import axios from "axios";
 
 const Modal = ({ open, onClose, onCheckLogin, getCart }) => {
-  const emailInputRef = useRef();
-  const passwordInputRef = useRef();
+  //Validation
+  const [emailIsValid, setEmailIsValid] = useState(true);
+  const [passwordIsValid, setPasswordIsValid] = useState(true);
 
+  //Inputs
   const [emailInput, setEmailInput] = useState(true);
   const [passwordInput, setPasswordInput] = useState(true);
 
@@ -25,8 +27,7 @@ const Modal = ({ open, onClose, onCheckLogin, getCart }) => {
     setPasswordInput(event.target.value);
   };
 
-  const [emailIsValid, setEmailIsValid] = useState(true);
-  const [passwordIsValid, setPasswordIsValid] = useState(true);
+  //Navigations
 
   const navigate = useNavigate();
 
@@ -34,6 +35,7 @@ const Modal = ({ open, onClose, onCheckLogin, getCart }) => {
     navigate("/shop/signup");
   };
 
+  //Close modal when login correct
   const moveToHomePage = () => {
     closeModal();
   };
@@ -59,27 +61,19 @@ const Modal = ({ open, onClose, onCheckLogin, getCart }) => {
 
   if (!open) return null;
 
-  //Need to Add new DB with Login methods
   const loginHandler = async (event) => {
     event.preventDefault();
 
-    // const email = emailInputRef.current.value;
-    // const password = passwordInputRef.current.value;
+    const email = emailInput.toString();
+    const password = passwordInput.toString();
 
-    const email = emailInput;
-    const password = passwordInput;
-
-    //if email match the email from mongoDB
-    //instead of the if below
     if (email.trim() === "" || email.includes("@") === false) {
       setEmailIsValid(false);
       return;
     }
 
-    //if password match the password from mongoDB
-    //instead of the if below
     if (password.trim() === "" || password.length < 6) {
-      passwordIsValid(false);
+      setPasswordIsValid(false);
       return;
     }
 
@@ -91,22 +85,27 @@ const Modal = ({ open, onClose, onCheckLogin, getCart }) => {
       password: password,
     };
 
-    // Here need to POST to MongoDB the user OBJECT
     try {
       await axios.post("/api/v1/users/login", { user });
-      // setUserName(res.data.user.firstName);
       getCart();
       onCheckLogin(true);
       moveToHomePage();
-      // window.location.reload(true);
     } catch (error) {
       onCheckLogin(false);
     }
   };
 
-  //Need to implement those methods on the login button
+  let incEmail = !emailIsValid ? (
+    <p className={classes.error}>Incorrect Email</p>
+  ) : (
+    ""
+  );
 
-  //Then to useState to handle ifLogin is true and render login/logout button
+  let incPass = !passwordIsValid ? (
+    <p className={classes.error}>Incorrect Password</p>
+  ) : (
+    ""
+  );
 
   return (
     <div
@@ -121,12 +120,11 @@ const Modal = ({ open, onClose, onCheckLogin, getCart }) => {
             id="input-with-sx"
             label="Email"
             variant="standard"
+            type="email"
             onChange={emailInputHandler}
-            ref={emailInputRef}
-            autoComplete="true"
           />
         </Box>
-        {!emailIsValid && <p>Incorrect Email</p>}
+        {incEmail}
         <Box
           sx={{ display: "flex", alignItems: "flex-end", marginBottom: "5px" }}
         >
@@ -135,10 +133,11 @@ const Modal = ({ open, onClose, onCheckLogin, getCart }) => {
             label="Password"
             variant="standard"
             color="otherColor"
+            type="password"
             onChange={passwordInputHandler}
-            ref={passwordInputRef}
           />
         </Box>
+        {incPass}
         <BlueButton
           buttonText="Login"
           padding="7px"

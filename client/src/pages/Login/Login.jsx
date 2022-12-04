@@ -110,7 +110,7 @@ const Login = () => {
                 placeholder="Password"
                 ref={passwordInputRef}
               ></input>
-              {!emailIsValid && <p>Incorrect password</p>}
+              {!passwordIsValid && <p>Incorrect password</p>}
             </div>
             <br />
             <br />
