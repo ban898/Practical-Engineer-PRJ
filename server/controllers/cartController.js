@@ -3,8 +3,7 @@ const Cart = require("../models/cartModel");
 
 exports.createCart = async (req, res) => {
   try {
-    // req.body.userId = req.user.id;
-    req.body.userId = "6374f8c989012df5630c8d69";
+    req.body.userId = req.params.id;
 
     await Cart.create(req.body);
 
@@ -17,14 +16,30 @@ exports.createCart = async (req, res) => {
 exports.getCartOfUser = async (req, res, next) => {
   try {
     const cart = await Cart.aggregate([
-      { $match: { userId: { $eq: "6374f8c989012df5630c8d69" } } },
+      { $match: { userId: { $eq: req.params.id } } },
     ]);
 
-    // const cart = await Cart.aggregate([
-    //   { $match: { userId: { $eq: req.user.id } } },
-    // ]);
+    if (!cart.length) {
+      res.status(200).json({ status: "success", length: 0 });
+    } else {
+      const itemsInCart = await Cart.aggregate([
+        { $match: { userId: { $eq: req.params.id } } },
+        {
+          $group: {
+            _id: null,
+            itemsInCart: { $sum: "$quantity" },
+            total: { $sum: { $multiply: ["$price", "$quantity"] } },
+          },
+        },
+      ]);
 
-    res.status(200).json({ status: "success", cart });
+      res.status(200).json({
+        status: "success",
+        cart,
+        itemsInCart: itemsInCart[0].itemsInCart,
+        total: itemsInCart[0].total,
+      });
+    }
   } catch (err) {
     res.status(400).json({ status: "fail" });
   }
@@ -53,6 +68,7 @@ exports.addQuantity = async (req, res) => {
 
 exports.removeQuantity = async (req, res) => {
   try {
+    let updateditem = undefined;
     const item = await Cart.findById({ _id: req.body.productId });
 
     if (
@@ -60,7 +76,7 @@ exports.removeQuantity = async (req, res) => {
       item.quantity < req.body.quantity ||
       item.quantity === req.body.quantity
     ) {
-      await Cart.findByIdAndDelete({ _id: req.body.productId });
+      const res = await Cart.findByIdAndDelete({ _id: req.body.productId });
     } else {
       await Cart.updateOne(
         { _id: req.body.productId },
@@ -70,11 +86,17 @@ exports.removeQuantity = async (req, res) => {
             : item.quantity - 1,
         }
       );
+
+      updateditem = await Cart.findById({ _id: req.body.productId });
     }
 
-    const updateditem = await Cart.findById({ _id: req.body.productId });
-
-    res.status(200).json({ status: "success", quantity: updateditem.quantity });
+    if (!updateditem) {
+      res.status(204).json({ status: "success" });
+    } else {
+      res
+        .status(200)
+        .json({ status: "success", quantity: updateditem.quantity });
+    }
   } catch (err) {
     res.status(400).json({ status: "fail", message: err });
   }
@@ -82,7 +104,6 @@ exports.removeQuantity = async (req, res) => {
 
 exports.deleteItem = async (req, res) => {
   try {
-    console.log(req.params.productId);
     await Cart.findByIdAndDelete({ _id: req.params.productId });
 
     res.status(204).json({ status: "success" });

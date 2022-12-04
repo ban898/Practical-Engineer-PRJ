@@ -5,7 +5,7 @@ const catchAsync = require("../utils/catchAsync");
 exports.getCheckoutSession = catchAsync(async (req, res, next) => {
   const customer = await stripe.customers.create({
     metadata: {
-      userId: "6365f5bc3be5457de62d5211",
+      userId: req.user.id,
       cart: JSON.stringify(req.body.cart),
     },
   });

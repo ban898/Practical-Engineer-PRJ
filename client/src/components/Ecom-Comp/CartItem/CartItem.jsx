@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import classes from "./CartItem.module.css";
 
@@ -9,14 +9,11 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import { green, red } from "@mui/material/colors";
 import axios from "axios";
 
-const CartItem = ({ img, name, price, quantity, productId }) => {
-  const [quantityShow, setQuantityShow] = useState(quantity);
-
+const CartItem = ({ img, name, price, quantity, productId, onRenderCart }) => {
   const addQuantityHandler = async () => {
     try {
-      const res = await axios.patch("/api/v1/cart/addQuantity", { productId });
-
-      setQuantityShow(res.data.quantity);
+      await axios.patch("/api/v1/cart/addQuantity", { productId });
+      await onRenderCart();
     } catch (err) {
       console.log(err.message);
     }
@@ -24,11 +21,11 @@ const CartItem = ({ img, name, price, quantity, productId }) => {
 
   const removeQuantityHandler = async () => {
     try {
-      const res = await axios.patch("/api/v1/cart/removeQuantity", {
+      await axios.patch("/api/v1/cart/removeQuantity", {
         productId,
       });
 
-      setQuantityShow(res.data.quantity);
+      await onRenderCart();
     } catch (err) {
       console.log(err.message);
     }
@@ -37,12 +34,7 @@ const CartItem = ({ img, name, price, quantity, productId }) => {
   const deleteItemHandler = async () => {
     try {
       await axios.delete(`/api/v1/cart/deleteItem/${productId}`);
-
-      setQuantityShow(null);
-      // img = null;
-      // name = null;
-      // price = null;
-      // quantity = null;
+      await onRenderCart();
     } catch (err) {
       console.log(err.message);
     }
@@ -61,8 +53,7 @@ const CartItem = ({ img, name, price, quantity, productId }) => {
           <Avatar
             src={`/img/products/${img}`}
             alt={img}
-            style={{ width: "48px", height: "48px" }}
-            // sx={{ width: 48, height: 48 }}
+            sx={{ width: 48, height: 48 }}
           />
         </div>
         <div className={classes.desc}>{name}</div>
@@ -70,10 +61,10 @@ const CartItem = ({ img, name, price, quantity, productId }) => {
       <div className={classes.price}>{price} $</div>
       <div className={classes.quantity}>
         <AddIcon onClick={addQuantityHandler} sx={{ color: green[700] }} />
-        <div>{quantityShow}</div>
+        <div>{quantity}</div>
         <RemoveIcon onClick={removeQuantityHandler} sx={{ color: red[800] }} />
       </div>
-      <div className={classes.subtotal}>{price * quantityShow} $</div>
+      <div className={classes.subtotal}>{price * quantity} $</div>
     </div>
   );
 };

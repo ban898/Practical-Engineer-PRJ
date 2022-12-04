@@ -15,22 +15,21 @@ import Login from "./pages/Login/Login";
 import Signup from "./pages/SignUp/Signup";
 import Category from "./pages/Ecom/Category/Category";
 
-import axios from "axios";
+// import axios from "axios";
 
 function App() {
-  const getUser = async () => {
-    try {
-      await axios
-        .get("/api/v1/users/me", { withCredentials: true, auth: true })
-        .then((res) => {
-          console.log(res);
-        });
-    } catch (err) {
-      //console.error(err);
-    }
-  };
+  // const getUser = async () => {
+  //   try {
+  //     await axios.get("/api/v1/users/me", {
+  //       withCredentials: true,
+  //       auth: true,
+  //     });
+  //   } catch (err) {
+  //     console.error(err.message);
+  //   }
+  // };
 
-  getUser();
+  // getUser();
 
   return (
     <ThemeProvider theme={theme}>

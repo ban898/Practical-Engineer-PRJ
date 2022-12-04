@@ -1,4 +1,4 @@
-import { React, useEffect } from "react";
+import { React, useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router";
 
 import classes from "./Modal.module.css";
@@ -9,12 +9,33 @@ import Box from "@mui/material/Box";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import TextField from "@mui/material/TextField";
 import KeyIcon from "@mui/icons-material/Key";
+import axios from "axios";
 
-const Modal = ({ open, onClose }) => {
+const Modal = ({ open, onClose, onCheckLogin, getCart }) => {
+  const emailInputRef = useRef();
+  const passwordInputRef = useRef();
+
+  const [emailInput, setEmailInput] = useState(true);
+  const [passwordInput, setPasswordInput] = useState(true);
+
+  const emailInputHandler = (event) => {
+    setEmailInput(event.target.value);
+  };
+  const passwordInputHandler = (event) => {
+    setPasswordInput(event.target.value);
+  };
+
+  const [emailIsValid, setEmailIsValid] = useState(true);
+  const [passwordIsValid, setPasswordIsValid] = useState(true);
+
   const navigate = useNavigate();
 
   const moveToSignUp = () => {
     navigate("/shop/signup");
+  };
+
+  const moveToHomePage = () => {
+    closeModal();
   };
 
   //Stop Propagation
@@ -39,6 +60,49 @@ const Modal = ({ open, onClose }) => {
   if (!open) return null;
 
   //Need to Add new DB with Login methods
+  const loginHandler = async (event) => {
+    event.preventDefault();
+
+    // const email = emailInputRef.current.value;
+    // const password = passwordInputRef.current.value;
+
+    const email = emailInput;
+    const password = passwordInput;
+
+    //if email match the email from mongoDB
+    //instead of the if below
+    if (email.trim() === "" || email.includes("@") === false) {
+      setEmailIsValid(false);
+      return;
+    }
+
+    //if password match the password from mongoDB
+    //instead of the if below
+    if (password.trim() === "" || password.length < 6) {
+      passwordIsValid(false);
+      return;
+    }
+
+    setPasswordIsValid(true);
+    setEmailIsValid(true);
+
+    const user = {
+      email: email,
+      password: password,
+    };
+
+    // Here need to POST to MongoDB the user OBJECT
+    try {
+      await axios.post("/api/v1/users/login", { user });
+      // setUserName(res.data.user.firstName);
+      getCart();
+      onCheckLogin(true);
+      moveToHomePage();
+      // window.location.reload(true);
+    } catch (error) {
+      onCheckLogin(false);
+    }
+  };
 
   //Need to implement those methods on the login button
 
@@ -57,19 +121,30 @@ const Modal = ({ open, onClose }) => {
             id="input-with-sx"
             label="Email"
             variant="standard"
+            onChange={emailInputHandler}
+            ref={emailInputRef}
+            autoComplete="true"
           />
         </Box>
+        {!emailIsValid && <p>Incorrect Email</p>}
         <Box
           sx={{ display: "flex", alignItems: "flex-end", marginBottom: "5px" }}
         >
           <KeyIcon sx={{ mr: 1, my: 0.5 }} />
-          <TextField label="Password" variant="standard" color="otherColor" />
+          <TextField
+            label="Password"
+            variant="standard"
+            color="otherColor"
+            onChange={passwordInputHandler}
+            ref={passwordInputRef}
+          />
         </Box>
         <BlueButton
           buttonText="Login"
           padding="7px"
           fontSize="13.3px"
           backgroundColor="black"
+          onClick={loginHandler}
         />
         <TransparentButton
           buttonText="Create an Account"

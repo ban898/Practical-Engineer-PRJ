@@ -1,4 +1,4 @@
-import { React, useEffect, useState } from "react";
+import { React } from "react";
 import axios from "axios";
 
 import CartItem from "../CartItem/CartItem";
@@ -6,23 +6,18 @@ import classes from "./CartModal.module.css";
 
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
-const CartModal = ({ open, onClose }) => {
-  const [cart, setCart] = useState({});
-
-  // get cart of user
-  useEffect(() => {
-    const getCart = async () => {
-      try {
-        const res = await axios.get("/api/v1/cart");
-
-        setCart(res.data.cart);
-      } catch (err) {
-        console.log(err.message);
-      }
-    };
-
-    getCart();
-  }, []);
+const CartModal = ({
+  open,
+  onClose,
+  cart,
+  totalAmount,
+  itemsInCart,
+  getCart,
+}) => {
+  // render Cart
+  const renderCartHandler = async () => {
+    await getCart();
+  };
 
   if (!open) return null;
 
@@ -32,10 +27,14 @@ const CartModal = ({ open, onClose }) => {
 
   const checkoutHandler = async () => {
     try {
-      const res = await axios.post("/api/v1/stripe/checkout-session", {
-        cart,
-      });
-      if (res.data.session.url) window.location.href = res.data.session.url;
+      if (cart) {
+        const res = await axios.post("/api/v1/stripe/checkout-session", {
+          cart,
+        });
+        if (res.data.session.url) window.location.href = res.data.session.url;
+      } else {
+        alert("There is no product or products in the cart");
+      }
     } catch (err) {
       console.log(err);
     }
@@ -55,21 +54,23 @@ const CartModal = ({ open, onClose }) => {
             <div className={classes.miniHeaderQ}>Quantity</div>
             <div className={classes.miniHeader}>Subtotal</div>
           </div>
-          {cart.map((item) => {
-            return (
-              <CartItem
-                key={item._id}
-                productId={item._id}
-                img={item.photo}
-                name={item.name}
-                price={item.price}
-                quantity={item.quantity}
-              />
-            );
-          })}
+          {cart &&
+            cart.map((item) => {
+              return (
+                <CartItem
+                  key={item._id}
+                  onRenderCart={renderCartHandler}
+                  productId={item._id}
+                  img={item.photo}
+                  name={item.name}
+                  price={item.price}
+                  quantity={item.quantity}
+                />
+              );
+            })}
           <div className={classes.totalWrapper}>
-            <div className={classes.text}>15 items in cart .</div>
-            <div className={classes.finalTotal}>Total : 847.92 $</div>
+            <div className={classes.text}>{itemsInCart} items in cart .</div>
+            <div className={classes.finalTotal}>Total : {totalAmount} $</div>
           </div>
           <div className={classes.btnWrapper}>
             <div className={classes.continue} onClick={onClose}>

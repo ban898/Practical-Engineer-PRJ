@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.post(
   "/checkout-session",
-  //authController.protect,
+  authController.protect,
   stripeController.getCheckoutSession
 );
 

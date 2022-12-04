@@ -8,32 +8,33 @@ const router = express.Router();
 router
   .route("/")
   .get(
-    //authController.protect,
+    authController.protect,
+    userController.getMe,
     cartController.getCartOfUser
   )
   .post(
-    //authController.protect,
+    authController.protect,
     userController.getMe,
     cartController.createCart
   );
 
 router.patch(
   "/addQuantity",
-  //authController.protect,
+  authController.protect,
   userController.getMe,
   cartController.addQuantity
 );
 
 router.patch(
   "/removeQuantity",
-  //authController.protect,
+  authController.protect,
   userController.getMe,
   cartController.removeQuantity
 );
 
 router.delete(
   "/deleteItem/:productId",
-  //authController.protect,
+  authController.protect,
   userController.getMe,
   cartController.deleteItem
 );

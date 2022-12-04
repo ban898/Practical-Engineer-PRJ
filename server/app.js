@@ -10,12 +10,8 @@ const stripeController = require("./controllers/stripeController");
 
 const app = express();
 
+app.use(cors());
 app.options("*", cors());
-app.use(
-  cors({
-    origin: ["http://localhost:5000", "https://checkout.stripe.com"],
-  })
-);
 
 app.post(
   "/webhook",
