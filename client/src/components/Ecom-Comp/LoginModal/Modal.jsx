@@ -32,7 +32,7 @@ const Modal = ({ open, onClose, onCheckLogin, getCart }) => {
   const navigate = useNavigate();
 
   const moveToSignUp = () => {
-    navigate("/shop/signup");
+    navigate("/signup");
   };
 
   //Close modal when login correct

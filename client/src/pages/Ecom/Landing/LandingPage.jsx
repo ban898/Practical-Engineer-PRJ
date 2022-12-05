@@ -19,26 +19,26 @@ const LandingPage = () => {
   const navigate = useNavigate();
 
   const moveToSignUp = () => {
-    navigate("/shop/signup");
+    navigate("signup");
   };
 
   const navCoats = () => {
-    navigate("/shop/Coats");
+    navigate("Coats");
   };
   const navShoes = () => {
-    navigate("/shop/Shoes");
+    navigate("Shoes");
   };
   const navJeans = () => {
-    navigate("/shop/Jeans");
+    navigate("Jeans");
   };
   const navJewerlly = () => {
-    navigate("/shop/Jewerlly");
+    navigate("Jewerlly");
   };
   const navShirts = () => {
-    navigate("/shop/Shirts");
+    navigate("Shirts");
   };
   const navHoodies = () => {
-    navigate("/shop/Hoodies");
+    navigate("Hoodies");
   };
 
   return (

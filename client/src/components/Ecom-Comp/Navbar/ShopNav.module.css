@@ -10,7 +10,7 @@
   left: 0;
   height: 100px;
   background: rgba(0, 0, 0, 0.1);
-  border-bottom: 1px solid #292826;
+  /* border-bottom: 1px solid #292826; */
   display: flex;
   justify-content: space-between;
   padding: 0 15px;
@@ -30,8 +30,8 @@
   top: 0;
   left: 0;
   height: 100px;
-  background: #fff;
-  border-bottom: 1px solid #292826;
+  background-color: transparent;
+  background: rgba(0, 0, 0, 0.2);
   display: flex;
   justify-content: space-between;
   padding: 0 15px;
@@ -44,7 +44,9 @@
   display: flex;
   max-width: 100%;
   min-width: 40%;
+  width: 100%;
   align-items: center;
+  justify-content: space-between;
   gap: 5%;
 }
 
@@ -113,4 +115,36 @@
 .cartContainer {
   position: relative;
   cursor: pointer;
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.customInput {
+  height: 35px;
+  width: 250px;
+  border: none;
+  border-radius: 10px;
+  padding-left: 35%;
+}
+
+.customInput:focus {
+  outline: none;
+  border: 1px solid #292826;
+  border-color: grey;
+}
+
+.customSelect {
+  position: absolute;
+  left: 5%;
+  border: none;
+  max-width: 25%;
+  border-right: 1px solid #292826;
+}
+
+.customSelect:focus {
+  outline: none;
 }

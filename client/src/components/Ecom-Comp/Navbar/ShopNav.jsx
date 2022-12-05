@@ -1,6 +1,6 @@
 import { React, useState, useEffect } from "react";
-import { Link as ScrollLink } from "react-scroll";
 import { Link } from "react-router-dom";
+import { Fragment } from "react";
 
 import classes from "./ShopNav.module.css";
 
@@ -10,10 +10,8 @@ import CartCount from "../CartCount/CartCount";
 import CartModal from "../CartModal/CartModal";
 
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import InstagramIcon from "@mui/icons-material/Instagram";
-import YouTubeIcon from "@mui/icons-material/YouTube";
-import FacebookIcon from "@mui/icons-material/Facebook";
-import { FaTiktok } from "react-icons/fa";
+import SearchIcon from "@mui/icons-material/Search";
+
 import axios from "axios";
 
 const ShopNav = () => {
@@ -108,54 +106,29 @@ const ShopNav = () => {
   return (
     <div className={navbarClasses}>
       <div className={classes.navbarLeft}>
-        <Link className={classes.logo} to="/shop">
+        <Link className={classes.logo} to="/">
           Design-X
         </Link>
-        <ScrollLink to="Discounts" smooth={true} offset={-60} duration={1000}>
-          Discounts
-        </ScrollLink>
-        <ScrollLink to="Categories" smooth={true} offset={-10} duration={1000}>
-          Categories
-        </ScrollLink>
-        <ScrollLink to="About Us" smooth={true} offset={-10} duration={1000}>
-          About Us
-        </ScrollLink>
       </div>
       <div className={classes.navbarRight}>
-        <div className={classes.loginBox}>
-          {!isLogin ? (
-            <>
-              <AccountCircleIcon
-                fontSize="large"
-                onClick={() => setIsOpen(true)}
-              />
-              <div
-                className={classes.loginText}
-                onClick={() => setIsOpen(true)}
-              >
-                Log in
-              </div>
-            </>
-          ) : (
-            <>
-              <AccountCircleIcon fontSize="large" />
-              <div className={classes.loginText} onClick={logOutHandler}>
-                Log out
-              </div>
-            </>
-          )}
-          <Modal
-            getCart={getCart}
-            open={isOpen}
-            onClose={() => setIsOpen(false)}
-            onCheckLogin={checkLoginHandler}
+        <div className={classes.search}>
+          <input
+            className={classes.customInput}
+            list="exampleList"
+            type="text"
           />
-        </div>
-        <InstagramIcon />
-        <YouTubeIcon />
-        <FacebookIcon />
-        <div className={classes.tiktok}>
-          <FaTiktok />
+          <select className={classes.customSelect} id="exampleList">
+            <option value="all">All</option>
+            <option value="women">Women</option>
+            <option value="men">Men</option>
+          </select>
+          <SearchIcon
+            sx={{
+              position: "absolute",
+              left: "90%",
+              borderLeft: "1px solid",
+            }}
+          />
         </div>
         <div
           className={classes.cartContainer}
@@ -175,6 +148,26 @@ const ShopNav = () => {
             }}
           />
         </div>
+        <div className={classes.loginBox}>
+          {!isLogin ? (
+            <Fragment>
+              <AccountCircleIcon
+                fontSize="large"
+                onClick={() => setIsOpen(true)}
+              />
+            </Fragment>
+          ) : (
+            <Fragment>
+              <AccountCircleIcon fontSize="large" onClick={logOutHandler} />
+            </Fragment>
+          )}
+          <Modal
+            getCart={getCart}
+            open={isOpen}
+            onClose={() => setIsOpen(false)}
+            onCheckLogin={checkLoginHandler}
+          />
+        </div>
       </div>
     </div>
   );
@@ -183,4 +176,15 @@ const ShopNav = () => {
 export default ShopNav;
 
 //-------------------------------------------------------------------------------------
-// <ShoppingCartIcon fontSize="large" />
+// <Link className={classes.logo} to="/">
+//           Design-X
+//         </Link>
+//         <ScrollLink to="Discounts" smooth={true} offset={-60} duration={1000}>
+//           Discounts
+//         </ScrollLink>
+//         <ScrollLink to="Categories" smooth={true} offset={-10} duration={1000}>
+//           Categories
+//         </ScrollLink>
+//         <ScrollLink to="About Us" smooth={true} offset={-10} duration={1000}>
+//           About Us
+//         </ScrollLink>
