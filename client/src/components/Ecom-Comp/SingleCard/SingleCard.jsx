@@ -1,5 +1,5 @@
 import { React, useState } from "react";
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import classes from "./SingleCard.module.css";
 
 import { Box, Card, CardContent, CardMedia } from "@mui/material";
@@ -24,10 +24,14 @@ const SingleCard = ({ name, price, img }) => {
     console.log(2);
   };
 
+  //Get the category ID from the URL
+  const params = useParams();
+  const categoryId = params.catId;
+
   const navigate = useNavigate();
 
   const handleViewProduct = () => {
-    navigate("/");
+    navigate(`/${categoryId}/productDetail`);
   };
 
   return (

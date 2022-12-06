@@ -9,6 +9,7 @@ import ShopSignUp from "./pages/Ecom/SignUp/ShopSignUp";
 
 import ErrorElement from "./pages/Error/Error";
 import Category from "./pages/Ecom/Category/Category";
+import ProductDetail from "./pages/Ecom/Product/ProductDetail";
 
 // import axios from "axios";
 
@@ -43,7 +44,13 @@ function App() {
           path="/:catId"
           element={<Category />}
           errorElement={<ErrorElement />}
-        />
+        >
+          <Route
+            path="productDetail"
+            element={<ProductDetail />}
+            errorElement={<ErrorElement />}
+          />
+        </Route>
       </Routes>
     </ThemeProvider>
   );
