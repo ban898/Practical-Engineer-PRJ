@@ -32,6 +32,10 @@ const productSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  gender: {
+    type: String,
+    default: "All",
+  },
 });
 
 const Product = mongoose.model("Product", productSchema);

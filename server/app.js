@@ -8,6 +8,7 @@ const cartRouter = require("./routes/cartRoutes");
 const stripeRouter = require("./routes/stripeRoutes");
 const stripeController = require("./controllers/stripeController");
 const Email = require("./utils/email");
+// const sendEmail = require("./utils/email");
 
 const app = express();
 
@@ -33,11 +34,13 @@ app.use("/api/v1/stripe", stripeRouter);
 app.get("/api/v1/sendEmail", async (req, res) => {
   try {
     user = {
-      email: "steve@mailsac.com",
+      email: "davidface2@gmail.com",
+      // email: "steve@mailsac.com",
       // email: "brusilovskysteve@gmail.com",
-      firstName: "test steve",
+      firstName: "My test",
     };
     await new Email(user).sendWelcome();
+    // await sendEmail();
     res.status(200).json({ status: "success" });
     console.log("send");
   } catch (err) {
