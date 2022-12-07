@@ -29,7 +29,6 @@
 
 .priceW:hover {
   transform: translateY(-2px);
-  box-shadow: grey 0px 0px 0px 1px;
   /* box-shadow: rgba(0, 0, 0, 0.45) 0px 10px 20px -5px; */
 }
 

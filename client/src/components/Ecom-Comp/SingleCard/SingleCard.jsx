@@ -8,7 +8,7 @@ import { grey } from "@mui/material/colors";
 
 import LazyLoad from "react-lazy-load";
 
-const SingleCard = ({ name, price, img }) => {
+const SingleCard = ({ prodId, name, price, img }) => {
   const [hasOverlay, setHasOverlay] = useState(false);
 
   const handleMouseEnter = () => {
@@ -31,7 +31,7 @@ const SingleCard = ({ name, price, img }) => {
   const navigate = useNavigate();
 
   const handleViewProduct = () => {
-    navigate(`/${categoryId}/productDetail`);
+    navigate(`/${categoryId}/${prodId}`);
   };
 
   return (

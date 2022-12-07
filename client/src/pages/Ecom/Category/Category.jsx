@@ -40,6 +40,7 @@ const Category = () => {
           {productsData.map((product) => {
             return (
               <Card
+                prodId={product._id}
                 key={product._id}
                 name={product.name}
                 price={product.price}

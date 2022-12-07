@@ -30,27 +30,23 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <Routes>
+        <Route path="/" element={<LandingPage />} />
         <Route
-          path="/"
-          element={<LandingPage />}
-          errorElement={<ErrorElement />}
-        />
-        <Route
-          path="/signup"
+          path="signup"
           element={<ShopSignUp />}
           errorElement={<ErrorElement />}
         />
         <Route
-          path="/:catId"
+          path=":catId"
           element={<Category />}
           errorElement={<ErrorElement />}
-        >
-          <Route
-            path="productDetail"
-            element={<ProductDetail />}
-            errorElement={<ErrorElement />}
-          />
-        </Route>
+        />
+        <Route path="/Coats/:prodId" element={<ProductDetail />} />
+        <Route path="/Shoes/:prodId" element={<ProductDetail />} />
+        <Route path="/Jeans/:prodId" element={<ProductDetail />} />
+        <Route path="/Jewerlly/:prodId" element={<ProductDetail />} />
+        <Route path="/Shirts/:prodId" element={<ProductDetail />} />
+        <Route path="/Hoodies/:prodId" element={<ProductDetail />} />
       </Routes>
     </ThemeProvider>
   );
@@ -59,34 +55,3 @@ function App() {
 export default App;
 
 //-------------------------------------------------------------------------------------
-// <Routes>
-// <Route
-//   path="/"
-//   element={<RootLayout />}
-//   errorElement={<ErrorElement />}
-// >
-//   <Route index element={<WelcomePage />} />
-//   <Route
-//     path="products"
-//     element={<Products />}
-//     errorElement={<ErrorElement />}
-//   />
-// </Route>
-// <Route
-//   path="login"
-//   element={<Login />}
-//   errorElement={<ErrorElement />}
-// />
-// <Route
-//   path="Signup"
-//   element={<Signup />}
-//   errorElement={<ErrorElement />}
-// />
-// <Route
-//   path="shop"
-//   element={<LandingPage />}
-//   errorElement={<ErrorElement />}
-// ></Route>
-// <Route path="shop/signup" element={<ShopSignUp />} />
-// <Route path="shop/:catId" element={<Category />} />
-// </Routes>
