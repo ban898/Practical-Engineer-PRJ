@@ -70,11 +70,10 @@ exports.getAllProducts = async (req, res, next) => {
 
 exports.createProduct = async (req, res, next) => {
   try {
-    const res = await Product.create(req.body);
-
+    await Product.create(req.body);
+    console.log(res.id);
     res.status(200).json({
       status: "success",
-      id: res._id,
     });
   } catch (err) {
     res.status(400).json({
