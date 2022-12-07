@@ -6,6 +6,7 @@ const catchAsync = require("../utils/catchAsync");
 const { promisify } = require("util");
 // const Email = require("../utils/email");
 const sendEmail = require("../utils/email");
+const Email = require("../utils/email");
 
 const signToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
@@ -35,21 +36,22 @@ exports.signup = async (req, res, next) => {
   try {
     let newUser = {};
     if (req.body.data) {
-      console.log("ss");
       if (req.file) {
         req.body.data.photo = req.file.filename;
       }
       newuser = await User.create(req.body.data);
+      await new Email(newUser).sendWelcome();
     } else {
       if (req.file) {
         req.body.photo = req.file.filename;
         newUser = await User.create(req.body);
+        await new Email(newUser).sendWelcome();
       } else {
-        newUser = await User.create(req.body);
+        const res = (newUser = await User.create(req.body));
+        console.log(res);
+        await new Email(newUser).sendWelcome();
       }
     }
-    // await new Email(newUser, "i").sendWelcome();
-    // await sendEmail();
     createSendToken(newUser, 201, res);
   } catch (err) {
     return next(err);

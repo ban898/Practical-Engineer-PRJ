@@ -13,7 +13,7 @@ exports.getCheckoutSession = catchAsync(async (req, res, next) => {
   const line_items = req.body.cart.map((item) => {
     return {
       price_data: {
-        currency: "ils",
+        currency: "USD",
         unit_amount: item.price * 100,
         product_data: {
           name: item.name,
@@ -36,7 +36,7 @@ exports.getCheckoutSession = catchAsync(async (req, res, next) => {
       {
         shipping_rate_data: {
           type: "fixed_amount",
-          fixed_amount: { amount: 0, currency: "ils" },
+          fixed_amount: { amount: 0, currency: "USD" },
           display_name: "Free shipping",
           delivery_estimate: {
             minimum: { unit: "business_day", value: 5 },
@@ -47,7 +47,7 @@ exports.getCheckoutSession = catchAsync(async (req, res, next) => {
       {
         shipping_rate_data: {
           type: "fixed_amount",
-          fixed_amount: { amount: 1500, currency: "ils" },
+          fixed_amount: { amount: 1500, currency: "USD" },
           display_name: "Next day air",
           delivery_estimate: {
             minimum: { unit: "business_day", value: 1 },
@@ -60,8 +60,8 @@ exports.getCheckoutSession = catchAsync(async (req, res, next) => {
       enabled: true,
     },
     customer: customer.id,
-    success_url: `http://localhost:3000/shop`,
-    cancel_url: `http://localhost:3000/shop`,
+    success_url: `http://localhost:3000`,
+    cancel_url: `http://localhost:3000`,
     mode: "payment",
     //customer_email: req.user.email,
     //client_reference_id: req.user.id,

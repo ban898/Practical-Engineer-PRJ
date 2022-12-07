@@ -5,13 +5,16 @@ const userController = require("./../controllers/userController");
 
 const router = express.Router();
 
-router.route("/").get(productController.getAllProducts).post(
-  // authController.protect,
-  userController.getMe,
-  productController.uploadProductImages,
-  productController.resizeProductImages,
-  productController.createProduct
-);
+router
+  .route("/")
+  .get(productController.getAllProducts)
+  .post(
+    authController.protect,
+    userController.getMe,
+    productController.uploadProductImages,
+    productController.resizeProductImages,
+    productController.createProduct
+  );
 
 router.patch(
   "/updateProduct",
@@ -22,6 +25,9 @@ router.patch(
 );
 
 router.post("/getProductsByCetegory", productController.getProductsByCetegory);
-router.route("/:id").delete(productController.deleteProduct);
+router
+  .route("/:productId")
+  .delete(productController.deleteProduct)
+  .get(productController.getProductById);
 
 module.exports = router;

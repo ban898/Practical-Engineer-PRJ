@@ -2,13 +2,12 @@ const nodemailer = require("nodemailer");
 
 module.exports = class Email {
   constructor(user, url) {
-    console.log(process.env.GMAIL_USER);
-    console.log(user.email);
+    // console.log(process.env.GMAIL_USER);
+    // console.log(user);
+    this.user = user;
     this.to = user.email;
     this.firstName = user.firstName;
     // this.url = url;
-    this.message =
-      "<h1>אני שולח לך ככה עוד מייל מהקוד הראשון\n ובכללי אני צריך לראות איך אפשר לעשות עיצוב למייל</h1>";
     this.from = process.env.GMAIL_USER;
     // this.from = `Steve Brusilovsky <${process.env.EMAIL_FROM}>`;
   }
@@ -16,8 +15,6 @@ module.exports = class Email {
   newTransport() {
     return nodemailer.createTransport({
       service: "gmail",
-      // host: "smtp.sendgrid.net",
-      // port: "25",
       tls: {
         rejectUnauthorized: false,
       },
@@ -31,14 +28,18 @@ module.exports = class Email {
   //  Send the actual email
   async send(template, subject) {
     // Render HTML based template
-
+    console.log(this.user.firstName);
     // Define email options
     const mailOptions = {
       from: this.from,
       to: this.to,
       subject: subject,
       text: "abcdefghi",
-      html: this.message,
+      html: `<div>
+      <h1>Hello ${this.user.firstName}</h1>
+      <span>how are you?</span>
+      <button>Click</button>
+      </div>`,
     };
 
     //   Create a transport and send email

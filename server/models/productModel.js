@@ -34,7 +34,6 @@ const productSchema = new mongoose.Schema({
   },
   gender: {
     type: String,
-    default: "All",
   },
 });
 

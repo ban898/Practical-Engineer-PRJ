@@ -68,10 +68,28 @@ exports.getAllProducts = async (req, res, next) => {
   }
 };
 
+exports.getProductById = async (req, res) => {
+  try {
+    const product = await Product.findById(req.params.productId);
+
+    res.status(200).json({
+      status: "success",
+      product,
+    });
+  } catch (err) {
+    res.status(400).json({
+      status: "fail",
+    });
+  }
+};
+
 exports.createProduct = async (req, res, next) => {
   try {
     await Product.create(req.body);
-    console.log(res.id);
+    // console.log(JSON.stringify(res.id));
+    // console.log(res.id);
+    // const id = JSON.stringify(res.id);
+    // console.log(id);
     res.status(200).json({
       status: "success",
     });
