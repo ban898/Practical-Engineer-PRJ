@@ -4,8 +4,6 @@ const jwt = require("jsonwebtoken");
 const AppError = require("./../utils/appError");
 const catchAsync = require("../utils/catchAsync");
 const { promisify } = require("util");
-// const Email = require("../utils/email");
-const sendEmail = require("../utils/email");
 const Email = require("../utils/email");
 
 const signToken = (id) => {
@@ -128,5 +126,32 @@ exports.protect = async (req, res, next) => {
     return next();
   } catch (err) {
     return next();
+  }
+};
+
+exports.restrictTo = (...roles) => {
+  return (req, res, next) => {
+    if (!roles.includes(req.user.role)) {
+      return next(
+        new AppError("You do not have permission to perform this action", 403)
+      );
+    }
+
+    next();
+  };
+};
+
+exports.forgotPassword = async (req, res, next) => {
+  try {
+    const user = await User.findOne({ email: req.body.email });
+
+    if (!user) {
+      return next(new AppError("There is no user with email address", 404));
+    }
+
+    const resetToken = user.createPasswordResetToken();
+    await user.save({ validateBeforeSave: false });
+  } catch (err) {
+    res.status(400).json({ status: "fail" });
   }
 };
