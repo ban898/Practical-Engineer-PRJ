@@ -141,6 +141,7 @@
   font-weight: 500;
   font-size: 55px;
   color: #fff;
+  cursor: default;
 }
 
 .jP p {
@@ -149,6 +150,11 @@
   text-decoration: underline;
   text-decoration-color: #ffdeeb;
   text-underline-offset: 10px;
+}
+
+.jP p:hover {
+  transform: translateY(-5px);
+  transition-duration: 0.5s;
 }
 
 .jLink {
@@ -163,6 +169,12 @@
   border-radius: 10px;
   padding: 5px 10px;
   border: 5px solid #ffdeeb;
+}
+
+.jLink:hover {
+  color: pink;
+  background-color: black;
+  transition-duration: 0.5s;
 }
 
 .shirtP {
