@@ -2,7 +2,7 @@ import { React, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 
 import classes from "./Modal.module.css";
-import BlueButton from "../../BlueButton/BlueButton";
+import BlueButton from "../BlueButton/BlueButton";
 import TransparentButton from "../../TransparentButton/TransparentButton";
 
 import Box from "@mui/material/Box";
