@@ -89,6 +89,14 @@ const ShopNav = () => {
   //Handle Login Modal
   const [isOpen, setIsOpen] = useState(false);
 
+  const handleLoginOpen = () => {
+    setIsOpen(true);
+  };
+
+  const handleLoginClose = () => {
+    setIsOpen(false);
+  };
+
   //Handling Navbar Color change when scrolling
   const [colorChange, setColorChnage] = useState(false);
 
@@ -140,7 +148,9 @@ const ShopNav = () => {
         </div>
         <div
           className={classes.cartContainer}
-          onClick={() => setCartOpen(true)}
+          onClick={() => {
+            setCartOpen(true);
+          }}
         >
           <CartIcon>
             <CartCount count={itemsInCart} />
@@ -159,10 +169,10 @@ const ShopNav = () => {
         <div className={classes.loginBox}>
           {!isLogin ? (
             <div className={classes.login}>
-              <h5 style={{ cursor: "pointer" }} onClick={() => setIsOpen(true)}>
+              <h5 style={{ cursor: "pointer" }} onClick={handleLoginOpen}>
                 Log in
               </h5>
-              <LoginIcon fontSize="medium" onClick={() => setIsOpen(true)} />
+              <LoginIcon fontSize="medium" onClick={handleLoginOpen} />
             </div>
           ) : (
             <div className={classes.login}>
@@ -170,13 +180,13 @@ const ShopNav = () => {
                 Log out
               </h5>
               <LogoutIcon fontSize="medium" onClick={toggleMenu} />
-              {!menuOpen ? <ProfileMenu logOut={logOutHandler} /> : ""}
+              {menuOpen ? <ProfileMenu logOut={logOutHandler} /> : ""}
             </div>
           )}
           <Modal
             getCart={getCart}
             open={isOpen}
-            onClose={() => setIsOpen(false)}
+            onClose={handleLoginClose}
             onCheckLogin={checkLoginHandler}
           />
         </div>
@@ -186,23 +196,3 @@ const ShopNav = () => {
 };
 
 export default ShopNav;
-
-//-------------------------------------------------------------------------------------
-// <Link className={classes.logo} to="/">
-//           Design-X
-//         </Link>
-//         <ScrollLink to="Discounts" smooth={true} offset={-60} duration={1000}>
-//           Discounts
-//         </ScrollLink>
-//         <ScrollLink to="Categories" smooth={true} offset={-10} duration={1000}>
-//           Categories
-//         </ScrollLink>
-//         <ScrollLink to="About Us" smooth={true} offset={-10} duration={1000}>
-//           About Us
-//         </ScrollLink>
-
-//-------------------------------------------------------------------------------------
-// {!isLogin ? <Link to="/">Profile</Link> : ""}
-
-//-------------------------------------------------------------------------------------
-// <LogoutIcon fontSize="medium" onClick={logOutHandler} />

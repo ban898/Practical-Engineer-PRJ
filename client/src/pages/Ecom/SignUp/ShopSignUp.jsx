@@ -12,6 +12,7 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { useNavigate } from "react-router";
 
 function Copyright(props) {
   return (
@@ -22,8 +23,8 @@ function Copyright(props) {
       {...props}
     >
       {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
+      <Link color="inherit" href="/">
+        Design-X By David and Steve
       </Link>{" "}
       {new Date().getFullYear()}
       {"."}
@@ -34,6 +35,14 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignUp() {
+  //Go Back
+  const navigate = useNavigate();
+
+  const goBack = () => {
+    navigate(-1);
+  };
+
+  //Submit
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -111,6 +120,17 @@ export default function SignUp() {
                 />
               </Grid>
               <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  name="Confirmpassword"
+                  label="Confirm Password"
+                  type="password"
+                  id="Cpassword"
+                  autoComplete="new-password"
+                />
+              </Grid>
+              <Grid item xs={12}>
                 <FormControlLabel
                   control={
                     <Checkbox value="allowExtraEmails" color="primary" />
@@ -127,13 +147,20 @@ export default function SignUp() {
             >
               Sign Up
             </Button>
-            <Grid container justifyContent="flex-end">
-              <Grid item>
-                <Link href="#" variant="body2">
-                  Already have an account? Sign in
-                </Link>
-              </Grid>
-            </Grid>
+            <Button
+              onClick={goBack}
+              fullWidth
+              variant="contained"
+              sx={{
+                mb: 2,
+                backgroundColor: "black",
+                "&:hover": {
+                  background: "rgba(0,0,0,0.8)",
+                },
+              }}
+            >
+              Go Back
+            </Button>
           </Box>
         </Box>
         <Copyright sx={{ mt: 5 }} />
