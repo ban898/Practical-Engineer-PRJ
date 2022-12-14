@@ -76,6 +76,20 @@ const ProductDetail = () => {
     navigate(-1);
   };
 
+  const addToCartHandler = async () => {
+    try {
+      try {
+        await axios.get("/api/v1/users/me");
+      } catch (err) {
+        alert("You need to login");
+        return;
+      }
+      await axios.patch(`/api/v1/cart/addToCart/${productObj._id}`);
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
+
   let price = productObj.price?.toFixed(2);
 
   return (
@@ -269,7 +283,10 @@ const ProductDetail = () => {
                 </div>
               </div>
               <div className={classes.payment}>
-                <BlueButton buttonText={"Add To Cart"}></BlueButton>
+                <BlueButton
+                  onClick={addToCartHandler}
+                  buttonText={"Add To Cart"}
+                ></BlueButton>
                 <BlueButton
                   buttonText={"Go Back"}
                   mt={"10px"}
