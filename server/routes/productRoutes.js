@@ -5,13 +5,16 @@ const userController = require("./../controllers/userController");
 
 const router = express.Router();
 
-router.route("/").get(productController.getAllProducts).post(
-  // authController.protect,
-  userController.getMe,
-  productController.uploadProductImages,
-  productController.resizeProductImages,
-  productController.createProduct
-);
+router
+  .route("/")
+  .get(productController.getAllProducts)
+  .post(
+    authController.protect,
+    userController.getMe,
+    productController.uploadProductImages,
+    productController.resizeProductImages,
+    productController.createProduct
+  );
 
 router.patch(
   "/updateProduct",

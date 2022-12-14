@@ -19,10 +19,17 @@ router
   );
 
 router.patch(
-  "/addQuantity",
+  "/addQuantity/:productId",
   authController.protect,
   userController.getMe,
   cartController.addQuantity
+);
+
+router.patch(
+  "/addToCart/:productId",
+  authController.protect,
+  userController.getMe,
+  cartController.addToCart
 );
 
 router.patch(

@@ -128,8 +128,8 @@ exports.webhook = (req, res) => {
         createOrder(customer, data);
       })
       .catch((err) => {
-        console.log(err.message);
         console.log("ssdsd");
+        console.log(err.message);
       });
   }
 

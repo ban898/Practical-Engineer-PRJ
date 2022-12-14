@@ -55,13 +55,13 @@ exports.getAllUsers = async (req, res, next) => {
 };
 
 exports.getMe = (req, res, next) => {
-  // if (!req.user) {
-  //   req.params.id = null;
-  // } else {
-  //   req.params.id = req.user.id;
-  // }
+  if (!req.user) {
+    req.params.id = null;
+  } else {
+    req.params.id = req.user.id;
+  }
 
-  req.params.id = "6372c141e5383bfb1e856314";
+  // req.params.id = "6372c141e5383bfb1e856314";
   next();
 };
 

@@ -87,7 +87,7 @@ const Modal = ({ open, onClose, onCheckLogin, getCart }) => {
 
     try {
       await axios.post("/api/v1/users/login", { user });
-      getCart();
+      await getCart();
       onCheckLogin(true);
       moveToHomePage();
     } catch (error) {

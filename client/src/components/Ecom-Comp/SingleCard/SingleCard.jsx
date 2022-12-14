@@ -7,6 +7,7 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { grey } from "@mui/material/colors";
 
 import LazyLoad from "react-lazy-load";
+import axios from "axios";
 
 const SingleCard = ({ prodId, name, price, img }) => {
   const [hasOverlay, setHasOverlay] = useState(false);
@@ -19,9 +20,18 @@ const SingleCard = ({ prodId, name, price, img }) => {
     setHasOverlay(false);
   };
 
-  const handleAddToCart = () => {
-    //Here need to call an API to add the item to the cart
-    console.log(2);
+  const handleAddToCart = async () => {
+    try {
+      try {
+        await axios.get("/api/v1/users/me");
+      } catch (err) {
+        alert("You need to login");
+        return;
+      }
+      await axios.patch(`/api/v1/cart/addToCart/${prodId}`);
+    } catch (err) {
+      console.log(err.message);
+    }
   };
 
   //Get the category ID from the URL

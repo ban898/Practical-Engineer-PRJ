@@ -60,8 +60,8 @@ const CartModal = ({
                 <CartItem
                   key={item._id}
                   onRenderCart={renderCartHandler}
-                  productId={item._id}
-                  img={item.photo}
+                  productId={item.productId}
+                  img={item.image}
                   name={item.name}
                   price={item.price}
                   quantity={item.quantity}

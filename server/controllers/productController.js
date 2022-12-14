@@ -2,6 +2,9 @@ const Product = require("./../models/productModel");
 const multer = require("multer");
 const AppError = require("./../utils/appError");
 const sharp = require("sharp");
+const stripe = require("stripe")(
+  "sk_test_51M7QpjBNlpph16hwYgc95y3kzLIhOzHeRe5FCxZUGx97VcIGyuZpYK7CHsEg8I81Jwa6FtyW1sSyTxQmuh4mT62K00tuejvGeS"
+);
 
 const multerStorage = multer.memoryStorage();
 
@@ -86,10 +89,6 @@ exports.getProductById = async (req, res) => {
 exports.createProduct = async (req, res, next) => {
   try {
     await Product.create(req.body);
-    // console.log(JSON.stringify(res.id));
-    // console.log(res.id);
-    // const id = JSON.stringify(res.id);
-    // console.log(id);
     res.status(200).json({
       status: "success",
     });

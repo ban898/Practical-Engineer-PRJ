@@ -12,7 +12,7 @@ import axios from "axios";
 const CartItem = ({ img, name, price, quantity, productId, onRenderCart }) => {
   const addQuantityHandler = async () => {
     try {
-      await axios.patch("/api/v1/cart/addQuantity", { productId });
+      await axios.patch(`/api/v1/cart/addQuantity/${productId}`);
       await onRenderCart();
     } catch (err) {
       console.log(err.message);

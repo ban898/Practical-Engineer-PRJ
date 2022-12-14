@@ -1,15 +1,14 @@
 const nodemailer = require("nodemailer");
 
 module.exports = class Email {
-  constructor(user, url) {
-    // console.log(process.env.GMAIL_USER);
-    // console.log(user);
+  constructor(user) {
+    // console.log("this.user.firstName");
+    // console.log(this.user.firstName);
     this.user = user;
     this.to = user.email;
     this.firstName = user.firstName;
-    // this.url = url;
-    this.from = process.env.GMAIL_USER;
-    // this.from = `Steve Brusilovsky <${process.env.EMAIL_FROM}>`;
+    // this.from = process.env.GMAIL_USER;
+    this.from = `Steve Brusilovsky <${process.env.GMAIL_USER}>`;
   }
 
   newTransport() {
@@ -26,15 +25,14 @@ module.exports = class Email {
   }
 
   //  Send the actual email
-  async send(template, subject) {
+  async send(subject) {
     // Render HTML based template
-    console.log(this.user.firstName);
+
     // Define email options
     const mailOptions = {
       from: this.from,
       to: this.to,
       subject: subject,
-      text: "abcdefghi",
       html: `<div>
       <h1>Hello ${this.user.firstName}</h1>
       <span>how are you?</span>
@@ -47,7 +45,7 @@ module.exports = class Email {
   }
 
   async sendWelcome() {
-    await this.send("welcome", "welcome to the test send email 2");
+    await this.send("welcome to the test send email");
   }
 };
 
