@@ -61,6 +61,16 @@
   transition-duration: 0.5s;
 }
 
+.singlePage > a {
+  color: #8d8d8d;
+  text-decoration: none;
+}
+
+.singlePage > a:hover {
+  color: #212529;
+  transform: translateX(3px);
+}
+
 .singlePage::after {
   content: "";
   position: absolute;

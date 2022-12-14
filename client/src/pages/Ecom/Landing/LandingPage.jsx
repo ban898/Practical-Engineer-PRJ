@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router";
+import { Link as ScrollLink } from "react-scroll";
 
 import classes from "./LandingPage.module.css";
 
@@ -59,16 +60,24 @@ const LandingPage = () => {
             fontWeight="600"
             onClick={moveToSignUp}
           />
-          <TransparentButton
-            buttonText="Shop Now"
-            backgroundColor="black"
-            top="55%"
-            left="24%"
-            position="absolute"
-            fontSize="25px"
-            customHoverColor="#e03131"
-            fontWeight="600"
-          />
+
+          <ScrollLink
+            to="Categories"
+            smooth={true}
+            offset={-60}
+            duration={1000}
+          >
+            <TransparentButton
+              buttonText="Shop Now"
+              backgroundColor="black"
+              top="55%"
+              left="24%"
+              position="absolute"
+              fontSize="25px"
+              customHoverColor="#e03131"
+              fontWeight="600"
+            />
+          </ScrollLink>
         </div>
       </div>
       <section id="Discounts">

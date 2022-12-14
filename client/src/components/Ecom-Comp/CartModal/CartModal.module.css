@@ -36,7 +36,7 @@
   justify-content: center;
   gap: 20px;
   text-transform: uppercase;
-  background-color: #868e96;
+  background-color: #000;
   font-weight: 600;
   border-radius: 25px;
   color: #fff;
@@ -72,7 +72,7 @@
 }
 
 .finalTotal {
-  color: #40c057;
+  color: #247bfe;
   font-weight: 500;
 }
 
@@ -93,9 +93,10 @@
 
 .checkout {
   cursor: pointer;
-  background-color: #51cf66;
+  background-color: #247bfe;
   color: #fff;
   border-radius: 10px;
   padding: 15px 50px;
   font-weight: 500;
+  border: none;
 }

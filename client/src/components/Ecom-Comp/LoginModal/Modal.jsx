@@ -142,14 +142,16 @@ const Modal = ({ open, onClose, onCheckLogin, getCart }) => {
           buttonText="Login"
           padding="7px"
           fontSize="13.3px"
-          backgroundColor="black"
+          backgroundColor="#247bfe"
           onClick={loginHandler}
         />
         <TransparentButton
           buttonText="Create an Account"
           padding="7px"
-          backgroundColor="#e03131"
+          backgroundColor="black"
           onClick={moveToSignUp}
+          customHoverColor="white"
+          border="none"
         />
       </div>
     </div>

@@ -173,3 +173,39 @@
 .socialDate {
   color: #495057;
 }
+
+.table1 {
+  width: 50%;
+}
+
+.table2 {
+  width: 50%;
+}
+
+.shoeTable {
+  text-align: center;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.shopSizes > th {
+  max-width: 0.5rem;
+}
+
+.jwTable {
+  text-align: center;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.jwSizes > th {
+  max-width: 0.5rem;
+}
+
+th {
+  height: 2rem;
+}
+
+tr:nth-child(odd) {
+  background-color: rgba(0, 0, 0, 0.1);
+}

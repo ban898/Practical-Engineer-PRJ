@@ -8,6 +8,7 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import { FaTiktok } from "react-icons/fa";
 import { AiOutlineGoogle } from "react-icons/ai";
+import { Link } from "@mui/material";
 
 const Footer = () => {
   return (
@@ -58,11 +59,29 @@ const Footer = () => {
           <div className={classes.midContent}>
             <div className={classes.midHeader}>Suppliers</div>
             <div className={classes.midPages}>
-              <div className={classes.singlePage}>Denim</div>
-              <div className={classes.singlePage}>Zara</div>
-              <div className={classes.singlePage}>Lee Cooper</div>
-              <div className={classes.singlePage}>Nike</div>
-              <div className={classes.singlePage}>Magnolia</div>
+              <div className={classes.singlePage}>
+                <Link href="https://www.next.co.il/en/shop/gender-men-category-jeans-0">
+                  Next
+                </Link>
+              </div>
+              <div className={classes.singlePage}>
+                {" "}
+                <Link href="https://usa.tommy.com/en">Tommy</Link>
+              </div>
+              <div className={classes.singlePage}>
+                {" "}
+                <Link href="https://www.leecooper.co.il/%D7%92%D7%91%D7%A8%D7%99%D7%9D">
+                  Lee Cooper
+                </Link>
+              </div>
+              <div className={classes.singlePage}>
+                {" "}
+                <Link href="https://www.magnolia.co.il/">Magnolia</Link>
+              </div>
+              <div className={classes.singlePage}>
+                {" "}
+                <Link href="https://www.nike.com/il/">Nike</Link>
+              </div>
             </div>
           </div>
         </div>

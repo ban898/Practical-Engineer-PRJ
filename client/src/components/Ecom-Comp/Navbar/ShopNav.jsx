@@ -1,6 +1,5 @@
 import { React, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Fragment } from "react";
 
 import classes from "./ShopNav.module.css";
 
@@ -8,8 +7,10 @@ import Modal from "../LoginModal/Modal";
 import CartIcon from "../CartIcon/CartIcon";
 import CartCount from "../CartCount/CartCount";
 import CartModal from "../CartModal/CartModal";
+import ProfileMenu from "../ProfileMenu/ProfileMenu";
 
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import LoginIcon from "@mui/icons-material/Login";
+import LogoutIcon from "@mui/icons-material/Logout";
 import SearchIcon from "@mui/icons-material/Search";
 
 import axios from "axios";
@@ -103,6 +104,13 @@ const ShopNav = () => {
 
   const navbarClasses = colorChange ? classes.colorNav : classes.navbar;
 
+  //Handle ProfileMenu List
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setMenuOpen((menuOpen) => !menuOpen);
+  };
+
   return (
     <div className={navbarClasses}>
       <div className={classes.navbarLeft}>
@@ -150,16 +158,20 @@ const ShopNav = () => {
         </div>
         <div className={classes.loginBox}>
           {!isLogin ? (
-            <Fragment>
-              <AccountCircleIcon
-                fontSize="large"
-                onClick={() => setIsOpen(true)}
-              />
-            </Fragment>
+            <div className={classes.login}>
+              <h5 style={{ cursor: "pointer" }} onClick={() => setIsOpen(true)}>
+                Log in
+              </h5>
+              <LoginIcon fontSize="medium" onClick={() => setIsOpen(true)} />
+            </div>
           ) : (
-            <Fragment>
-              <AccountCircleIcon fontSize="large" onClick={logOutHandler} />
-            </Fragment>
+            <div className={classes.login}>
+              <h5 style={{ cursor: "pointer" }} onClick={toggleMenu}>
+                Log out
+              </h5>
+              <LogoutIcon fontSize="medium" onClick={toggleMenu} />
+              {!menuOpen ? <ProfileMenu logOut={logOutHandler} /> : ""}
+            </div>
           )}
           <Modal
             getCart={getCart}
@@ -188,3 +200,9 @@ export default ShopNav;
 //         <ScrollLink to="About Us" smooth={true} offset={-10} duration={1000}>
 //           About Us
 //         </ScrollLink>
+
+//-------------------------------------------------------------------------------------
+// {!isLogin ? <Link to="/">Profile</Link> : ""}
+
+//-------------------------------------------------------------------------------------
+// <LogoutIcon fontSize="medium" onClick={logOutHandler} />

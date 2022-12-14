@@ -12,6 +12,7 @@ const TransparentButton = ({
   top,
   left,
   customHoverColor,
+  border,
 }) => {
   const [isHovering, setIsHovering] = useState(false);
 
@@ -40,6 +41,7 @@ const TransparentButton = ({
         top: `${top}`,
         left: `${left}`,
         color: `${hoverColor}`,
+        border: `${border}`,
       }}
     >
       {buttonText}

@@ -1,5 +1,5 @@
 import { React, useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import axios from "axios";
 
 import ShopNav from "../../../components/Ecom-Comp/Navbar/ShopNav";
@@ -18,7 +18,6 @@ import {
   MenuItem,
   Modal,
   Select,
-  Typography,
 } from "@mui/material";
 import Rating from "@mui/material/Rating";
 
@@ -26,11 +25,13 @@ import classes from "./ProductDetail.module.css";
 import BlueButton from "../../../components/Ecom-Comp/BlueButton/BlueButton";
 
 const style = {
+  display: "flex",
+  gap: "5%",
   position: "absolute",
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 400,
+  width: "80%",
   bgcolor: "background.paper",
   border: "2px solid #000",
   boxShadow: 24,
@@ -46,8 +47,8 @@ const ProductDetail = () => {
   const params = useParams();
   const product = params.prodId;
 
-  const [productObj, setProductObj] = useState([]);
-  const [size, setSize] = useState(null);
+  const [productObj, setProductObj] = useState({});
+  const [size, setSize] = useState("m");
 
   const handleChange = (event) => {
     setSize(event.target.value);
@@ -65,7 +66,15 @@ const ProductDetail = () => {
     };
 
     getProduct();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  //Handle Go Back one Page
+  const navigate = useNavigate();
+
+  const goBack = () => {
+    navigate(-1);
+  };
 
   let price = productObj.price?.toFixed(2);
 
@@ -131,17 +140,128 @@ const ProductDetail = () => {
                       aria-describedby="modal-modal-description"
                     >
                       <Box sx={style}>
-                        <Typography
-                          id="modal-modal-title"
-                          variant="h6"
-                          component="h2"
-                        >
-                          Text in a modal
-                        </Typography>
-                        <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                          Duis mollis, est non commodo luctus, nisi erat
-                          porttitor ligula.
-                        </Typography>
+                        <div className={classes.table1}>
+                          <h2
+                            style={{
+                              textAlign: "center",
+                              paddingBottom: "0.5rem",
+                            }}
+                          >
+                            Shoes
+                          </h2>
+                          <table className={classes.shoeTable}>
+                            <tr className={classes.shopSizes}>
+                              <th>Shop Size</th>
+                              <th>UK</th>
+                              <th>JAP</th>
+                              <th>US</th>
+                              <th>UE</th>
+                            </tr>
+                            <tr>
+                              <th>XS</th>
+                              <td>8</td>
+                              <td>27</td>
+                              <td>8</td>
+                              <td>41</td>
+                            </tr>
+                            <tr>
+                              <th>S</th>
+                              <td>8.5</td>
+                              <td>27.5</td>
+                              <td>8.5</td>
+                              <td>42</td>
+                            </tr>
+                            <tr>
+                              <th>M</th>
+                              <td>9</td>
+                              <td>28</td>
+                              <td>9</td>
+                              <td>43</td>
+                            </tr>
+                            <tr>
+                              <th>L</th>
+                              <td>10</td>
+                              <td>29</td>
+                              <td>10</td>
+                              <td>44</td>
+                            </tr>
+                            <tr>
+                              <th>XL</th>
+                              <td>11</td>
+                              <td>30</td>
+                              <td>11</td>
+                              <td>45</td>
+                            </tr>
+                            <tr>
+                              <th>XXL</th>
+                              <td>12</td>
+                              <td>33</td>
+                              <td>14</td>
+                              <td>46</td>
+                            </tr>
+                          </table>
+                        </div>
+                        <div className={classes.table2}>
+                          <h2
+                            style={{
+                              textAlign: "center",
+                              paddingBottom: "0.5rem",
+                            }}
+                          >
+                            Jewellery
+                          </h2>
+                          <table className={classes.jwTable}>
+                            <tr className={classes.jwSizes}>
+                              <th>Shop Size</th>
+                              <th>UK</th>
+                              <th>JAP</th>
+                              <th>US</th>
+                              <th>UE</th>
+                            </tr>
+                            <tr>
+                              <th>XS</th>
+                              <td>I 1/2</td>
+                              <td>8</td>
+                              <td>4 1/2</td>
+                              <td>15 1/4</td>
+                            </tr>
+                            <tr>
+                              <th>S</th>
+                              <td>J 1/2</td>
+                              <td>9</td>
+                              <td>5</td>
+                              <td>15 3/4</td>
+                            </tr>
+                            <tr>
+                              <th>M</th>
+                              <td>L</td>
+                              <td>11</td>
+                              <td>5.5</td>
+                              <td>16</td>
+                            </tr>
+                            <tr>
+                              <th>L</th>
+                              <td>M</td>
+                              <td>12</td>
+                              <td>6</td>
+                              <td>16 1/2</td>
+                            </tr>
+                            <tr>
+                              <th>XL</th>
+                              <td>N</td>
+                              <td>13</td>
+                              <td>6.5</td>
+                              <td>17</td>
+                            </tr>
+                            <tr>
+                              <th>XXL</th>
+                              <td>O</td>
+                              <td>14</td>
+                              <td>7</td>
+                              <td>17 1/4</td>
+                            </tr>
+                          </table>
+                        </div>
                       </Box>
                     </Modal>
                   </div>
@@ -151,9 +271,10 @@ const ProductDetail = () => {
               <div className={classes.payment}>
                 <BlueButton buttonText={"Add To Cart"}></BlueButton>
                 <BlueButton
-                  buttonText={"Here Another Payment (Steve)"}
+                  buttonText={"Go Back"}
                   mt={"10px"}
                   backgroundColor={"black"}
+                  onClick={goBack}
                 ></BlueButton>
               </div>
             </div>

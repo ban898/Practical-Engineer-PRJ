@@ -46,11 +46,12 @@
   min-width: 40%;
   width: 100%;
   align-items: center;
-  justify-content: space-between;
   gap: 5%;
 }
 
 .navbarLeft a {
+  color: #292826;
+  text-decoration: none;
   position: relative;
   transition-duration: 0.5s;
   font-weight: 700;
@@ -147,4 +148,8 @@
 
 .customSelect:focus {
   outline: none;
+}
+
+.login {
+  position: relative;
 }

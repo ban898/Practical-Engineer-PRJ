@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 import classes from "./MainNavigation.module.css";
-import BlueButton from "../BlueButton/BlueButton";
+import BlueButton from "../Ecom-Comp/BlueButton/BlueButton";
 
 import LoginIcon from "@mui/icons-material/Login";
 import LogoutIcon from "@mui/icons-material/Logout";
