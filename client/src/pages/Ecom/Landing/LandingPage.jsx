@@ -71,7 +71,7 @@ const LandingPage = () => {
               buttonText="Shop Now"
               backgroundColor="black"
               top="55%"
-              left="24%"
+              left="25%"
               position="absolute"
               fontSize="25px"
               customHoverColor="#e03131"
@@ -177,9 +177,3 @@ const LandingPage = () => {
 export default LandingPage;
 
 //-------------------------------------------------------------------------------------
-//import ImageSlider from "./ImageSlider";
-// <section>
-// <div className={classes.slider}>
-//   <ImageSlider />
-// </div>
-// </section>

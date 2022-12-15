@@ -6,7 +6,6 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import Divider from "@mui/material/Divider";
-import InboxIcon from "@mui/icons-material/Inbox";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import LogoutIcon from "@mui/icons-material/Logout";
 
@@ -17,6 +16,7 @@ export default function BasicList(props) {
         bgcolor: "background.paper",
         position: "absolute",
         left: "-195%",
+        borderRadius: "10px",
       }}
     >
       <nav aria-label="main mailbox folders">
@@ -27,14 +27,6 @@ export default function BasicList(props) {
                 <AccountBoxIcon />
               </ListItemIcon>
               <ListItemText primary="Profile" />
-            </ListItemButton>
-          </ListItem>
-          <ListItem disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                <InboxIcon />
-              </ListItemIcon>
-              <ListItemText primary="Inbox" />
             </ListItemButton>
           </ListItem>
         </List>

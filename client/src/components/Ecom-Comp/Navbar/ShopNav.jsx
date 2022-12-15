@@ -11,7 +11,6 @@ import ProfileMenu from "../ProfileMenu/ProfileMenu";
 
 import LoginIcon from "@mui/icons-material/Login";
 import LogoutIcon from "@mui/icons-material/Logout";
-import SearchIcon from "@mui/icons-material/Search";
 
 import axios from "axios";
 
@@ -116,6 +115,7 @@ const ShopNav = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const toggleMenu = () => {
+    console.log("click");
     setMenuOpen((menuOpen) => !menuOpen);
   };
 
@@ -127,25 +127,6 @@ const ShopNav = () => {
         </Link>
       </div>
       <div className={classes.navbarRight}>
-        <div className={classes.search}>
-          <input
-            className={classes.customInput}
-            list="exampleList"
-            type="text"
-          />
-          <select className={classes.customSelect} id="exampleList">
-            <option value="all">All</option>
-            <option value="women">Women</option>
-            <option value="men">Men</option>
-          </select>
-          <SearchIcon
-            sx={{
-              position: "absolute",
-              left: "90%",
-              borderLeft: "1px solid",
-            }}
-          />
-        </div>
         <div
           className={classes.cartContainer}
           onClick={() => {
@@ -168,18 +149,14 @@ const ShopNav = () => {
         </div>
         <div className={classes.loginBox}>
           {!isLogin ? (
-            <div className={classes.login}>
-              <h5 style={{ cursor: "pointer" }} onClick={handleLoginOpen}>
-                Log in
-              </h5>
-              <LoginIcon fontSize="medium" onClick={handleLoginOpen} />
+            <div className={classes.login} onClick={handleLoginOpen}>
+              <h5 style={{ cursor: "pointer" }}>Log in</h5>
+              <LoginIcon fontSize="medium" />
             </div>
           ) : (
-            <div className={classes.login}>
-              <h5 style={{ cursor: "pointer" }} onClick={toggleMenu}>
-                Log out
-              </h5>
-              <LogoutIcon fontSize="medium" onClick={toggleMenu} />
+            <div className={classes.login} onClick={toggleMenu}>
+              <h5 style={{ cursor: "pointer" }}>Log out</h5>
+              <LogoutIcon fontSize="medium" />
               {menuOpen ? <ProfileMenu logOut={logOutHandler} /> : ""}
             </div>
           )}
@@ -196,3 +173,25 @@ const ShopNav = () => {
 };
 
 export default ShopNav;
+
+//-------------------------------------------------------------------------------------
+// import SearchIcon from "@mui/icons-material/Search";
+// <div className={classes.search}>
+//           <input
+//             className={classes.customInput}
+//             list="exampleList"
+//             type="text"
+//           />
+//           <select className={classes.customSelect} id="exampleList">
+//             <option value="all">All</option>
+//             <option value="women">Women</option>
+//             <option value="men">Men</option>
+//           </select>
+//           <SearchIcon
+//             sx={{
+//               position: "absolute",
+//               left: "90%",
+//               borderLeft: "1px solid",
+//             }}
+//           />
+//         </div>

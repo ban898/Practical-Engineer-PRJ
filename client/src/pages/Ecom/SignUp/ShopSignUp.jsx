@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -13,6 +14,7 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useNavigate } from "react-router";
+import axios from "axios";
 
 function Copyright(props) {
   return (
@@ -41,15 +43,56 @@ export default function SignUp() {
   const goBack = () => {
     navigate(-1);
   };
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [passwordConfirm, setPasswordConfirm] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [address, setAddress] = useState("");
+  //const [photo, setPhoto] = useState(null);
+
+  const emailChangeHandler = (el) => {
+    setEmail(el.target.value);
+  };
+
+  const passwordChangeHandler = (el) => {
+    setPassword(el.target.value);
+  };
+
+  const passwordConfirmChangeHandler = (el) => {
+    setPasswordConfirm(el.target.value);
+  };
+
+  const fNameChangeHandler = (el) => {
+    setFirstName(el.target.value);
+  };
+
+  const lNameChangeHandler = (el) => {
+    setLastName(el.target.value);
+  };
+
+  const addressChangeHandler = (el) => {
+    setAddress(el.target.value);
+  };
 
   //Submit
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+
+    const data = {
+      email,
+      password,
+      passwordConfirm,
+      firstName,
+      lastName,
+      address,
+    };
+    try {
+      await axios.post("/api/v1/users/signup", { data });
+      alert("Created successfuly!");
+    } catch (err) {
+      alert(err.response.data.message);
+    }
   };
 
   return (
@@ -85,6 +128,8 @@ export default function SignUp() {
                   fullWidth
                   id="firstName"
                   label="First Name"
+                  value={firstName}
+                  onChange={fNameChangeHandler}
                   autoFocus
                 />
               </Grid>
@@ -96,6 +141,8 @@ export default function SignUp() {
                   label="Last Name"
                   name="lastName"
                   autoComplete="family-name"
+                  value={lastName}
+                  onChange={lNameChangeHandler}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -106,6 +153,20 @@ export default function SignUp() {
                   label="Email Address"
                   name="email"
                   autoComplete="email"
+                  value={email}
+                  onChange={emailChangeHandler}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  id="address"
+                  label="Address"
+                  name="Address"
+                  autoComplete="address"
+                  value={address}
+                  onChange={addressChangeHandler}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -117,6 +178,8 @@ export default function SignUp() {
                   type="password"
                   id="password"
                   autoComplete="new-password"
+                  value={password}
+                  onChange={passwordChangeHandler}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -128,6 +191,8 @@ export default function SignUp() {
                   type="password"
                   id="Cpassword"
                   autoComplete="new-password"
+                  value={passwordConfirm}
+                  onChange={passwordConfirmChangeHandler}
                 />
               </Grid>
               <Grid item xs={12}>

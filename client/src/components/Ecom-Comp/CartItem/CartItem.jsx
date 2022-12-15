@@ -43,10 +43,9 @@ const CartItem = ({ img, name, price, quantity, productId, onRenderCart }) => {
   return (
     <div className={classes.itemWrapper}>
       <div className={classes.three}>
-        <div className={classes.remove}>
+        <div className={classes.remove} onClick={deleteItemHandler}>
           <RemoveCircleOutlineIcon
-            onClick={deleteItemHandler}
-            sx={{ color: red[500] }}
+            sx={{ color: red[500], cursor: "pointer" }}
           />
         </div>
         <div className={classes.img}>

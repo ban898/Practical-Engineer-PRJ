@@ -72,7 +72,7 @@ const Signup = () => {
   let navigate = useNavigate();
 
   const AccountExists = () => {
-    navigate("/login");
+    navigate("/");
   };
 
   return (

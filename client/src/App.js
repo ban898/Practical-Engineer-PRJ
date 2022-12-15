@@ -55,3 +55,7 @@ function App() {
 export default App;
 
 //-------------------------------------------------------------------------------------
+// <Route path="/profile" element={<ProfilePage />}>
+//   <Route path=":userId" element={<ProfilePage />} />
+// </Route>
+// import ProfilePage from "./pages/Ecom/Profile/ProfilePage";

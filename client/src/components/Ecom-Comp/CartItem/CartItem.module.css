@@ -16,6 +16,11 @@
 
 .remove {
   align-self: center;
+  cursor: pointer;
+}
+
+.remove > svg {
+  cursor: pointer;
 }
 
 .quantity {
@@ -23,4 +28,12 @@
   justify-content: center;
   align-items: center;
   gap: 10%;
+}
+
+.quantity > svg {
+  cursor: pointer;
+}
+
+.price {
+  width: 4rem;
 }
