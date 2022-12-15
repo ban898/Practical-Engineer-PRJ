@@ -61,7 +61,7 @@ exports.addToCart = async (req, res) => {
       );
 
       const updatedItem = await Cart.findOne({
-        productId: req.body.productId,
+        productId: req.params.productId,
       });
       flag = 1;
       res

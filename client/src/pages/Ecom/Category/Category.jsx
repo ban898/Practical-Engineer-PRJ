@@ -28,18 +28,53 @@ const Category = () => {
       }
     };
 
+    const getOneTimeCart = async () => {
+      await getCart();
+    };
+
+    getOneTimeCart();
     getProducts();
   }, [categoryId]);
 
+  const [cart, setCart] = useState(undefined);
+  const [itemsInCart, setItemsInCart] = useState("0");
+  const [totalAmount, setTotalAmount] = useState("0");
+
+  const getCart = async () => {
+    try {
+      const res = await axios.get("/api/v1/cart");
+      if (res.data.length !== 0) {
+        setItemsInCart(res.data.itemsInCart);
+        setTotalAmount(res.data.total);
+        setCart(res.data.cart);
+      } else {
+        setItemsInCart("0");
+        setTotalAmount("0");
+        setCart(null);
+      }
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
+
+  //pass function to singleCart component
+  // let singleCardHandler = <SingleCard getCart={getCart} tot={2} />;
+
   return (
     <div className={classes.wrap}>
-      <ShopNav />
+      <ShopNav
+        getCart={getCart}
+        cart={cart}
+        itemsInCart={itemsInCart}
+        totalAmount={totalAmount}
+      />
       <CategoryHero />
       <section id="Products">
         <div className={classes.flexWrapper}>
           {productsData.map((product) => {
             return (
               <Card
+                getCart={getCart}
                 prodId={product._id}
                 key={product._id}
                 name={product.name}

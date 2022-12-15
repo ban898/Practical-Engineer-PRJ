@@ -14,7 +14,7 @@ import LogoutIcon from "@mui/icons-material/Logout";
 
 import axios from "axios";
 
-const ShopNav = () => {
+const ShopNav = ({ cart, itemsInCart, totalAmount, getCart }) => {
   //Handle Cart Modal
   const [cartOpen, setCartOpen] = useState(false);
 
@@ -51,38 +51,11 @@ const ShopNav = () => {
     }
   };
 
-  // for the amount of products in the cart
-  const [cart, setCart] = useState(undefined);
-  const [itemsInCart, setItemsInCart] = useState("0");
-  const [totalAmount, setTotalAmount] = useState("0");
-
-  const getCart = async () => {
-    try {
-      const res = await axios.get("/api/v1/cart");
-
-      if (res.data.length !== 0) {
-        setItemsInCart(res.data.itemsInCart);
-        setTotalAmount(res.data.total);
-        setCart(res.data.cart);
-      } else {
-        setItemsInCart("0");
-        setTotalAmount("0");
-        setCart(null);
-      }
-    } catch (err) {
-      console.log(err.message);
-    }
-  };
-
   useEffect(() => {
-    const getCartOneTime = async () => {
-      await getCart();
-    };
     const getUserOneTime = async () => {
       await getUser();
     };
     getUserOneTime();
-    getCartOneTime();
   }, []);
 
   //Handle Login Modal

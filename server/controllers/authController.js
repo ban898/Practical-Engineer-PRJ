@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 const AppError = require("./../utils/appError");
 const catchAsync = require("../utils/catchAsync");
 const { promisify } = require("util");
-const Email = require("../utils/email");
+const SingUpEmail = require("../utils/Emails/SingUpEmail");
 
 const signToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
@@ -32,25 +32,16 @@ const createSendToken = (user, statusCode, res) => {
 
 exports.signup = async (req, res, next) => {
   try {
-    let newUser = {};
-    if (req.body.data) {
-      if (req.file) {
-        req.body.data.photo = req.file.filename;
-      }
-      newuser = await User.create(req.body.data);
-      await new Email(newUser).sendWelcome();
-    } else {
-      if (req.file) {
-        req.body.photo = req.file.filename;
-        newUser = await User.create(req.body);
-        await new Email(newUser).sendWelcome();
-      } else {
-        const res = (newUser = await User.create(req.body));
-        console.log(res);
-        await new Email(newUser).sendWelcome();
-      }
+    const userData = req.body.data || req.body;
+    if (req.file) {
+      userData.photo = req.file.filename;
     }
+    const newUser = await User.create(userData);
+    newUser.passwordConfirm = undefined;
+    newUser.password = undefined;
+
     createSendToken(newUser, 201, res);
+    await new SingUpEmail(newUser).signUpMail();
   } catch (err) {
     return next(err);
   }
