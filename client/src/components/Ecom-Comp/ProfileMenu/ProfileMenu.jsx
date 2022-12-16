@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useNavigate } from "react-router-dom";
 import Box from "@mui/material/Box";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
@@ -10,6 +11,14 @@ import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import LogoutIcon from "@mui/icons-material/Logout";
 
 export default function BasicList(props) {
+  const userId = "david";
+
+  const navigate = useNavigate();
+
+  const goToProfile = () => {
+    navigate(`/profile/${userId}`);
+  };
+
   return (
     <Box
       sx={{
@@ -21,7 +30,7 @@ export default function BasicList(props) {
     >
       <nav aria-label="main mailbox folders">
         <List>
-          <ListItem disablePadding>
+          <ListItem disablePadding onClick={goToProfile}>
             <ListItemButton>
               <ListItemIcon>
                 <AccountBoxIcon />

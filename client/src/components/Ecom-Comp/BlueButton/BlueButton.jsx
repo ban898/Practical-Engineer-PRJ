@@ -8,6 +8,8 @@ const BlueButton = ({
   padding,
   fontSize,
   mt,
+  ml,
+  width,
 }) => {
   return (
     <button
@@ -15,11 +17,12 @@ const BlueButton = ({
       onClick={onClick}
       style={{
         textTransform: "capitalize",
-        width: "100%",
+        width: `${width}`,
         backgroundColor: `${backgroundColor}`,
         padding: `${padding}`,
         fontSize: `${fontSize}`,
         marginTop: `${mt}`,
+        marginLeft: `${ml}`,
       }}
     >
       {buttonText}

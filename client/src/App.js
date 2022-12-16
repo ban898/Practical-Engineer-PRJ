@@ -6,6 +6,8 @@ import { theme } from "./theme";
 
 import LandingPage from "./pages/Ecom/Landing/LandingPage";
 import ShopSignUp from "./pages/Ecom/SignUp/ShopSignUp";
+import ProfileLayout from "./components/Ecom-Comp/ProfileLayout/ProfileLayout";
+import ProfilePage from "./pages/Ecom/Profile/ProfilePage";
 
 import ErrorElement from "./pages/Error/Error";
 import Category from "./pages/Ecom/Category/Category";
@@ -47,6 +49,9 @@ function App() {
         <Route path="/Jewerlly/:prodId" element={<ProductDetail />} />
         <Route path="/Shirts/:prodId" element={<ProductDetail />} />
         <Route path="/Hoodies/:prodId" element={<ProductDetail />} />
+        <Route path="/profile" element={<ProfileLayout />}>
+          <Route path=":userId" element={<ProfilePage />} />
+        </Route>
       </Routes>
     </ThemeProvider>
   );
