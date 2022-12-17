@@ -43,6 +43,7 @@ const Category = () => {
   const getCart = async () => {
     try {
       const res = await axios.get("/api/v1/cart");
+
       if (res.data.length !== 0) {
         setItemsInCart(res.data.itemsInCart);
         setTotalAmount(res.data.total);
@@ -56,9 +57,6 @@ const Category = () => {
       console.log(err.message);
     }
   };
-
-  //pass function to singleCart component
-  // let singleCardHandler = <SingleCard getCart={getCart} tot={2} />;
 
   return (
     <div className={classes.wrap}>

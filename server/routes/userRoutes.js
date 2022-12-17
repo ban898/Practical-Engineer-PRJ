@@ -18,4 +18,10 @@ router.use(authController.protect);
 
 router.route("/me").get(userController.getMe, userController.getUser);
 
+router.patch(
+  "/updatePassword",
+  authController.protect,
+  authController.updatePassword
+);
+
 module.exports = router;

@@ -93,6 +93,7 @@ exports.protect = async (req, res, next) => {
     } else if (req.cookies.jwt) {
       token = req.cookies.jwt;
     }
+
     if (!token) {
       return next(
         new AppError("You are not logged in! Please log in to get access.", 401)
@@ -144,5 +145,26 @@ exports.forgotPassword = async (req, res, next) => {
     await user.save({ validateBeforeSave: false });
   } catch (err) {
     res.status(400).json({ status: "fail" });
+  }
+};
+
+exports.updatePassword = async (req, res, next) => {
+  try {
+    const user = await User.findById(req.user._id).select("+password");
+    const data = req.body || req.body.data;
+
+    const { newPassword, passwordConfirm, currentPassword } = data;
+
+    if (!(await user.correctPassword(currentPassword, user.password))) {
+      return next(new AppError("Your current password is wrong.", 401));
+    }
+
+    user.password = newPassword;
+    user.passwordConfirm = passwordConfirm;
+    await user.save();
+
+    createSendToken(user, 200, res);
+  } catch (err) {
+    res.status(400).json({ status: "fail", err });
   }
 };

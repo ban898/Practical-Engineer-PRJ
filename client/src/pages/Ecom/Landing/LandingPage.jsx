@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { Link as ScrollLink } from "react-scroll";
 
@@ -15,6 +15,7 @@ import Jeans from "../../../img/ShopImg/denims.jpg";
 import Shirt from "../../../img/ShopImg/shirts.jpg";
 import Hoodie from "../../../img/ShopImg/hoodieV.jpg";
 import Amber from "../../../img/ShopImg/d1.jpg";
+import axios from "axios";
 
 const LandingPage = () => {
   const navigate = useNavigate();
@@ -42,10 +43,45 @@ const LandingPage = () => {
     navigate("Hoodies");
   };
 
+  const [cart, setCart] = useState(undefined);
+  const [itemsInCart, setItemsInCart] = useState("0");
+  const [totalAmount, setTotalAmount] = useState("0");
+
+  const getCart = async () => {
+    try {
+      const res = await axios.get("/api/v1/cart");
+
+      if (res.data.length !== 0) {
+        setItemsInCart(res.data.itemsInCart);
+        setTotalAmount(res.data.total);
+        setCart(res.data.cart);
+      } else {
+        setItemsInCart("0");
+        setTotalAmount("0");
+        setCart(null);
+      }
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
+
+  useEffect(() => {
+    const getOneTimeCart = async () => {
+      await getCart();
+    };
+
+    getOneTimeCart();
+  }, []);
+
   return (
     <div id="Home">
       <div className={classes.heroHeader}>
-        <ShopNav />
+        <ShopNav
+          getCart={getCart}
+          cart={cart}
+          itemsInCart={itemsInCart}
+          totalAmount={totalAmount}
+        />
         <div className={classes.mainCont}>
           <img src={mainImg} width="100%" alt="Girl with red coat" />
           <div className={classes.mainText}>the black friday sale</div>
