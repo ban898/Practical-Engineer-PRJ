@@ -1,14 +1,14 @@
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
+const Cart = require("../models/cartModel");
 const Order = require("../models/orderModel");
 const catchAsync = require("../utils/catchAsync");
 
 exports.getCheckoutSession = catchAsync(async (req, res, next) => {
-  // const customer = await stripe.customers.create({
-  //   metadata: {
-  //     userId: req.user.id,
-  //     cart: JSON.stringify(req.body.cart),
-  //   },
-  // });
+  const customer = await stripe.customers.create({
+    metadata: {
+      userId: req.user.id,
+    },
+  });
 
   const line_items = req.body.cart.map((item) => {
     return {
@@ -59,12 +59,11 @@ exports.getCheckoutSession = catchAsync(async (req, res, next) => {
     phone_number_collection: {
       enabled: true,
     },
-    // customer: customer.id,
-    cart: req.body.cart,
+    customer: customer.id,
     success_url: `http://localhost:3000`,
     cancel_url: `http://localhost:3000`,
     mode: "payment",
-    customer_email: req.user.email,
+    // customer_email: req.user.email,
     client_reference_id: req.user.id,
     line_items,
   });
@@ -72,24 +71,29 @@ exports.getCheckoutSession = catchAsync(async (req, res, next) => {
   res.status(200).json({
     status: "success",
     session,
+    cart: req.body.cart,
   });
 });
 
-const createOrder = async (object, data) => {
-  // const items = JSON.parse(customer.metadata.cart);
-  console.log(object);
+const createOrder = async (customer, data) => {
+  const cart = await Cart.aggregate([
+    {
+      $match: { userId: { $eq: customer.metadata.userId } },
+    },
+  ]);
+
   const newOrder = new Order({
-    userId: object.client_reference_id,
-    customerId: object.id,
-    paymentIntentId: object.payment_intent,
-    products: object,
-    subtotal: object.amount_subtotal,
-    total: object.amount_total,
-    shipping: object.customer_details,
-    payment_status: object.payment_status,
+    userId: data.client_reference_id,
+    customerId: data.customer,
+    paymentIntentId: data.payment_intent,
+    products: cart,
+    subtotal: data.amount_subtotal,
+    total: data.amount_total,
+    shipping: data.customer_details,
+    payment_status: data.payment_status,
   });
   try {
-    const res = await newOrder.save();
+    await newOrder.save();
   } catch (err) {
     console.log(err);
   }
@@ -106,8 +110,6 @@ exports.webhook = (req, res) => {
   if (endpointSecret) {
     try {
       event = stripe.webhooks.constructEvent(req.body, sig, endpointSecret);
-
-      console.log("Webhook verified.");
     } catch (err) {
       console.log(`Webhook Error: ${err.message}`);
       response.status(400).send(`Webhook Error: ${err.message}`);
@@ -123,19 +125,14 @@ exports.webhook = (req, res) => {
 
   // Handle the event
   if (eventType === "checkout.session.completed") {
-    // stripe.customers
-    //   .retrieve(data.customer)
-    //   .then((customer) => {
-    //     createOrder(customer, data);
-    //   })
-    //   .catch((err) => {
-    //     console.log(err.message);
-    //   });
-    console.log("event.data.object");
-    console.log(event.data.object, cart);
-    createOrder(event.data.object);
-    console.log(event.data.object);
-    // console.log(event.data.object)
+    stripe.customers
+      .retrieve(data.customer)
+      .then((customer) => {
+        createOrder(customer, data);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
   }
 
   res.status(200).json({ status: "success" });

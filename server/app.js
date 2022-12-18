@@ -7,6 +7,7 @@ const cors = require("cors");
 const cartRouter = require("./routes/cartRoutes");
 const stripeRouter = require("./routes/stripeRoutes");
 const stripeController = require("./controllers/stripeController");
+const orderRoutes = require("./routes/orderRoutes");
 
 const app = express();
 
@@ -28,6 +29,7 @@ app.use("/api/v1/products", productRouter);
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/cart", cartRouter);
 app.use("/api/v1/stripe", stripeRouter);
+app.use("/api/v1/orders", orderRoutes);
 
 app.use(globalErrorHandler);
 

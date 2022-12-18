@@ -18,6 +18,8 @@ router.use(authController.protect);
 
 router.route("/me").get(userController.getMe, userController.getUser);
 
+router.patch("/updateMe", userController.updateMe);
+
 router.patch(
   "/updatePassword",
   authController.protect,

@@ -55,14 +55,42 @@ exports.getAllUsers = async (req, res, next) => {
 };
 
 exports.getMe = (req, res, next) => {
-  if (!req.user) {
-    req.params.id = null;
-  } else {
-    req.params.id = req.user.id;
-  }
+  req.params.id = req.user.id || null;
 
   // req.params.id = "6372c141e5383bfb1e856314";
   next();
+};
+
+exports.updateMe = async (req, res, next) => {
+  try {
+    const data = req.body || req.body.data;
+
+    if (data.password || data.passwordConfirm) {
+      return next(
+        new AppError(
+          "This route is not for password updates. Please use /updatePassword.",
+          400
+        )
+      );
+    }
+
+    allowedFields = ["firstName", "lastName", "address", "email", "photo"];
+    const newData = {};
+    Object.keys(data).forEach((el) => {
+      if (allowedFields.includes(el)) {
+        newData[el] = data[el];
+      }
+    });
+
+    await User.findByIdAndUpdate(req.user.id, newData, {
+      new: true,
+      runValidators: true,
+    });
+
+    res.status(204).json({ status: "success" });
+  } catch (err) {
+    res.status(400).json({ status: "fail", err });
+  }
 };
 
 exports.getUser = catchAsync(async (req, res, next) => {
