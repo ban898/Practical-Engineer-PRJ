@@ -63,7 +63,8 @@ exports.getMe = (req, res, next) => {
 
 exports.updateMe = async (req, res, next) => {
   try {
-    const data = req.body || req.body.data;
+    // const data = req.body || req.body.data;
+    const data = req.body.data;
 
     if (data.password || data.passwordConfirm) {
       return next(
@@ -77,7 +78,7 @@ exports.updateMe = async (req, res, next) => {
     allowedFields = ["firstName", "lastName", "address", "email", "photo"];
     const newData = {};
     Object.keys(data).forEach((el) => {
-      if (allowedFields.includes(el)) {
+      if (allowedFields.includes(el) && data[el] !== "") {
         newData[el] = data[el];
       }
     });

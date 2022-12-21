@@ -151,7 +151,8 @@ exports.forgotPassword = async (req, res, next) => {
 exports.updatePassword = async (req, res, next) => {
   try {
     const user = await User.findById(req.user._id).select("+password");
-    const data = req.body || req.body.data;
+    const data = req.body.data;
+    // const data = req.body || req.body.data;
 
     const { newPassword, passwordConfirm, currentPassword } = data;
 
