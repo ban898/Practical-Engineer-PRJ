@@ -17,3 +17,6 @@
   -ms-transform: translate(0px, -3px);
   transform: translate(0px, -3px);
 }
+
+@media (max-width: 1000px) {
+}

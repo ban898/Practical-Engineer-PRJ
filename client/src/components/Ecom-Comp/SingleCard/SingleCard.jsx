@@ -131,9 +131,3 @@ const SingleCard = ({ prodId, name, price, img, getCart }) => {
 export default SingleCard;
 
 //-------------------------------------------------------------------------------------
-// {
-//   "&:hover": {
-//     backgroundColor: "red",
-//     cursor: "pointer",
-//   },
-// },

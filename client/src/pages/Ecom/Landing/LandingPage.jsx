@@ -86,34 +86,30 @@ const LandingPage = () => {
           <img src={mainImg} width="100%" alt="Girl with red coat" />
           <div className={classes.mainText}>the black friday sale</div>
           <div className={classes.secText}>up to 60% off</div>
-          <TransparentButton
-            top="55%"
-            left="14%"
-            position="absolute"
-            buttonText="Sign up"
-            backgroundColor="#e03131"
-            fontSize="25px"
-            fontWeight="600"
-            onClick={moveToSignUp}
-          />
-
-          <ScrollLink
-            to="Categories"
-            smooth={true}
-            offset={-60}
-            duration={1000}
-          >
+          <div className={classes.buttonContainer}>
             <TransparentButton
-              buttonText="Shop Now"
-              backgroundColor="black"
-              top="55%"
-              left="25%"
-              position="absolute"
+              buttonText="Sign up"
+              backgroundColor="#e03131"
               fontSize="25px"
-              customHoverColor="#e03131"
               fontWeight="600"
+              onClick={moveToSignUp}
             />
-          </ScrollLink>
+
+            <ScrollLink
+              to="Categories"
+              smooth={true}
+              offset={-60}
+              duration={1000}
+            >
+              <TransparentButton
+                buttonText="Shop Now"
+                backgroundColor="black"
+                fontSize="25px"
+                customHoverColor="#e03131"
+                fontWeight="600"
+              />
+            </ScrollLink>
+          </div>
         </div>
       </div>
       <section id="Discounts">
@@ -213,3 +209,10 @@ const LandingPage = () => {
 export default LandingPage;
 
 //-------------------------------------------------------------------------------------
+// top="55%"
+// left="14%"
+// position="absolute"
+
+// top="55%"
+// left="25%"
+// position="absolute"

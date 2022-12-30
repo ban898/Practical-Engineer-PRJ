@@ -10,6 +10,10 @@ section {
   padding: 60px 0;
 }
 
+img {
+  max-width: 100%;
+}
+
 .heroHeader {
   margin-bottom: 40px;
 }
@@ -35,6 +39,14 @@ section {
   text-transform: uppercase;
   font-size: 72px;
   font-weight: 800;
+}
+
+.buttonContainer {
+  display: flex;
+  gap: 0.5rem;
+  position: absolute;
+  top: 22rem;
+  left: 12rem;
 }
 
 .sectionWrapper {
@@ -122,8 +134,8 @@ section {
 
 .gridHeader {
   position: absolute;
-  left: 160px;
-  top: 45px;
+  left: 42%;
+  top: 10%;
 }
 
 .gridItemSec {
@@ -134,8 +146,8 @@ section {
 
 .gridHeaderSec {
   position: absolute;
-  left: 160px;
-  top: 45px;
+  left: 42%;
+  top: 10%;
 }
 
 .gridItemThird {
@@ -145,8 +157,8 @@ section {
 
 .gridHeaderThird {
   position: absolute;
-  left: 150px;
-  top: 45px;
+  left: 42%;
+  top: 10%;
 }
 
 .gridItemFourth {
@@ -157,8 +169,8 @@ section {
 
 .gridHeaderFourth {
   position: absolute;
-  left: 20%;
-  top: 55%;
+  top: 40%;
+  left: 15%;
 }
 
 .gridItemFourth::after {
@@ -168,12 +180,8 @@ section {
   font-size: 52px;
   font-weight: 500;
   color: #c0c0c0;
-  left: 5%;
-  top: 30%;
-}
-
-.discount {
-  position: relative;
+  left: 2%;
+  top: 20%;
 }
 
 .discount::before {
@@ -183,8 +191,8 @@ section {
   font-size: 72px;
   font-weight: 800;
   color: #cc5de8;
-  left: 4.9%;
-  top: 240px;
+  top: 27%;
+  left: 2%;
 }
 
 .gridItemFifth {
@@ -276,4 +284,75 @@ section {
 
 .gridItemSix > img:hover {
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+/* 600 , 768 , 992 , 1200 */
+
+@media (max-width: 1200px) {
+  .mainText {
+    font-size: 2.5rem;
+  }
+  .secText {
+    font-size: 2.5rem;
+  }
+  .buttonContainer {
+    top: 20rem;
+    left: 3rem;
+  }
+  .browse {
+    font-size: 30px;
+  }
+  .gridItemFourth::after {
+    font-size: 40px;
+  }
+  .discount::before {
+    font-size: 40px;
+  }
+}
+
+@media (max-width: 992px) {
+  .mainText {
+    font-size: 2rem;
+  }
+  .secText {
+    font-size: 2rem;
+  }
+  .buttonContainer {
+    top: 17rem;
+    left: 3rem;
+  }
+  .browse {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .mainText {
+    font-size: 1.5rem;
+  }
+  .secText {
+    font-size: 1.5rem;
+  }
+  .buttonContainer {
+    top: 12rem;
+    left: 2rem;
+  }
+  .browse {
+    font-size: 24px;
+    line-height: 1.2rem;
+  }
+  .gridItemFourth::after {
+    font-size: 22px;
+  }
+  .discount::before {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 600px) {
+  .buttonContainer {
+    top: 10rem;
+    display: flex;
+    flex-direction: column;
+  }
 }

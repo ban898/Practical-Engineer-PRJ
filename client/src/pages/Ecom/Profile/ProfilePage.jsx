@@ -170,6 +170,8 @@ const ProfilePage = () => {
                   setCurrentPassword(e.target.value);
                 }}
               />
+            </div>
+            <div className={classes.content}>
               <TextField
                 id="outlined-basic"
                 label="New Password"
@@ -180,6 +182,8 @@ const ProfilePage = () => {
                   setNewPassword(e.target.value);
                 }}
               />
+            </div>
+            <div className={classes.content}>
               <TextField
                 id="outlined-basic"
                 label="Confirm Password"
@@ -243,7 +247,7 @@ const ProfilePage = () => {
                 <div className={classes.data}>
                   <TextField
                     id="outlined-read-only-input"
-                    label="Api call"
+                    label=""
                     // defaultValue="."
                     value={
                       userData.firstName
@@ -261,7 +265,7 @@ const ProfilePage = () => {
                 <div className={classes.data}>
                   <TextField
                     id="outlined-read-only-input"
-                    label="API CALL"
+                    label=""
                     value={userData.email ? userData.email : "Non"}
                     InputProps={{
                       readOnly: true,
@@ -274,7 +278,7 @@ const ProfilePage = () => {
                 <div className={classes.data}>
                   <TextField
                     id="outlined-read-only-input"
-                    label="API CALL"
+                    label=""
                     value={userData.address ? userData.address : "Non"}
                     InputProps={{
                       readOnly: true,
