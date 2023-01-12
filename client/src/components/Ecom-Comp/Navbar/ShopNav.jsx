@@ -46,6 +46,7 @@ const ShopNav = ({ cart, itemsInCart, totalAmount, getCart }) => {
       await axios.get("/api/v1/users/logout");
       setIsLogin(false);
       await getCart();
+      window.location.reload();
     } catch (err) {
       console.log(err);
     }

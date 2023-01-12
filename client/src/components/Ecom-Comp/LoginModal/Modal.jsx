@@ -15,6 +15,7 @@ const Modal = ({ open, onClose, onCheckLogin, getCart }) => {
   //Validation
   const [emailIsValid, setEmailIsValid] = useState(true);
   const [passwordIsValid, setPasswordIsValid] = useState(true);
+  const [isLogin, setIsLogin] = useState(undefined);
 
   //Inputs
   const [emailInput, setEmailInput] = useState(true);
@@ -22,9 +23,11 @@ const Modal = ({ open, onClose, onCheckLogin, getCart }) => {
 
   const emailInputHandler = (event) => {
     setEmailInput(event.target.value);
+    setIsLogin(undefined);
   };
   const passwordInputHandler = (event) => {
     setPasswordInput(event.target.value);
+    setIsLogin(undefined);
   };
 
   //Navigations
@@ -89,9 +92,11 @@ const Modal = ({ open, onClose, onCheckLogin, getCart }) => {
       await axios.post("/api/v1/users/login", { user });
       await getCart();
       onCheckLogin(true);
+      setIsLogin(true);
       moveToHomePage();
     } catch (error) {
       onCheckLogin(false);
+      setIsLogin(false);
     }
   };
 
@@ -138,6 +143,9 @@ const Modal = ({ open, onClose, onCheckLogin, getCart }) => {
           />
         </Box>
         {incPass}
+        {isLogin === false ? (
+          <span style={{ color: "red" }}>incorrect Email or Password!</span>
+        ) : undefined}
         <BlueButton
           buttonText="Login"
           padding="7px"

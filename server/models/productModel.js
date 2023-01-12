@@ -23,10 +23,6 @@ const productSchema = new mongoose.Schema({
     type: Number,
     required: [true, "A Product must have a price"],
   },
-  lengthProduct: {
-    type: Array,
-    default: ["s", "m", "l", "xl", "xxl"],
-  },
   images: [String],
   category: {
     type: String,
