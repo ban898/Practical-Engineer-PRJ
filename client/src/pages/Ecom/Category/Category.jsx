@@ -8,6 +8,8 @@ import Card from "../../../components/Ecom-Comp/SingleCard/SingleCard";
 import Footer from "../../../components/Ecom-Comp/Footer/Footer";
 
 import classes from "./Category.module.css";
+import WarningModal from "../../../components/Ecom-Comp/WarningModal/WarningModal";
+import BlueButton from "../../../components/Ecom-Comp/BlueButton/BlueButton";
 
 const Category = () => {
   const [productsData, setProductsData] = useState([]);
@@ -39,6 +41,14 @@ const Category = () => {
   const [cart, setCart] = useState(undefined);
   const [itemsInCart, setItemsInCart] = useState("0");
   const [totalAmount, setTotalAmount] = useState("0");
+  const [isLogin, setIsLogin] = useState(true);
+
+  const warningLoginOpenHandler = () => {
+    setIsLogin(false);
+  };
+  const warningLoginCloseHandler = () => {
+    setIsLogin(true);
+  };
 
   const getCart = async () => {
     try {
@@ -60,6 +70,20 @@ const Category = () => {
 
   return (
     <div className={classes.wrap}>
+      {!isLogin && (
+        <WarningModal onHide={warningLoginCloseHandler}>
+          <h2>You need to login</h2>
+          <br />
+          <BlueButton
+            buttonText="Close"
+            padding="7px"
+            fontSize="13.3px"
+            width="100px"
+            backgroundColor="#247bfe"
+            onClick={warningLoginCloseHandler}
+          />
+        </WarningModal>
+      )}
       <ShopNav
         getCart={getCart}
         cart={cart}
@@ -72,6 +96,8 @@ const Category = () => {
           {productsData.map((product) => {
             return (
               <Card
+                openWarning={warningLoginOpenHandler}
+                closeWarning={warningLoginCloseHandler}
                 getCart={getCart}
                 prodId={product._id}
                 key={product._id}

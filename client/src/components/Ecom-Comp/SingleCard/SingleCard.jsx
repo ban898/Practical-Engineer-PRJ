@@ -2,7 +2,13 @@ import { React, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import classes from "./SingleCard.module.css";
 
-import { Box, Card, CardContent, CardMedia } from "@mui/material";
+import {
+  Box,
+  Card,
+  CardContent,
+  CardMedia,
+  useThemeProps,
+} from "@mui/material";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import CircularProgress from "@mui/material/CircularProgress";
 import Stack from "@mui/material/Stack";
@@ -11,7 +17,15 @@ import { grey } from "@mui/material/colors";
 import LazyLoad from "react-lazy-load";
 import axios from "axios";
 
-const SingleCard = ({ prodId, name, price, img, getCart }) => {
+const SingleCard = ({
+  prodId,
+  name,
+  price,
+  img,
+  getCart,
+  openWarning,
+  closeWarning,
+}) => {
   const [hasOverlay, setHasOverlay] = useState(false);
   const [isFetching, setIsFetching] = useState(false);
 
@@ -27,8 +41,9 @@ const SingleCard = ({ prodId, name, price, img, getCart }) => {
     try {
       try {
         await axios.get("/api/v1/users/me");
+        closeWarning();
       } catch (err) {
-        alert("You need to login");
+        openWarning();
         return;
       }
       setIsFetching(true);

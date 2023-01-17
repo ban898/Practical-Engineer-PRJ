@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import BlueButton from "../../../components/Ecom-Comp/BlueButton/BlueButton";
 import classes from "./ProfilePage.module.css";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const ProfilePage = () => {
   const [userData, setUserData] = useState("");
@@ -16,6 +17,7 @@ const ProfilePage = () => {
   const [city, setCity] = useState("");
   const [street, setStreet] = useState("");
 
+  const navigate = useNavigate();
   const getUserData = async () => {
     try {
       const res = await axios.get("/api/v1/users/me", { auth: true });
@@ -23,6 +25,7 @@ const ProfilePage = () => {
       setUserData(res.data.user);
     } catch (err) {
       console.log(err.message);
+      navigate("/");
     }
   };
 
@@ -34,12 +37,6 @@ const ProfilePage = () => {
     const getOrders = async () => {
       try {
         const res = await axios.get("/api/v1/orders/getAllOrdersOfUser");
-
-        // const date = new Date(res.data.orders[0].createdAt);
-        // const day = ("0" + date.getDate()).slice(-2);
-        // const month = ("0" + (date.getMonth() + 1)).slice(-2);
-        // const year = date.getFullYear();
-        // const time = `${date.getHours()}:${date.getMinutes()}`;
 
         setOrders(res.data.orders);
       } catch (err) {

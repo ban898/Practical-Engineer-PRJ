@@ -46,6 +46,18 @@ exports.getCartOfUser = async (req, res, next) => {
   }
 };
 
+exports.removeCartOfUser = async (req, res, next) => {
+  try {
+    const cart = await Cart.aggregate([{ $match: { userId: { $eq: req } } }]);
+
+    cart.forEach(async (doc) => {
+      await Cart.deleteOne({ userId: doc.userId });
+    });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 exports.addToCart = async (req, res) => {
   try {
     let flag = 0;

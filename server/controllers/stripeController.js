@@ -2,6 +2,7 @@ const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const Cart = require("../models/cartModel");
 const Order = require("../models/orderModel");
 const catchAsync = require("../utils/catchAsync");
+const { removeCartOfUser } = require("./cartController");
 
 exports.getCheckoutSession = catchAsync(async (req, res, next) => {
   const customer = await stripe.customers.create({
@@ -129,6 +130,7 @@ exports.webhook = (req, res) => {
       .retrieve(data.customer)
       .then((customer) => {
         createOrder(customer, data);
+        removeCartOfUser(customer.metadata.userId);
       })
       .catch((err) => {
         console.log(err.message);
