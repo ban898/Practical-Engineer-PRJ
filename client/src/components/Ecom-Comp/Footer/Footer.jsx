@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router";
 
 import classes from "./Footer.module.css";
 
@@ -11,6 +12,12 @@ import { AiOutlineGoogle } from "react-icons/ai";
 import { Link } from "@mui/material";
 
 const Footer = () => {
+  const navigate = useNavigate();
+
+  const moveToSignUp = () => {
+    navigate("signup");
+  };
+
   return (
     <footer>
       <div className={classes.footerContainer}>
@@ -31,33 +38,33 @@ const Footer = () => {
           <div className={classes.midContent}>
             <div className={classes.midHeader}>My Account</div>
             <div className={classes.midPages}>
-              <div className={classes.singlePage}>Login</div>
-              <div className={classes.singlePage}>Sign Up</div>
-              <div className={classes.singlePage}>Sing in</div>
-              <div className={classes.singlePage}>Password</div>
-              <div className={classes.singlePage}>Email</div>
-            </div>
-          </div>
-          <div className={classes.midContent}>
-            <div className={classes.midHeader}>Help</div>
-            <div className={classes.midPages}>
-              <div className={classes.singlePage}>Orders</div>
-              <div className={classes.singlePage}>Returns</div>
-              <div className={classes.singlePage}>Shipping</div>
-              <div className={classes.singlePage}>Payment</div>
-            </div>
-          </div>
-          <div className={classes.midContent}>
-            <div className={classes.midHeader}>About us</div>
-            <div className={classes.midPages}>
-              <div className={classes.singlePage}>Careers</div>
-              <div className={classes.singlePage}>Terms of Use</div>
-              <div className={classes.singlePage}>Accessibility</div>
-              <div className={classes.singlePage}>Gift Cards</div>
+              <div className={classes.singlePage} onClick={moveToSignUp}>
+                Login
+              </div>
+              <div className={classes.singlePage} onClick={moveToSignUp}>
+                Sign Up
+              </div>
             </div>
           </div>
           <div className={classes.midContent}>
             <div className={classes.midHeader}>Suppliers</div>
+            <div className={classes.midPages}>
+              <div className={classes.singlePage}>
+                <Link href="https://www.adidas.com/us">Adidas</Link>
+              </div>
+              <div className={classes.singlePage}>
+                <Link href="https://www.bershka.com/">Bershka</Link>
+              </div>
+              <div className={classes.singlePage}>
+                <Link href="https://www.asos.com/">Asos</Link>
+              </div>
+              <div className={classes.singlePage}>
+                <Link href="https://il.shein.com/">Shein</Link>
+              </div>
+            </div>
+          </div>
+          <div className={classes.midContent}>
+            <div className={classes.midHeader}>More Suppliers</div>
             <div className={classes.midPages}>
               <div className={classes.singlePage}>
                 <Link href="https://www.next.co.il/en/shop/gender-men-category-jeans-0">
@@ -95,3 +102,14 @@ const Footer = () => {
 };
 
 export default Footer;
+
+//-------------------------------------------------------------------------------------
+// <div className={classes.midContent}>
+//             <div className={classes.midHeader}>Help</div>
+//             <div className={classes.midPages}>
+//               <div className={classes.singlePage}>Orders</div>
+//               <div className={classes.singlePage}>Returns</div>
+//               <div className={classes.singlePage}>Shipping</div>
+//               <div className={classes.singlePage}>Payment</div>
+//             </div>
+//           </div>

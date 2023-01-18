@@ -72,3 +72,17 @@
   padding: 1rem;
   border-bottom: 1px solid #000;
 }
+
+.orderWrapper {
+  display: flex;
+  margin-top: 1rem;
+}
+
+.orderDesc {
+  padding: 1rem;
+}
+
+.orderRow {
+  display: flex;
+  justify-content: space-between;
+}

@@ -292,8 +292,15 @@ const ProfilePage = () => {
               orders.map((order) => {
                 return (
                   <div key={order._id} className={classes.singleOrder}>
-                    <div style={{ textAlign: "center", fontSize: "18px" }}>
-                      when bought:{" "}
+                    <div
+                      style={{
+                        textAlign: "center",
+                        fontSize: "18px",
+                        borderBottom: "1px solid black",
+                        paddingBottom: "5px",
+                      }}
+                    >
+                      Ordered At:{" "}
                       {`${new Date(order.createdAt).getHours()}:${new Date(
                         order.createdAt
                       ).getMinutes()} -- ${`
@@ -307,28 +314,27 @@ const ProfilePage = () => {
                     </div>
                     {order.products.map((prod) => {
                       return (
-                        <div key={prod._id}>
+                        <div key={prod._id} className={classes.orderWrapper}>
                           <img
                             src={`/img/products/${prod.image}`}
                             alt="img"
                             style={{
                               objectFit: "fill",
-                              width: "50px",
+                              width: "100px",
                             }}
                           />
-                          <div>name: {prod.name}</div>
-                          <div>description: {prod.description}</div>
-                          <div>price: {prod.price}</div>
-                          <div>quantity: {prod.quantity}</div>
+                          <div className={classes.orderDesc}>
+                            <h3>{prod.name}</h3>
+                            <div>Description: {prod.description}</div>
+                            <div>Price: {prod.price} $</div>
+                            <div>Quantity: {prod.quantity}</div>
+                          </div>
                         </div>
                       );
                     })}
                   </div>
                 );
               })}
-            {/* <div className={classes.singleOrder}>Test</div>
-            <div className={classes.singleOrder}>Test</div>
-            <div className={classes.singleOrder}>Test</div> */}
           </div>
         </div>
       </div>
