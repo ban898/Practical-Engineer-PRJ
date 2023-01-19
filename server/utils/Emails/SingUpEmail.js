@@ -28,7 +28,9 @@ module.exports = class SignUpEmail {
       subject: subject,
       html: `<div>
       <h1>Hello ${this.firstName}</h1>
-      <h2>how are you?</h2>      
+      <h2>Thank you for joining our Design-X Community</h2>
+      <p>You can start shopping right away</p>
+      <p>Have a good time and remember to keep an eye on your Email notifications We got suprises coming soon ! </p>      
       </div>`,
     };
 

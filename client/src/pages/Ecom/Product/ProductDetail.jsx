@@ -43,6 +43,29 @@ const ProductDetail = () => {
   const handleOpen = () => setModalOpen(true);
   const handleClose = () => setModalOpen(false);
 
+  //Handle cart
+  const [cart, setCart] = useState(undefined);
+  const [itemsInCart, setItemsInCart] = useState("0");
+  const [totalAmount, setTotalAmount] = useState("0");
+
+  const getCart = async () => {
+    try {
+      const res = await axios.get("/api/v1/cart");
+
+      if (res.data.length !== 0) {
+        setItemsInCart(res.data.itemsInCart);
+        setTotalAmount(res.data.total);
+        setCart(res.data.cart);
+      } else {
+        setItemsInCart("0");
+        setTotalAmount("0");
+        setCart(null);
+      }
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
+
   //Get the category ID from the URL
   const params = useParams();
   const product = params.prodId;
@@ -65,6 +88,10 @@ const ProductDetail = () => {
       }
     };
 
+    const getOneTimeCart = async () => {
+      await getCart();
+    };
+    getOneTimeCart();
     getProduct();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -84,6 +111,7 @@ const ProductDetail = () => {
         alert("You need to login");
         return;
       }
+      await getCart();
       await axios.patch(`/api/v1/cart/addToCart/${productObj._id}`);
     } catch (err) {
       console.log(err.message);
@@ -94,7 +122,12 @@ const ProductDetail = () => {
 
   return (
     <div>
-      <ShopNav />
+      <ShopNav
+        getCart={getCart}
+        cart={cart}
+        itemsInCart={itemsInCart}
+        totalAmount={totalAmount}
+      />
       <section>
         <div className={classes.wrapper}>
           <div className={classes.box}>
