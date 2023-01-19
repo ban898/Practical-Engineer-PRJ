@@ -52,6 +52,7 @@ const CartModal = ({
             <div className={classes.miniHeaderOne}>Product</div>
             <div className={classes.miniHeader}>Price</div>
             <div className={classes.miniHeaderQ}>Quantity</div>
+            <div className={classes.miniHeader}>Size</div>
             <div className={classes.miniHeader}>Subtotal</div>
           </div>
           {cart &&

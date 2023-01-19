@@ -197,55 +197,60 @@ const ProductDetail = () => {
                             Shoes
                           </h2>
                           <table className={classes.shoeTable}>
-                            <tr className={classes.shopSizes}>
-                              <th>Shop Size</th>
-                              <th>UK</th>
-                              <th>JAP</th>
-                              <th>US</th>
-                              <th>UE</th>
-                            </tr>
-                            <tr>
-                              <th>XS</th>
-                              <td>8</td>
-                              <td>27</td>
-                              <td>8</td>
-                              <td>41</td>
-                            </tr>
-                            <tr>
-                              <th>S</th>
-                              <td>8.5</td>
-                              <td>27.5</td>
-                              <td>8.5</td>
-                              <td>42</td>
-                            </tr>
-                            <tr>
-                              <th>M</th>
-                              <td>9</td>
-                              <td>28</td>
-                              <td>9</td>
-                              <td>43</td>
-                            </tr>
-                            <tr>
-                              <th>L</th>
-                              <td>10</td>
-                              <td>29</td>
-                              <td>10</td>
-                              <td>44</td>
-                            </tr>
-                            <tr>
-                              <th>XL</th>
-                              <td>11</td>
-                              <td>30</td>
-                              <td>11</td>
-                              <td>45</td>
-                            </tr>
-                            <tr>
-                              <th>XXL</th>
-                              <td>12</td>
-                              <td>33</td>
-                              <td>14</td>
-                              <td>46</td>
-                            </tr>
+                            <thead>
+                              <tr className={classes.shopSizes}>
+                                <th>Shop Size</th>
+                                <th>UK</th>
+                                <th>JAP</th>
+                                <th>US</th>
+                                <th>UE</th>
+                              </tr>
+                            </thead>
+
+                            <tbody>
+                              <tr>
+                                <th>XS</th>
+                                <td>8</td>
+                                <td>27</td>
+                                <td>8</td>
+                                <td>41</td>
+                              </tr>
+                              <tr>
+                                <th>S</th>
+                                <td>8.5</td>
+                                <td>27.5</td>
+                                <td>8.5</td>
+                                <td>42</td>
+                              </tr>
+                              <tr>
+                                <th>M</th>
+                                <td>9</td>
+                                <td>28</td>
+                                <td>9</td>
+                                <td>43</td>
+                              </tr>
+                              <tr>
+                                <th>L</th>
+                                <td>10</td>
+                                <td>29</td>
+                                <td>10</td>
+                                <td>44</td>
+                              </tr>
+                              <tr>
+                                <th>XL</th>
+                                <td>11</td>
+                                <td>30</td>
+                                <td>11</td>
+                                <td>45</td>
+                              </tr>
+                              <tr>
+                                <th>XXL</th>
+                                <td>12</td>
+                                <td>33</td>
+                                <td>14</td>
+                                <td>46</td>
+                              </tr>
+                            </tbody>
                           </table>
                         </div>
                         <div className={classes.table2}>
@@ -258,55 +263,59 @@ const ProductDetail = () => {
                             Jewellery
                           </h2>
                           <table className={classes.jwTable}>
-                            <tr className={classes.jwSizes}>
-                              <th>Shop Size</th>
-                              <th>UK</th>
-                              <th>JAP</th>
-                              <th>US</th>
-                              <th>UE</th>
-                            </tr>
-                            <tr>
-                              <th>XS</th>
-                              <td>I 1/2</td>
-                              <td>8</td>
-                              <td>4 1/2</td>
-                              <td>15 1/4</td>
-                            </tr>
-                            <tr>
-                              <th>S</th>
-                              <td>J 1/2</td>
-                              <td>9</td>
-                              <td>5</td>
-                              <td>15 3/4</td>
-                            </tr>
-                            <tr>
-                              <th>M</th>
-                              <td>L</td>
-                              <td>11</td>
-                              <td>5.5</td>
-                              <td>16</td>
-                            </tr>
-                            <tr>
-                              <th>L</th>
-                              <td>M</td>
-                              <td>12</td>
-                              <td>6</td>
-                              <td>16 1/2</td>
-                            </tr>
-                            <tr>
-                              <th>XL</th>
-                              <td>N</td>
-                              <td>13</td>
-                              <td>6.5</td>
-                              <td>17</td>
-                            </tr>
-                            <tr>
-                              <th>XXL</th>
-                              <td>O</td>
-                              <td>14</td>
-                              <td>7</td>
-                              <td>17 1/4</td>
-                            </tr>
+                            <thead>
+                              <tr className={classes.jwSizes}>
+                                <th>Shop Size</th>
+                                <th>UK</th>
+                                <th>JAP</th>
+                                <th>US</th>
+                                <th>UE</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <th>XS</th>
+                                <td>I 1/2</td>
+                                <td>8</td>
+                                <td>4 1/2</td>
+                                <td>15 1/4</td>
+                              </tr>
+                              <tr>
+                                <th>S</th>
+                                <td>J 1/2</td>
+                                <td>9</td>
+                                <td>5</td>
+                                <td>15 3/4</td>
+                              </tr>
+                              <tr>
+                                <th>M</th>
+                                <td>L</td>
+                                <td>11</td>
+                                <td>5.5</td>
+                                <td>16</td>
+                              </tr>
+                              <tr>
+                                <th>L</th>
+                                <td>M</td>
+                                <td>12</td>
+                                <td>6</td>
+                                <td>16 1/2</td>
+                              </tr>
+                              <tr>
+                                <th>XL</th>
+                                <td>N</td>
+                                <td>13</td>
+                                <td>6.5</td>
+                                <td>17</td>
+                              </tr>
+                              <tr>
+                                <th>XXL</th>
+                                <td>O</td>
+                                <td>14</td>
+                                <td>7</td>
+                                <td>17 1/4</td>
+                              </tr>
+                            </tbody>
                           </table>
                         </div>
                       </Box>

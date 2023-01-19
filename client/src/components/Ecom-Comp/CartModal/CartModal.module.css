@@ -53,7 +53,12 @@
   width: 100%;
 }
 
-.miniHeaderOne {
+.titles > div {
+  text-align: center;
+  width: 15%;
+}
+
+.titles > div.miniHeaderOne {
   width: 40%;
   text-align: center;
 }
@@ -99,4 +104,8 @@
   padding: 15px 50px;
   font-weight: 500;
   border: none;
+}
+
+.miniHeader {
+  width: 15%;
 }

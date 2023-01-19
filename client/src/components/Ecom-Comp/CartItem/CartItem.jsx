@@ -63,6 +63,7 @@ const CartItem = ({ img, name, price, quantity, productId, onRenderCart }) => {
         <div>{quantity}</div>
         <RemoveIcon onClick={removeQuantityHandler} sx={{ color: red[800] }} />
       </div>
+      <div className={classes.size}>M</div>
       <div className={classes.subtotal}>{price * quantity} $</div>
     </div>
   );

@@ -198,7 +198,7 @@
   border-collapse: collapse;
 }
 
-.jwSizes > th {
+.jwSizes > th:not(:first-child) {
   max-width: 0.5rem;
 }
 
