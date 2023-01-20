@@ -62,9 +62,12 @@ exports.addToCart = async (req, res) => {
   try {
     let flag = 0;
     try {
-      const item = await Cart.findOne({ productId: req.params.productId });
+      const item = await Cart.findOne({
+        productId: req.params.productId,
+        size: req.body.size,
+      });
       await Cart.updateOne(
-        { productId: req.params.productId },
+        { productId: req.params.productId, size: req.body.size },
         {
           quantity: req.body.quantity
             ? item.quantity + req.body.quantity

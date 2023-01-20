@@ -22,6 +22,9 @@ const cartSchema = new mongoose.Schema({
   productId: {
     type: String,
   },
+  size: {
+    type: String,
+  },
 });
 
 const Cart = mongoose.model("Cart", cartSchema);

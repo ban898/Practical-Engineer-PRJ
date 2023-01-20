@@ -31,6 +31,10 @@ const productSchema = new mongoose.Schema({
   gender: {
     type: String,
   },
+  size: {
+    type: String,
+    required: true,
+  },
 });
 
 const Product = mongoose.model("Product", productSchema);
