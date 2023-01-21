@@ -11,6 +11,9 @@ import CommentAvatar1 from "../../../img/comment1.jpg";
 import CommentAvatar2 from "../../../img/comment2.jpg";
 import CommentAvatar3 from "../../../img/comment3.jpg";
 
+import CircularProgress from "@mui/material/CircularProgress";
+import { grey } from "@mui/material/colors";
+
 import {
   Box,
   Button,
@@ -76,6 +79,8 @@ const ProductDetail = () => {
   const [size, setSize] = useState("m");
   const [isLogin, setIsLogin] = useState(true);
 
+  const [addItem, setAddItem] = useState(false);
+
   const handleChange = (event) => {
     setSize(event.target.value);
   };
@@ -106,6 +111,7 @@ const ProductDetail = () => {
   };
 
   const addToCartHandler = async () => {
+    setAddItem(true);
     try {
       try {
         await axios.get("/api/v1/users/me");
@@ -119,6 +125,7 @@ const ProductDetail = () => {
     } catch (err) {
       console.log(err.message);
     }
+    setAddItem(false);
   };
 
   let price = productObj.price?.toFixed(2);
@@ -126,6 +133,17 @@ const ProductDetail = () => {
   const warningLoginCloseHandler = () => {
     setIsLogin(true);
   };
+
+  let text = addItem ? (
+    <Box sx={{ display: "flex" }}>
+      <CircularProgress
+        sx={{ marginLeft: "16rem", color: grey[200] }}
+        size="2rem"
+      />
+    </Box>
+  ) : (
+    "Add To Cart"
+  );
 
   return (
     <div>
@@ -348,7 +366,7 @@ const ProductDetail = () => {
               <div className={classes.payment}>
                 <BlueButton
                   onClick={addToCartHandler}
-                  buttonText={"Add To Cart"}
+                  buttonText={text}
                 ></BlueButton>
                 <BlueButton
                   buttonText={"Go Back"}

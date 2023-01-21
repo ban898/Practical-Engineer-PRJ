@@ -8,6 +8,11 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import WarningModal from "../WarningModal/WarningModal";
 import BlueButton from "../BlueButton/BlueButton";
 
+import CircularProgress from "@mui/material/CircularProgress";
+import { grey } from "@mui/material/colors";
+
+import { Box } from "@mui/material";
+
 const CartModal = ({
   open,
   onClose,
@@ -17,6 +22,8 @@ const CartModal = ({
   getCart,
 }) => {
   const [hasCart, setHasCart] = useState(true);
+
+  const [checkoutBtn, setCheckoutBtn] = useState(false);
 
   // render Cart
   const renderCartHandler = async () => {
@@ -30,6 +37,7 @@ const CartModal = ({
   };
 
   const checkoutHandler = async () => {
+    setCheckoutBtn(true);
     try {
       if (cart) {
         const res = await axios.post("/api/v1/stripe/checkout-session", {
@@ -43,11 +51,23 @@ const CartModal = ({
     } catch (err) {
       console.log(err);
     }
+    setCheckoutBtn(false);
   };
 
   const warningCartCloseHandler = () => {
     setHasCart(true);
   };
+
+  let text = checkoutBtn ? (
+    <Box sx={{ display: "flex" }}>
+      <CircularProgress
+        sx={{ marginLeft: "1rem", color: grey[200] }}
+        size="1.5rem"
+      />
+    </Box>
+  ) : (
+    "Checkout"
+  );
 
   return (
     <div className={classes.overlay}>
@@ -104,7 +124,7 @@ const CartModal = ({
               Continue Shopping
             </div>
             <button onClick={checkoutHandler} className={classes.checkout}>
-              Checkout
+              {text}
             </button>
           </div>
         </div>
