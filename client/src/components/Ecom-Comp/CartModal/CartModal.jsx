@@ -1,10 +1,12 @@
-import { React } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 
 import CartItem from "../CartItem/CartItem";
 import classes from "./CartModal.module.css";
 
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import WarningModal from "../WarningModal/WarningModal";
+import BlueButton from "../BlueButton/BlueButton";
 
 const CartModal = ({
   open,
@@ -14,6 +16,8 @@ const CartModal = ({
   itemsInCart,
   getCart,
 }) => {
+  const [hasCart, setHasCart] = useState(true);
+
   // render Cart
   const renderCartHandler = async () => {
     await getCart();
@@ -31,17 +35,37 @@ const CartModal = ({
         const res = await axios.post("/api/v1/stripe/checkout-session", {
           cart,
         });
+        setHasCart(true);
         if (res.data.session.url) window.location.href = res.data.session.url;
       } else {
-        alert("There is no product or products in the cart");
+        setHasCart(false);
+        // alert("There is no product or products in the cart");
       }
     } catch (err) {
       console.log(err);
     }
   };
 
+  const warningCartCloseHandler = () => {
+    setHasCart(true);
+  };
+
   return (
     <div className={classes.overlay}>
+      {!hasCart && (
+        <WarningModal onHide={warningCartCloseHandler}>
+          <h2>There is no product or products in the cart</h2>
+          <br />
+          <BlueButton
+            buttonText="Close"
+            padding="7px"
+            fontSize="13.3px"
+            width="100px"
+            backgroundColor="#247bfe"
+            onClick={warningCartCloseHandler}
+          />
+        </WarningModal>
+      )}
       <div className={classes.cartContainer} onClick={stopPro}>
         <div className={classes.cartWrapper}>
           <div className={classes.cartHeader}>
@@ -66,12 +90,15 @@ const CartModal = ({
                   name={item.name}
                   price={item.price}
                   quantity={item.quantity}
+                  size={item.size}
                 />
               );
             })}
           <div className={classes.totalWrapper}>
             <div className={classes.text}>{itemsInCart} items in cart .</div>
-            <div className={classes.finalTotal}>Total : {totalAmount} $</div>
+            <div className={classes.finalTotal}>
+              Total : {totalAmount > 0 ? totalAmount.toFixed(2) : totalAmount} $
+            </div>
           </div>
           <div className={classes.btnWrapper}>
             <div className={classes.continue} onClick={onClose}>

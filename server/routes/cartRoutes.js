@@ -19,14 +19,15 @@ router
   );
 
 router.patch(
-  "/addQuantity/:productId",
+  "/addQuantity/",
   authController.protect,
   userController.getMe,
   cartController.addQuantity
 );
 
+// "/addToCart/:productId",
 router.patch(
-  "/addToCart/:productId",
+  "/addToCart",
   authController.protect,
   userController.getMe,
   cartController.addToCart
@@ -40,7 +41,7 @@ router.patch(
 );
 
 router.delete(
-  "/deleteItem/:productId",
+  "/deleteItem/:productId&:size",
   authController.protect,
   userController.getMe,
   cartController.deleteItem

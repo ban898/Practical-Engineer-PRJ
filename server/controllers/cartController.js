@@ -63,11 +63,11 @@ exports.addToCart = async (req, res) => {
     let flag = 0;
     try {
       const item = await Cart.findOne({
-        productId: req.params.productId,
+        productId: req.body.data._id,
         size: req.body.size,
       });
       await Cart.updateOne(
-        { productId: req.params.productId, size: req.body.size },
+        { productId: req.body.data._id, size: req.body.size },
         {
           quantity: req.body.quantity
             ? item.quantity + req.body.quantity
@@ -76,7 +76,8 @@ exports.addToCart = async (req, res) => {
       );
 
       const updatedItem = await Cart.findOne({
-        productId: req.params.productId,
+        productId: req.body.data._id,
+        size: req.body.size,
       });
       flag = 1;
       res
@@ -84,7 +85,7 @@ exports.addToCart = async (req, res) => {
         .json({ status: "success", quantity: updatedItem.quantity });
     } catch (err) {}
     if (flag) return;
-    const product = await Product.findById({ _id: req.params.productId });
+    const product = await Product.findById({ _id: req.body.data._id });
     await Cart.create({
       userId: req.params.id,
       image: product.images[0],
@@ -93,6 +94,7 @@ exports.addToCart = async (req, res) => {
       price: product.price,
       quantity: 1,
       productId: product._id,
+      size: req.body.size,
     });
     res.status(200).json({ status: "success" });
   } catch (err) {
@@ -102,10 +104,13 @@ exports.addToCart = async (req, res) => {
 
 exports.addQuantity = async (req, res) => {
   try {
-    const item = await Cart.findOne({ productId: req.params.productId });
+    const item = await Cart.findOne({
+      productId: req.body.productId,
+      size: req.body.size,
+    });
 
     await Cart.updateOne(
-      { productId: req.params.productId },
+      { productId: req.body.productId, size: req.body.size },
       {
         quantity: req.body.quantity
           ? item.quantity + req.body.quantity
@@ -114,7 +119,7 @@ exports.addQuantity = async (req, res) => {
     );
 
     const updatedItem = await Cart.findOne({
-      productId: req.params.productId,
+      productId: req.body.productId,
     });
 
     res.status(200).json({ status: "success", quantity: updatedItem.quantity });
@@ -126,7 +131,10 @@ exports.addQuantity = async (req, res) => {
 exports.removeQuantity = async (req, res) => {
   try {
     let updateditem = undefined;
-    const item = await Cart.findOne({ productId: req.body.productId });
+    const item = await Cart.findOne({
+      productId: req.body.productId,
+      size: req.body.size,
+    });
 
     if (
       item.quantity === 1 ||
@@ -135,10 +143,11 @@ exports.removeQuantity = async (req, res) => {
     ) {
       await Cart.findOneAndDelete({
         productId: req.body.productId,
+        size: req.body.size,
       });
     } else {
       await Cart.updateOne(
-        { productId: req.body.productId },
+        { productId: req.body.productId, size: req.body.size },
         {
           quantity: req.body.quantity
             ? item.quantity - req.body.quantity
@@ -146,7 +155,10 @@ exports.removeQuantity = async (req, res) => {
         }
       );
 
-      updateditem = await Cart.findOne({ productId: req.body.productId });
+      updateditem = await Cart.findOne({
+        productId: req.body.productId,
+        size: req.body.size,
+      });
     }
 
     if (!updateditem) {
@@ -163,7 +175,10 @@ exports.removeQuantity = async (req, res) => {
 
 exports.deleteItem = async (req, res) => {
   try {
-    await Cart.findOneAndDelete({ productId: req.params.productId });
+    await Cart.findOneAndDelete({
+      productId: req.params.productId,
+      size: req.params.size,
+    });
 
     res.status(204).json({ status: "success" });
   } catch (err) {

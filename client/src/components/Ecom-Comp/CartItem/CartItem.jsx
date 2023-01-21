@@ -9,10 +9,18 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import { green, red } from "@mui/material/colors";
 import axios from "axios";
 
-const CartItem = ({ img, name, price, quantity, productId, onRenderCart }) => {
+const CartItem = ({
+  size,
+  img,
+  name,
+  price,
+  quantity,
+  productId,
+  onRenderCart,
+}) => {
   const addQuantityHandler = async () => {
     try {
-      await axios.patch(`/api/v1/cart/addQuantity/${productId}`);
+      await axios.patch(`/api/v1/cart/addQuantity/`, { productId, size });
       await onRenderCart();
     } catch (err) {
       console.log(err.message);
@@ -23,6 +31,7 @@ const CartItem = ({ img, name, price, quantity, productId, onRenderCart }) => {
     try {
       await axios.patch("/api/v1/cart/removeQuantity", {
         productId,
+        size,
       });
 
       await onRenderCart();
@@ -33,7 +42,8 @@ const CartItem = ({ img, name, price, quantity, productId, onRenderCart }) => {
 
   const deleteItemHandler = async () => {
     try {
-      await axios.delete(`/api/v1/cart/deleteItem/${productId}`);
+      console.log(productId, size);
+      await axios.delete(`/api/v1/cart/deleteItem/${productId}&${size}`);
       await onRenderCart();
     } catch (err) {
       console.log(err.message);
@@ -63,7 +73,7 @@ const CartItem = ({ img, name, price, quantity, productId, onRenderCart }) => {
         <div>{quantity}</div>
         <RemoveIcon onClick={removeQuantityHandler} sx={{ color: red[800] }} />
       </div>
-      <div className={classes.size}>M</div>
+      <div className={classes.size}>{size}</div>
       <div className={classes.subtotal}>{price * quantity} $</div>
     </div>
   );

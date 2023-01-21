@@ -2,6 +2,7 @@ const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const Cart = require("../models/cartModel");
 const Order = require("../models/orderModel");
 const catchAsync = require("../utils/catchAsync");
+const BuyingProductsEmail = require("../utils/Emails/BuyingProductsEmail");
 const { removeCartOfUser } = require("./cartController");
 
 exports.getCheckoutSession = catchAsync(async (req, res, next) => {
@@ -77,6 +78,8 @@ exports.getCheckoutSession = catchAsync(async (req, res, next) => {
 });
 
 const createOrder = async (customer, data) => {
+  // console.log("customer", customer);
+  // console.log("data", data);
   const cart = await Cart.aggregate([
     {
       $match: { userId: { $eq: customer.metadata.userId } },
@@ -93,8 +96,20 @@ const createOrder = async (customer, data) => {
     shipping: data.customer_details,
     payment_status: data.payment_status,
   });
+  // console.log(newOrder);
+  const user = {
+    email: customer.email,
+    name: data.customer_details.name,
+  };
+  const order = {
+    cart,
+    id: newOrder._id,
+    total: newOrder.total,
+    shippingAddress: newOrder.shipping.address,
+  };
   try {
     await newOrder.save();
+    await new BuyingProductsEmail(order, user).buyingProductsEmail();
   } catch (err) {
     console.log(err);
   }

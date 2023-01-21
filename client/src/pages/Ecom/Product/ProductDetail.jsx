@@ -5,6 +5,7 @@ import axios from "axios";
 import ShopNav from "../../../components/Ecom-Comp/Navbar/ShopNav";
 import Comment from "../../../components/Ecom-Comp/Comment/Comment";
 import Footer from "../../../components/Ecom-Comp/Footer/Footer";
+import WarningModal from "../../../components/Ecom-Comp/WarningModal/WarningModal";
 
 import CommentAvatar1 from "../../../img/comment1.jpg";
 import CommentAvatar2 from "../../../img/comment2.jpg";
@@ -53,6 +54,7 @@ const ProductDetail = () => {
       const res = await axios.get("/api/v1/cart");
 
       if (res.data.length !== 0) {
+        console.log(res.data.cart);
         setItemsInCart(res.data.itemsInCart);
         setTotalAmount(res.data.total);
         setCart(res.data.cart);
@@ -72,6 +74,7 @@ const ProductDetail = () => {
 
   const [productObj, setProductObj] = useState({});
   const [size, setSize] = useState("m");
+  const [isLogin, setIsLogin] = useState(true);
 
   const handleChange = (event) => {
     setSize(event.target.value);
@@ -82,7 +85,6 @@ const ProductDetail = () => {
       try {
         const res = await axios.get(`/api/v1/products/${product}`);
         setProductObj(res.data.product);
-        console.log(productObj);
       } catch (err) {
         console.log(err);
       }
@@ -107,12 +109,13 @@ const ProductDetail = () => {
     try {
       try {
         await axios.get("/api/v1/users/me");
+        setIsLogin(true);
       } catch (err) {
-        alert("You need to login");
+        setIsLogin(false);
         return;
       }
+      await axios.patch(`/api/v1/cart/addToCart/`, { data: productObj, size });
       await getCart();
-      await axios.patch(`/api/v1/cart/addToCart/${productObj._id}`);
     } catch (err) {
       console.log(err.message);
     }
@@ -120,8 +123,26 @@ const ProductDetail = () => {
 
   let price = productObj.price?.toFixed(2);
 
+  const warningLoginCloseHandler = () => {
+    setIsLogin(true);
+  };
+
   return (
     <div>
+      {!isLogin && (
+        <WarningModal onHide={warningLoginCloseHandler}>
+          <h2>You need to login</h2>
+          <br />
+          <BlueButton
+            buttonText="Close"
+            padding="7px"
+            fontSize="13.3px"
+            width="100px"
+            backgroundColor="#247bfe"
+            onClick={warningLoginCloseHandler}
+          />
+        </WarningModal>
+      )}
       <ShopNav
         getCart={getCart}
         cart={cart}
