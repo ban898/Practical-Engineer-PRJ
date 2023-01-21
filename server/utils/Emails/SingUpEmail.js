@@ -27,10 +27,10 @@ module.exports = class SignUpEmail {
       to: this.to,
       subject: subject,
       html: `<div>
-      <h1>Hello ${this.firstName}</h1>
-      <h2>Thank you for joining our Design-X Community</h2>
-      <p>You can start shopping right away</p>
-      <p>Have a good time and remember to keep an eye on your Email notifications We got suprises coming soon ! </p>      
+      <h1 style="text-align:center;">Hello ${this.firstName}</h1>
+      <h2 style="text-align:center;">Thank you for joining our Design-X Community</h2>
+      <p style="text-align:center;">You can start shopping right away</p>
+      <p style="text-align:center;">Have a good time and remember to keep an eye on your Email notifications We got suprises coming soon ! </p>      
       </div>`,
     };
 

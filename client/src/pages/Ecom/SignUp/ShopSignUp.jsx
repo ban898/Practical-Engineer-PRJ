@@ -15,6 +15,8 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useNavigate } from "react-router";
 import axios from "axios";
+import WarningModal from "../../../components/Ecom-Comp/WarningModal/WarningModal";
+import BlueButton from "../../../components/Ecom-Comp/BlueButton/BlueButton";
 
 function Copyright(props) {
   return (
@@ -49,6 +51,8 @@ export default function SignUp() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [address, setAddress] = useState("");
+  const [isCreated, setIsCreated] = useState(false);
+  const [contentModal, setContentModal] = useState("Created successfuly!");
   //const [photo, setPhoto] = useState(null);
 
   const emailChangeHandler = (el) => {
@@ -89,14 +93,34 @@ export default function SignUp() {
     };
     try {
       await axios.post("/api/v1/users/signup", { data });
-      alert("Created successfuly!");
+      setContentModal("Created successfuly!");
+      setIsCreated(true);
     } catch (err) {
-      alert(err.response.data.message);
+      setContentModal(err.response.data.message);
+      setIsCreated(true);
     }
+  };
+
+  const warningCreatedUserCloseHandler = () => {
+    setIsCreated(false);
   };
 
   return (
     <ThemeProvider theme={theme}>
+      {isCreated && (
+        <WarningModal onHide={warningCreatedUserCloseHandler}>
+          <h2>{contentModal}</h2>
+          <br />
+          <BlueButton
+            buttonText="Close"
+            padding="7px"
+            fontSize="13.3px"
+            width="100px"
+            backgroundColor="#247bfe"
+            onClick={warningCreatedUserCloseHandler}
+          />
+        </WarningModal>
+      )}
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box

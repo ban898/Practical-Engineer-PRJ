@@ -39,7 +39,6 @@ const CartModal = ({
         if (res.data.session.url) window.location.href = res.data.session.url;
       } else {
         setHasCart(false);
-        // alert("There is no product or products in the cart");
       }
     } catch (err) {
       console.log(err);

@@ -36,7 +36,7 @@ const SingleCard = ({
   const handleMouseLeave = () => {
     setHasOverlay(false);
   };
-
+  let size = "m";
   const handleAddToCart = async () => {
     try {
       try {
@@ -47,7 +47,10 @@ const SingleCard = ({
         return;
       }
       setIsFetching(true);
-      await axios.patch(`/api/v1/cart/addToCart/${prodId}`);
+      await axios.patch(`/api/v1/cart/addToCart/`, {
+        data: { _id: prodId },
+        size,
+      });
       await getCart();
       setIsFetching(false);
     } catch (err) {
