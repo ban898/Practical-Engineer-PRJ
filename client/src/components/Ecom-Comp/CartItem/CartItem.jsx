@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import classes from "./CartItem.module.css";
 
@@ -9,6 +9,9 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import { green, red } from "@mui/material/colors";
 import axios from "axios";
 
+import CircularProgress from "@mui/material/CircularProgress";
+import Box from "@mui/material/Box";
+
 const CartItem = ({
   size,
   img,
@@ -18,16 +21,23 @@ const CartItem = ({
   productId,
   onRenderCart,
 }) => {
+  const [addQnt, setAddQnt] = useState(false);
+  const [removeQnt, setRemoveQnt] = useState(false);
+  const [removeItem, setRemoveItem] = useState(false);
+
   const addQuantityHandler = async () => {
+    setAddQnt(true);
     try {
       await axios.patch(`/api/v1/cart/addQuantity/`, { productId, size });
       await onRenderCart();
     } catch (err) {
       console.log(err.message);
     }
+    setAddQnt(false);
   };
 
   const removeQuantityHandler = async () => {
+    setRemoveQnt(true);
     try {
       await axios.patch("/api/v1/cart/removeQuantity", {
         productId,
@@ -38,9 +48,11 @@ const CartItem = ({
     } catch (err) {
       console.log(err.message);
     }
+    setRemoveQnt(false);
   };
 
   const deleteItemHandler = async () => {
+    setRemoveItem(true);
     try {
       console.log(productId, size);
       await axios.delete(`/api/v1/cart/deleteItem/${productId}&${size}`);
@@ -48,15 +60,22 @@ const CartItem = ({
     } catch (err) {
       console.log(err.message);
     }
+    setRemoveItem(false);
   };
 
   return (
     <div className={classes.itemWrapper}>
       <div className={classes.three}>
         <div className={classes.remove} onClick={deleteItemHandler}>
-          <RemoveCircleOutlineIcon
-            sx={{ color: red[500], cursor: "pointer" }}
-          />
+          {removeItem ? (
+            <Box sx={{ display: "flex" }}>
+              <CircularProgress sx={{ color: red[500] }} size="1.5rem" />
+            </Box>
+          ) : (
+            <RemoveCircleOutlineIcon
+              sx={{ color: red[500], cursor: "pointer" }}
+            />
+          )}
         </div>
         <div className={classes.img}>
           <Avatar
@@ -69,9 +88,24 @@ const CartItem = ({
       </div>
       <div className={classes.price}>{price} $</div>
       <div className={classes.quantity}>
-        <AddIcon onClick={addQuantityHandler} sx={{ color: green[700] }} />
+        {addQnt ? (
+          <Box sx={{ display: "flex" }}>
+            <CircularProgress size="1rem" color="success" />
+          </Box>
+        ) : (
+          <AddIcon onClick={addQuantityHandler} sx={{ color: green[700] }} />
+        )}
         <div>{quantity}</div>
-        <RemoveIcon onClick={removeQuantityHandler} sx={{ color: red[800] }} />
+        {removeQnt ? (
+          <Box sx={{ display: "flex" }}>
+            <CircularProgress size="1rem" color="error" />
+          </Box>
+        ) : (
+          <RemoveIcon
+            onClick={removeQuantityHandler}
+            sx={{ color: red[800] }}
+          />
+        )}
       </div>
       <div className={classes.size}>{size}</div>
       <div className={classes.subtotal}>{price * quantity} $</div>

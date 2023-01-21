@@ -7,7 +7,7 @@ import {
   Card,
   CardContent,
   CardMedia,
-  useThemeProps,
+  // useThemeProps,
 } from "@mui/material";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import CircularProgress from "@mui/material/CircularProgress";
