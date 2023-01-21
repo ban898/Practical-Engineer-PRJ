@@ -36,7 +36,7 @@ const SingleCard = ({
   const handleMouseLeave = () => {
     setHasOverlay(false);
   };
-  let size = "m";
+  let size = "M";
   const handleAddToCart = async () => {
     try {
       try {

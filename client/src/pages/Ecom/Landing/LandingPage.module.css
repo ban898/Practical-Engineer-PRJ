@@ -45,7 +45,7 @@ img {
   display: flex;
   gap: 0.5rem;
   position: absolute;
-  top: 22rem;
+  top: 28rem;
   left: 12rem;
 }
 
@@ -296,7 +296,7 @@ img {
     font-size: 2.5rem;
   }
   .buttonContainer {
-    top: 20rem;
+    top: 22rem;
     left: 3rem;
   }
   .browse {

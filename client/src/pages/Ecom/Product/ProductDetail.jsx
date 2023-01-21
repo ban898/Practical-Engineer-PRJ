@@ -205,12 +205,12 @@ const ProductDetail = () => {
                         label="Size"
                         onChange={handleChange}
                       >
-                        <MenuItem value={"xs"}>Extra Small</MenuItem>
-                        <MenuItem value={"s"}>Small</MenuItem>
-                        <MenuItem value={"m"}>Medium</MenuItem>
-                        <MenuItem value={"l"}>Large</MenuItem>
-                        <MenuItem value={"xl"}>XL</MenuItem>
-                        <MenuItem value={"xxl"}>XXL</MenuItem>
+                        <MenuItem value={"XS"}>Extra Small</MenuItem>
+                        <MenuItem value={"S"}>Small</MenuItem>
+                        <MenuItem value={"M"}>Medium</MenuItem>
+                        <MenuItem value={"L"}>Large</MenuItem>
+                        <MenuItem value={"XL"}>XL</MenuItem>
+                        <MenuItem value={"XXL"}>XXL</MenuItem>
                       </Select>
                     </FormControl>
                   </Box>
