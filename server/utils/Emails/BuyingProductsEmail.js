@@ -41,29 +41,38 @@ module.exports = class BuyingProductsEmail {
       subject: subject,
       attachments: img,
 
-      html: `<div style="text-align: center;">
-      <h1 >Dear ${this.name}</h1>
-      <h2 >Thanks you for your Order! We hope you enjoyed shopping with us.</h2> 
-      <p><b>Order number:</b></p>
-          <p>${this.order.id}</p><br>
-          <p><b>Total Amount:</b></p>
-          <p>${this.order.total}</p><br>
-          <p><b>Shipping address:<b></p>
-          <p>${this.order.shippingAddress.line1}</p>  
-          <p>${this.order.shippingAddress.city}</p>  
-          <p>${this.order.shippingAddress.country}</p>  
-          <p>${this.order.shippingAddress.postal_code}</p><br>       
-          <h2>Order Summary:</h2>       
-          ${this.order.cart.map((element) => {
-            return `                                                
-             <img style="width:20%" src="cid:${element._id}"/>
-             <h3>${element.name}</h3>
-             <div>Description: ${element.description}</div>
-             <div>Size: ${element.size}</div>
-             <div>Quantity: ${element.quantity}</div>
-             <div>Subtotal: ${element.quantity * element.price} $</div>`;
-          })}
-      </div>`,
+      html: `<div style="text-align: center; direction:ltr;">
+      <h1>Dear ${this.name}</h1>
+      <h2>Thanks you for your Order! We hope you enjoyed shopping with us.</h2>
+      <p>
+        <b>Order number:</b>
+      </p>
+      <p>${this.order.id}</p>
+      <br>
+      <p>
+        <b>Total Amount:</b>
+      </p>
+      <p>${this.order.total}</p>
+      <br>
+      <p>
+        <b>Shipping address: <b>
+      </p>
+      <p>${this.order.shippingAddress.line1}</p>
+      <p>${this.order.shippingAddress.city}</p>
+      <p>${this.order.shippingAddress.country}</p>
+      <p>${this.order.shippingAddress.postal_code}</p>
+      <br>
+      <h2>Order Summary:</h2> ${this.order.cart.map((element) => {
+        return ` <img style="width:20%" src="cid:${element._id}" />
+      <h3>${element.name}</h3>
+      <div>Description: ${element.description}</div>
+      <div>Size: ${element.size}</div>
+      <div>Quantity: ${element.quantity}</div>
+      <div style="margin-bottom: 1em;">Subtotal: ${
+        element.quantity * element.price
+      } $</div>`;
+      })}
+    </div>`,
     };
 
     await this.newTransport().sendMail(mailOptions);

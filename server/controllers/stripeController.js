@@ -79,7 +79,7 @@ exports.getCheckoutSession = catchAsync(async (req, res, next) => {
 
 const createOrder = async (customer, data) => {
   // console.log("customer", customer);
-  // console.log("data", data);
+  console.log("data", data);
   const cart = await Cart.aggregate([
     {
       $match: { userId: { $eq: customer.metadata.userId } },
