@@ -28,7 +28,12 @@ const CartItem = ({
   const addQuantityHandler = async () => {
     setAddQnt(true);
     try {
-      await axios.patch(`/api/v1/cart/addQuantity/`, { productId, size });
+      const user = await axios.get("/api/v1/users/me");
+      await axios.patch(`/api/v1/cart/addQuantity/`, {
+        productId,
+        size,
+        userId: user.data.user._id,
+      });
       await onRenderCart();
     } catch (err) {
       console.log(err.message);
@@ -39,9 +44,11 @@ const CartItem = ({
   const removeQuantityHandler = async () => {
     setRemoveQnt(true);
     try {
+      const user = await axios.get("/api/v1/users/me");
       await axios.patch("/api/v1/cart/removeQuantity", {
         productId,
         size,
+        userId: user.data.user._id,
       });
 
       await onRenderCart();
@@ -54,8 +61,11 @@ const CartItem = ({
   const deleteItemHandler = async () => {
     setRemoveItem(true);
     try {
-      console.log(productId, size);
-      await axios.delete(`/api/v1/cart/deleteItem/${productId}&${size}`);
+      const user = await axios.get("/api/v1/users/me");
+      const userId = user.data.user._id;
+      await axios.delete(
+        `/api/v1/cart/deleteItem/${productId}&${size}&${userId}`
+      );
       await onRenderCart();
     } catch (err) {
       console.log(err.message);

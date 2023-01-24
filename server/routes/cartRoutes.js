@@ -25,7 +25,6 @@ router.patch(
   cartController.addQuantity
 );
 
-// "/addToCart/:productId",
 router.patch(
   "/addToCart",
   authController.protect,
@@ -41,7 +40,7 @@ router.patch(
 );
 
 router.delete(
-  "/deleteItem/:productId&:size",
+  "/deleteItem/:productId&:size&:userId",
   authController.protect,
   userController.getMe,
   cartController.deleteItem

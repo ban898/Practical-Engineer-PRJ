@@ -57,7 +57,6 @@ const ProductDetail = () => {
       const res = await axios.get("/api/v1/cart");
 
       if (res.data.length !== 0) {
-        console.log(res.data.cart);
         setItemsInCart(res.data.itemsInCart);
         setTotalAmount(res.data.total);
         setCart(res.data.cart);
@@ -76,7 +75,7 @@ const ProductDetail = () => {
   const product = params.prodId;
 
   const [productObj, setProductObj] = useState({});
-  const [size, setSize] = useState("m");
+  const [size, setSize] = useState("M");
   const [isLogin, setIsLogin] = useState(true);
 
   const [addItem, setAddItem] = useState(false);
@@ -111,16 +110,21 @@ const ProductDetail = () => {
   };
 
   const addToCartHandler = async () => {
-    setAddItem(true);
+    let user;
     try {
       try {
-        await axios.get("/api/v1/users/me");
+        user = await axios.get("/api/v1/users/me");
+        setAddItem(true);
         setIsLogin(true);
       } catch (err) {
         setIsLogin(false);
         return;
       }
-      await axios.patch(`/api/v1/cart/addToCart/`, { data: productObj, size });
+      await axios.patch(`/api/v1/cart/addToCart/`, {
+        data: productObj,
+        size,
+        userId: user.data.user._id,
+      });
       await getCart();
     } catch (err) {
       console.log(err.message);

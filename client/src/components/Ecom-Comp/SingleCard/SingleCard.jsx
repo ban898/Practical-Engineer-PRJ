@@ -38,9 +38,11 @@ const SingleCard = ({
   };
   let size = "M";
   const handleAddToCart = async () => {
+    let user;
     try {
       try {
-        await axios.get("/api/v1/users/me");
+        user = await axios.get("/api/v1/users/me");
+
         closeWarning();
       } catch (err) {
         openWarning();
@@ -50,6 +52,7 @@ const SingleCard = ({
       await axios.patch(`/api/v1/cart/addToCart/`, {
         data: { _id: prodId },
         size,
+        userId: user.data.user._id,
       });
       await getCart();
       setIsFetching(false);

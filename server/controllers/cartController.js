@@ -1,6 +1,5 @@
 const Cart = require("../models/cartModel");
 const Product = require("../models/productModel");
-// const AppError = require("../utils/appError");
 
 exports.createCart = async (req, res) => {
   try {
@@ -64,10 +63,16 @@ exports.addToCart = async (req, res) => {
     try {
       const item = await Cart.findOne({
         productId: req.body.data._id,
+        userId: req.body.userId,
         size: req.body.size,
       });
+
       await Cart.updateOne(
-        { productId: req.body.data._id, size: req.body.size },
+        {
+          productId: req.body.data._id,
+          size: req.body.size,
+          userId: req.body.userId,
+        },
         {
           quantity: req.body.quantity
             ? item.quantity + req.body.quantity
@@ -77,8 +82,10 @@ exports.addToCart = async (req, res) => {
 
       const updatedItem = await Cart.findOne({
         productId: req.body.data._id,
+        userId: req.body.userId,
         size: req.body.size,
       });
+
       flag = 1;
       res
         .status(200)
@@ -106,11 +113,16 @@ exports.addQuantity = async (req, res) => {
   try {
     const item = await Cart.findOne({
       productId: req.body.productId,
+      userId: req.body.userId,
       size: req.body.size,
     });
 
     await Cart.updateOne(
-      { productId: req.body.productId, size: req.body.size },
+      {
+        productId: req.body.productId,
+        size: req.body.size,
+        userId: req.body.userId,
+      },
       {
         quantity: req.body.quantity
           ? item.quantity + req.body.quantity
@@ -120,6 +132,8 @@ exports.addQuantity = async (req, res) => {
 
     const updatedItem = await Cart.findOne({
       productId: req.body.productId,
+      userId: req.body.userId,
+      size: req.body.size,
     });
 
     res.status(200).json({ status: "success", quantity: updatedItem.quantity });
@@ -133,6 +147,7 @@ exports.removeQuantity = async (req, res) => {
     let updateditem = undefined;
     const item = await Cart.findOne({
       productId: req.body.productId,
+      userId: req.body.userId,
       size: req.body.size,
     });
 
@@ -143,11 +158,16 @@ exports.removeQuantity = async (req, res) => {
     ) {
       await Cart.findOneAndDelete({
         productId: req.body.productId,
+        userId: req.body.userId,
         size: req.body.size,
       });
     } else {
       await Cart.updateOne(
-        { productId: req.body.productId, size: req.body.size },
+        {
+          productId: req.body.productId,
+          size: req.body.size,
+          userId: req.body.userId,
+        },
         {
           quantity: req.body.quantity
             ? item.quantity - req.body.quantity
@@ -157,6 +177,7 @@ exports.removeQuantity = async (req, res) => {
 
       updateditem = await Cart.findOne({
         productId: req.body.productId,
+        userId: req.body.userId,
         size: req.body.size,
       });
     }
@@ -177,6 +198,7 @@ exports.deleteItem = async (req, res) => {
   try {
     await Cart.findOneAndDelete({
       productId: req.params.productId,
+      userId: req.params.userId,
       size: req.params.size,
     });
 
