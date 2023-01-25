@@ -78,25 +78,41 @@ exports.getCheckoutSession = catchAsync(async (req, res, next) => {
 });
 
 const createOrder = async (customer, data) => {
-  // console.log("customer", customer);
-  console.log("data", data);
   const cart = await Cart.aggregate([
     {
       $match: { userId: { $eq: customer.metadata.userId } },
     },
   ]);
 
+  const itemsInCart = await Cart.aggregate([
+    { $match: { userId: { $eq: customer.metadata.userId } } },
+    {
+      $group: {
+        _id: null,
+        total: { $sum: { $multiply: ["$price", "$quantity"] } },
+      },
+    },
+  ]);
+
+  let total =
+    data.amount_total > data.amount_subtotal
+      ? (itemsInCart[0].total + 15).toFixed(2)
+      : itemsInCart[0].total.toFixed(2);
+
+  // console.log(data.amount_subtotal);
+  // console.log(data.amount_total);
+
   const newOrder = new Order({
     userId: data.client_reference_id,
     customerId: data.customer,
     paymentIntentId: data.payment_intent,
     products: cart,
-    subtotal: data.amount_subtotal,
-    total: data.amount_total,
+    subtotal: itemsInCart[0].total.toFixed(2),
+    total: total,
     shipping: data.customer_details,
     payment_status: data.payment_status,
   });
-  // console.log(newOrder);
+
   const user = {
     email: customer.email,
     name: data.customer_details.name,

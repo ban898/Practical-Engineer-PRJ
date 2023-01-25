@@ -52,7 +52,7 @@ module.exports = class BuyingProductsEmail {
       <p>
         <b>Total Amount:</b>
       </p>
-      <p>${this.order.total}</p>
+      <p>${this.order.total} $</p>
       <br>
       <p>
         <b>Shipping address: <b>
